@@ -339,6 +339,10 @@ Para cada perfil, responda:
 - [ ] Classificar acessibilidade geral (Baixa/Média/Alta)
 - [ ] Listar 2-3 canais prioritários para abordagem
 
+### Tarefas complementares
+
+- [ ] Iniciar planilha `07-contatos.csv` (usar template `template-contact-list.csv`) registrando leads e intermediários mapeados por perfil prioritário
+
 ### Ponto de decisão
 
 - [ ] Pelo menos 3 perfis têm acessibilidade Média ou Alta?
@@ -351,10 +355,12 @@ Para cada perfil, responda:
 - [ ] Pelo menos 3 perfis classificados como Média ou Alta
 - [ ] Canais prioritários identificados para cada perfil
 - [ ] Sinalização de perfis difíceis de alcançar
+- [ ] Planilha `07-contatos.csv` criada com ao menos 3 leads iniciais (ou intermediários) dos perfis prioritários
 
 ### Output gerado
 
 - [ ] Arquivo `05-avaliacao-acessibilidade.txt` criado na pasta _DATA
+- [ ] Arquivo `07-contatos.csv` iniciado na pasta _DATA
 
 ## Etapa 6: Documentar perfis finais (10 minutos)
 
@@ -475,7 +481,8 @@ process/TargetUserIdentification/_DATA/
 ├── 05-avaliacao-acessibilidade.txt
 ├── 06-perfis-completos.txt
 ├── 06-tabela-comparativa.txt
-└── 06-resumo-executivo.txt
+├── 06-resumo-executivo.txt
+└── 07-contatos.csv
 ```
 
 ## Métricas de Tempo

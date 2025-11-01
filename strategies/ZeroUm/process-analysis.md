@@ -82,10 +82,11 @@ Mapeei **11 processos** necessários para cobrir todas as 8 etapas da estratégi
 ### Etapa 2: Landing page de pré-venda (1 dia)
 
 #### 4. LandingPageCreation
-**Status:** ❌ Precisa criar (PRIORIDADE 2)
+**Status:** ✅ Criado (PRIORIDADE 2 concluída)
 **Tempo estimado:** 6-8 horas
 **Entradas:** Declaração de hipótese, linguagem do cliente, quotes das entrevistas
 **Saídas:** Landing page publicada, analytics configurado
+**Localização:** [process/LandingPageCreation/](../../process/LandingPageCreation/)
 
 **Escopo:**
 - Escolher ferramenta (Carrd, Webflow, Wix, Netlify)
@@ -105,10 +106,11 @@ Mapeei **11 processos** necessários para cobrir todas as 8 etapas da estratégi
 ### Etapa 3: Checkout mínimo (algumas horas)
 
 #### 5. CheckoutSetup
-**Status:** ❌ Precisa criar (PRIORIDADE 3)
+**Status:** ✅ Criado (PRIORIDADE 3 concluída)
 **Tempo estimado:** 2-3 horas
 **Entradas:** Landing page publicada, definição de preço
 **Saídas:** Link de checkout funcional, e-mails automáticos, página de obrigado
+**Localização:** [process/CheckoutSetup/](../../process/CheckoutSetup/)
 
 **Escopo:**
 - Escolher solução de pagamento (PIX, Stripe, Hotmart, Kiwify, PagSeguro)
@@ -127,182 +129,114 @@ Mapeei **11 processos** necessários para cobrir todas as 8 etapas da estratégi
 ### Etapa 4: MVP operável manual (1-2 semanas)
 
 #### 6. ManualMVPDesign
-**Status:** ❌ Precisa criar (PRIORIDADE 4)
+**Status:** ✅ Criado (PRIORIDADE 4 concluída)
 **Tempo estimado:** 1-2 semanas
 **Entradas:** Definição do produto/serviço
 **Saídas:** Processo de entrega documentado, templates de comunicação, checklist
+**Localização:** [process/ManualMVPDesign/](../../process/ManualMVPDesign/)
 
 **Escopo:**
-
-**Semana 1:**
-- Mapear fluxo completo de entrega (recebimento → onboarding → produção → entrega → follow-up)
-- Listar todas as etapas com tempo estimado
-- Escolher ferramentas de gestão (Sheets/Notion/Trello)
-- Criar board/planilha de acompanhamento
-- Criar template de e-mail de onboarding
-- Criar template de e-mail de entrega
-- Criar template de e-mail de follow-up
-- Criar checklist de entrega passo a passo
-
-**Semana 2:**
-- Realizar teste piloto interno
-- Cronometrar cada etapa
-- Identificar gargalos
-- Ajustar processo
-- Documentar processo final
-- Criar pasta com materiais padrão
-- Definir padrões de qualidade
+- Preparar briefing do MVP manual com objetivos, restrições e indicadores
+- Mapear fluxo ponta a ponta com tempos estimados e checkpoints
+- Configurar board/planilha, checklist operacional e convenções de uso
+- Produzir templates de comunicação (onboarding, entrega, follow-up)
+- Executar piloto interno cronometrado e registrar aprendizados
+- Documentar versão final com padrões de qualidade e pasta de materiais
 
 ---
 
 ### Etapa 5: Tração inicial (contínuo)
 
 #### 7. OutreachCampaign
-**Status:** ❌ Precisa criar (PRIORIDADE 5)
+**Status:** ✅ Criado (PRIORIDADE 5 concluída)
 **Tempo estimado:** Contínuo (2h/dia)
 **Entradas:** Perfis de usuário, canais de acesso, landing page URL
 **Saídas:** Leads qualificados, conversas iniciadas, calls agendadas
+**Localização:** [process/OutreachCampaign/](../../process/OutreachCampaign/)
 
 **Escopo:**
+- Planejar e priorizar lista semanal de 50 contatos nos canais aprovados
+- Preparar matrizes de mensagens, snippets de follow-up e links rastreáveis
+- Executar outreach diário em rede direta, comunidades e contatos frios
+- Registrar interações, objeções e próximos passos em templates `_DATA/`
+- Agendar calls para leads qualificados e preparar mini-briefings
+- Consolidar métricas e aprendizados semanais para ajustes rápidos
+- Manter rotina diária curta de acompanhamento e follow-up
 
-**Ciclo semanal:**
-- Segunda: Listar 10 contatos qualificados, personalizar abordagem
-- Terça-Quarta: Enviar 10 mensagens/dia, registrar status
-- Quinta-Sexta: Responder conversas, agendar calls, documentar objeções
-- Sábado: Analisar métricas, ajustar abordagem
-
-**Canais prioritários:**
-1. Rede de contatos (WhatsApp, LinkedIn, Instagram)
-2. Comunidades online (Telegram, Facebook Groups, fóruns)
-3. Cold outreach (DMs personalizados)
-4. Tráfego pago opcional (R$ 50-150 teste)
-
-**Métricas:**
+**Métricas-alvo:**
 - 50 abordagens/semana
 - Taxa de resposta > 10%
 - 5-10 conversas qualificadas
 - 2-3 calls agendadas
 
 #### 8. ContentPublication
-**Status:** ❌ Precisa criar (PRIORIDADE 6)
+**Status:** ✅ Criado (PRIORIDADE 6 concluída)
 **Tempo estimado:** 2-3 horas/semana
 **Entradas:** Linguagem do cliente, dores identificadas
 **Saídas:** Posts publicados, engajamento orgânico
+**Localização:** [process/ContentPublication/](../../process/ContentPublication/)
 
 **Escopo:**
-- Criar 1 post LinkedIn/semana
-- Criar 1-2 posts Instagram Stories/semana
-- Participar de comunidades relevantes
-- Comentar em posts relacionados ao nicho
-- Usar linguagem real dos clientes
-- Incluir CTA para landing page
-- Documentar conteúdo que gera mais engajamento
+- Consolidar insumos da semana (linguagem do cliente, hipóteses vigentes, aprendizados)
+- Planejar pauta e agenda no calendário de conteúdo com tema, canal e CTA
+- Produzir copy completa para LinkedIn e roteiros de Stories alinhados
+- Interagir em comunidades e comentários estratégicos com linguagem do cliente
+- Publicar conteúdos, acompanhar respostas e registrar métricas chave
+- Documentar aprendizados e atualizar tracker de engajamento
 
 ---
 
 ### Etapa 6: Fechamento do primeiro cliente (1-2 dias)
 
 #### 9. SalesCallExecution
-**Status:** ❌ Precisa criar (PRIORIDADE 7)
+**Status:** ✅ Criado (PRIORIDADE 7 concluída)
 **Tempo estimado:** 1 dia (por cliente)
 **Entradas:** Lead qualificado, contexto da conversa
 **Saídas:** Venda fechada, pagamento confirmado, onboarding iniciado
+**Localização:** [process/SalesCallExecution/](../../process/SalesCallExecution/)
 
 **Escopo:**
-
-**Preparação:**
-- Agendar call de 15-20 min
-- Preparar roteiro estruturado
-- Revisar contexto do lead
-
-**Execução:**
-- Abertura: reconhecer contexto (2 min)
-- Diagnóstico: confirmar dor (5-7 min)
-- Proposta: apresentar solução (5 min)
-- Alinhamento: tratar objeções e próximos passos (3-5 min)
-
-**Fechamento:**
-- Enviar link de pagamento
-- Confirmar recebimento
-- Enviar e-mail com próximos passos
-
-**Tratamento de objeções:**
-- "Está caro" → Reforçar valor e suporte direto
-- "Preciso pensar" → Identificar bloqueio específico
-- "Não tenho tempo" → Reagendar
-- "Não sei se funciona" → Reforçar teste piloto
-- "Preciso aprovar" → Preparar resumo
+- Preparar briefing completo do lead, objetivo da call e red flags
+- Personalizar materiais, proposta e link de pagamento alinhados à oferta atual
+- Ensaiar roteiro consultivo, validar logística e materiais de apoio
+- Conduzir call seguindo estrutura recomendada (abertura, diagnóstico, proposta, objeções, fechamento)
+- Registrar notas, objeções e compromissos em templates `_DATA/`
+- Executar follow-up imediato com resumo, link de pagamento e próximos passos
+- Confirmar pagamento, atualizar pipeline e acionar onboarding/entrega
 
 #### 10. ClientDelivery
-**Status:** ❌ Precisa criar (PRIORIDADE 8)
+**Status:** ✅ Criado (PRIORIDADE 8 concluída)
 **Tempo estimado:** Variável (conforme MVP)
 **Entradas:** Pagamento confirmado, processo de entrega documentado
 **Saídas:** Cliente satisfeito, depoimento coletado
+**Localização:** [process/ClientDelivery/](../../process/ClientDelivery/)
 
 **Escopo:**
-
-**Onboarding:**
-- Enviar e-mail de onboarding
-- Coletar informações necessárias via formulário/e-mail
-- Validar briefing completo
-
-**Execução:**
-- Seguir checklist de entrega (Etapa 4)
-- Cronometrar tempo de cada etapa
-- Manter cliente informado do progresso
-
-**Entrega:**
-- Entregar resultado no prazo prometido
-- Enviar instruções de uso
-- Confirmar recebimento
-
-**Pós-entrega:**
-- Agendar check-in 24-48h depois
-- Realizar check-in (call ou WhatsApp)
-- Validar percepção de valor
-- Solicitar depoimento (texto/áudio/vídeo)
-- Documentar caso completo
+- Consolidar handoff pós-venda com briefing, pendências e responsáveis
+- Conduzir onboarding do cliente, coletar insumos e alinhar expectativas
+- Planejar execução detalhada com cronograma, owners e checkpoints
+- Produzir entregáveis seguindo checklist de qualidade e registrar revisões
+- Realizar entrega oficial com roteiro, confirmação de recebimento e instruções
+- Executar pós-entrega com check-in, suporte inicial e coleta de depoimentos
 
 ---
 
 ### Etapa 7: Aprendizado e iteração (contínuo)
 
 #### 11. RetrospectiveAnalysis
-**Status:** ❌ Precisa criar (PRIORIDADE 9)
+**Status:** ✅ Criado (PRIORIDADE 9 concluída)
 **Tempo estimado:** 2 horas a cada 2 semanas
 **Entradas:** Métricas de todos os processos, feedback dos clientes
 **Saídas:** Aprendizados documentados, 3 melhorias priorizadas
+**Localização:** [process/RetrospectiveAnalysis/](../../process/RetrospectiveAnalysis/)
 
 **Escopo:**
-
-**Compilar métricas:**
-- Tráfego landing (visitas, conversão)
-- Prospecção (abordagens, respostas, conversas)
-- Vendas (leads, calls, fechamentos, receita)
-- Entrega (tempo médio, NPS, depoimentos)
-
-**Analisar feedback:**
-- Motivo real das compras
-- Objeções mais comuns
-- Sugestões de melhoria
-- Padrões de uso
-
-**Categorizar aprendizados:**
-- O que funcionou (manter)
-- O que não funcionou (corrigir)
-- O que testar (experimentos)
-
-**Priorizar ações (máximo 3):**
-- Melhorias de processo
-- Ajustes de copy/oferta
-- Automações necessárias
-
-**Matriz de decisão:**
-- Conversão baixa (< 3%) → Revisar copy/público
-- Lead não converte (< 5%) → Ajustar preço/oferta
-- Entrega demorada (> 7 dias) → Automatizar gargalo
-- Preço aceito fácil → Testar aumento (+30%)
-- Muito trabalho manual (> 10h/cliente) → Priorizar automação
+- Preparar agenda quinzenal, participantes e checklist de insumos
+- Consolidar métricas-chave (tráfego, prospecção, vendas, entrega) e variações
+- Organizar feedback qualitativo de clientes, leads e time
+- Conduzir sessão estruturada para classificar aprendizados (Manter, Corrigir, Testar)
+- Aplicar matriz de decisão para priorizar até três ações com owners e prazos
+- Documentar relatório final e comunicar próximos passos ao time
 
 ---
 
@@ -435,201 +369,51 @@ Mapeei **11 processos** necessários para cobrir todas as 8 etapas da estratégi
 
 ---
 
-## 4. Lista Sequencial de Processos a Criar
+## 4. Próximos Passos em Processos
 
-### Ordem Recomendada (9 processos novos)
+### 4.1 Processo recém-publicado (prioridade imediata)
 
-#### FASE 1: VALIDAÇÃO
-**Objetivo:** Confirmar que problema e público existem
-**Prazo:** Dias 1-4
-**Prioridade:** Alta
+**CheckoutSetup**
+- **Status atual:** processo publicado; executar checklist completo para liberar conversão real.
+- **Tempo previsto:** 2-3 horas.
+- **Dependências:** LandingPageCreation ✅, definição de preço.
+- **Ações-chave:**
+  - Executar pagamento simbólico conforme `_DATA/test-log.MD` e validar notificações em tempo real.
+  - Revisar landing, página de obrigado e templates (`confirmation-email.MD`, `receipt-template.MD`) antes do go-live.
+  - Atualizar `_DATA/integration-log.MD` e `payment-tracker-guidelines.MD` com responsáveis e cadência de monitoramento.
 
-**1. UserInterviewValidation**
-- **Quando criar:** Imediatamente
-- **Tempo de criação:** 3-4 horas
-- **Dependências:** ProblemHypothesisDefinition ✅, TargetUserIdentification ✅
-- **Artefatos a criar em _SHARED:**
-  - `templates/script-entrevista.md`
-  - `templates/persona.md` (complementar o existente)
-- **Razão:** Completa a Etapa 1 da ZeroUm, crítico para validação
+### 4.2 Processos recém-criados – execução e validação
 
----
+- CheckoutSetup, ManualMVPDesign, OutreachCampaign, ContentPublication, SalesCallExecution, ClientDelivery e RetrospectiveAnalysis já estão publicados.
+- Priorizar execução piloto para cada processo, registrando evidências em `_DATA/` e validando tempos reais.
+- Garantir handoffs fluídos: SalesCallExecution → CheckoutSetup/ClientDelivery; ClientDelivery → RetrospectiveAnalysis.
+- Ajustar conhecimentos compartilhados em `knowledge.MD` sempre que surgirem aprendizados de execução.
 
-#### FASE 2: INFRAESTRUTURA DIGITAL
-**Objetivo:** Criar presença online e sistema de pagamento
-**Prazo:** Dias 5-6
-**Prioridade:** Alta
+### 4.3 Ajustes estruturais complementares
 
-**2. LandingPageCreation**
-- **Quando criar:** Logo após UserInterviewValidation
-- **Tempo de criação:** 4-5 horas
-- **Dependências:** UserInterviewValidation (usa linguagem coletada)
-- **Artefatos a criar em _SHARED:**
-  - `templates/estrutura-landing.md`
-  - `templates/checklist-qualidade.md` (seção landing)
-- **Razão:** Necessário para começar a captar interesse real e validar proposta de valor
-
-**3. CheckoutSetup**
-- **Quando criar:** Imediatamente após LandingPageCreation
-- **Tempo de criação:** 2-3 horas
-- **Dependências:** LandingPageCreation
-- **Artefatos a criar em _SHARED:**
-  - `templates/email-followup.md` (seção confirmação)
-  - `templates/checklist-qualidade.md` (seção checkout)
-- **Razão:** Sem checkout funcional, não há como converter interesse em venda
+- Criar variante rápida (30 minutos) da ProblemHypothesisDefinition para uso na Etapa 0.
+- Mapear templates recorrentes e migrar versões finais para `_SHARED/templates/` (script de entrevista, persona, email follow-up, checklist de qualidade, retrospectiva, planilha de métricas).
+- Avaliar automações leves após rodar primeiro ciclo completo (ex: atualização automática de planilha de pagamentos).
 
 ---
 
-#### FASE 3: PREPARAÇÃO DE ENTREGA
-**Objetivo:** Documentar como entregar valor
-**Prazo:** Dias 7-10
-**Prioridade:** Alta
+## 5. Cronograma Recomendado (Atualizado)
 
-**4. ManualMVPDesign**
-- **Quando criar:** Pode ser paralelo ao CheckoutSetup
-- **Tempo de criação:** 5-6 horas (processo) + execução real (1-2 semanas)
-- **Dependências:** Nenhuma (independente)
-- **Artefatos a criar em _SHARED:**
-  - `templates/checklist-qualidade.md` (seção MVP)
-  - Template de fluxo de processo
-- **Razão:** Precisa estar pronto e testado antes da primeira venda
+**Semana 1 – Finalização da infraestrutura**
+- Dia 1: Executar checklist do CheckoutSetup (2-3h) e validar pagamento simbólico.
+- Dia 2: Integrar checkout à landing, configurar e-mail de confirmação e recibo.
+- Dia 3: Rodar piloto do ManualMVPDesign usando caso real ou simulado.
+- Dia 4: Executar ciclo inicial de OutreachCampaign e publicar conteúdos planejados.
+- Dia 5: Conduzir primeira SalesCallExecution; se houver fechamento, acionar ClientDelivery.
 
----
+**Semana 2 – Consolidação e aprendizado**
+- Dia 6: Ajustar materiais a compartilhar (_SHARED) e documentar aprendizados.
+- Dia 7: Executar entregas reais (ClientDelivery) e coletar depoimentos.
+- Dia 8: Atualizar planilhas/trackers (pagamentos, engajamento, objeções).
+- Dia 9: Preparar insumos e realizar a primeira RetrospectiveAnalysis.
+- Dia 10: Revisar pendências do ciclo, priorizando ajustes identificados.
 
-#### FASE 4: AQUISIÇÃO
-**Objetivo:** Gerar leads qualificados
-**Prazo:** Dias 8+ (contínuo)
-**Prioridade:** Alta
-
-**5. OutreachCampaign**
-- **Quando criar:** Após LandingPageCreation estar publicada
-- **Tempo de criação:** 4-5 horas
-- **Dependências:** LandingPageCreation ✅, TargetUserIdentification ✅
-- **Artefatos a criar em _SHARED:**
-  - `templates/email-followup.md` (seções de prospecção)
-  - Templates de mensagens de abordagem
-  - `templates/planilha-metricas.xlsx` (aba Leads)
-- **Razão:** Principal canal de aquisição nos primeiros 14 dias, sem leads não há vendas
-
-**6. ContentPublication**
-- **Quando criar:** Paralelo ao OutreachCampaign
-- **Tempo de criação:** 3-4 horas
-- **Dependências:** UserInterviewValidation (usa linguagem do cliente)
-- **Artefatos a criar em _SHARED:**
-  - Templates de posts para redes sociais
-  - Guia de uso de linguagem do cliente
-- **Razão:** Canal complementar de aquisição, gera tráfego orgânico
-
----
-
-#### FASE 5: CONVERSÃO E ENTREGA
-**Objetivo:** Converter leads e entregar valor
-**Prazo:** Dias 11+ (quando leads aparecerem)
-**Prioridade:** Alta
-
-**7. SalesCallExecution**
-- **Quando criar:** Quando primeiros leads aparecerem (pode ser criado antes)
-- **Tempo de criação:** 3-4 horas
-- **Dependências:** OutreachCampaign, UserInterviewValidation
-- **Artefatos a usar de _SHARED:**
-  - Reutilizar `templates/script-entrevista.md` adaptado
-  - Usar `templates/email-followup.md` para pós-call
-- **Razão:** Converter leads em clientes pagantes, sem vendas não há receita
-
-**8. ClientDelivery**
-- **Quando criar:** Imediatamente após SalesCallExecution
-- **Tempo de criação:** 3-4 horas
-- **Dependências:** ManualMVPDesign ✅, CheckoutSetup ✅
-- **Artefatos a usar de _SHARED:**
-  - `templates/email-followup.md` (onboarding e pós-entrega)
-  - `templates/checklist-qualidade.md` (validação de entrega)
-  - `templates/planilha-metricas.xlsx` (aba Entregas)
-- **Razão:** Entregar valor prometido e coletar depoimentos para prova social
-
----
-
-#### FASE 6: MELHORIA CONTÍNUA
-**Objetivo:** Aprender e iterar baseado em dados
-**Prazo:** Dia 14+ (quinzenal)
-**Prioridade:** Média
-
-**9. RetrospectiveAnalysis**
-- **Quando criar:** Após primeiro ciclo completo (14 dias)
-- **Tempo de criação:** 3-4 horas
-- **Dependências:** Todos os processos anteriores
-- **Artefatos a criar em _SHARED:**
-  - `templates/retrospectiva.md`
-  - `templates/planilha-metricas.xlsx` (aba Retrospectivas)
-  - Matriz de decisão de melhorias
-- **Razão:** Aprender com dados reais e priorizar melhorias que geram mais impacto
-
----
-
-## 5. Cronograma de Criação Recomendado
-
-### Opção A: Criação Sequencial (Recomendada)
-
-**Semana 1: Validação**
-- Dia 1: UserInterviewValidation (3-4h) + Artefatos compartilhados (2h)
-- Dia 2: LandingPageCreation (4-5h) + Artefatos compartilhados (2h)
-- Dia 3: CheckoutSetup (2-3h) + ManualMVPDesign início (3h)
-- Dia 4: ManualMVPDesign conclusão (3h) + Artefatos compartilhados (1h)
-- Dia 5: OutreachCampaign (4-5h) + Artefatos compartilhados (2h)
-
-**Semana 2: Conversão e Melhoria**
-- Dia 1: ContentPublication (3-4h) + Artefatos compartilhados (1h)
-- Dia 2: SalesCallExecution (3-4h)
-- Dia 3: ClientDelivery (3-4h)
-- Dia 4: RetrospectiveAnalysis (3-4h) + Artefatos compartilhados (2h)
-- Dia 5: Revisão geral e documentação
-
-**Total estimado:** 30-40 horas de criação (distribuído em 2 semanas)
-
-**Vantagens:**
-- Menor risco de inconsistências
-- Permite testar cada processo antes do próximo
-- Artefatos compartilhados evoluem gradualmente
-- Fácil de ajustar baseado em aprendizados
-
-**Desvantagens:**
-- Mais tempo total até conclusão
-
----
-
-### Opção B: Criação em Blocos Paralelos
-
-**Bloco 1: Validação (Dias 1-2)**
-- UserInterviewValidation (3-4h)
-- Artefatos: script-entrevista, persona
-
-**Bloco 2: Infraestrutura (Dias 3-4)**
-- LandingPageCreation (4-5h)
-- CheckoutSetup (2-3h)
-- Artefatos: estrutura-landing, checklist-qualidade
-
-**Bloco 3: Aquisição e Entrega (Dias 5-6)**
-- ManualMVPDesign (5-6h)
-- OutreachCampaign (4-5h)
-- ContentPublication (3-4h)
-- Artefatos: email-followup, planilha-metricas
-
-**Bloco 4: Conversão e Iteração (Dias 7-8)**
-- SalesCallExecution (3-4h)
-- ClientDelivery (3-4h)
-- RetrospectiveAnalysis (3-4h)
-- Artefatos: retrospectiva
-
-**Total estimado:** 15-20 horas de criação concentrada
-
-**Vantagens:**
-- Mais rápido
-- Todos os processos disponíveis rapidamente
-
-**Desvantagens:**
-- Maior chance de inconsistências
-- Difícil validar cada processo individualmente
-- Artefatos compartilhados podem precisar revisão posterior
-- Sobrecarga cognitiva
+**Total estimado:** 12-18 horas focadas (complementares às horas de execução dos processos).
 
 ---
 
@@ -638,89 +422,68 @@ Mapeei **11 processos** necessários para cobrir todas as 8 etapas da estratégi
 ### Status Atual
 
 **Processos:**
-- ✅ Existentes: 2/11 (18%)
-  - ProblemHypothesisDefinition
-  - TargetUserIdentification
-- ❌ A criar: 9/11 (82%)
+- ✅ Existentes: 11/11 (100%)
+  - ProblemHypothesisDefinition, TargetUserIdentification, UserInterviewValidation, LandingPageCreation, ManualMVPDesign, OutreachCampaign, ContentPublication, SalesCallExecution, ClientDelivery, RetrospectiveAnalysis, CheckoutSetup
+- ❌ Pendências de criação: nenhuma.
 
 **Artefatos Compartilhados:**
-- ✅ Existentes: 1/8 (12.5%)
+- ✅ Existentes: 1/8 (12,5%)
   - declaracao-hipotese.md
-- ❌ A criar: 7/8 (87.5%)
+- ❌ A criar: 7/8 (87,5%)
 
 **Cobertura das Etapas ZeroUm:**
-- Etapa 0 (Esclarecer ideia): 50% - versão completa existe, falta versão rápida
-- Etapa 1 (Validação): 30% - identificação OK, falta entrevistas
-- Etapa 2 (Landing): 0% - criar LandingPageCreation
-- Etapa 3 (Checkout): 0% - criar CheckoutSetup
-- Etapa 4 (MVP): 0% - criar ManualMVPDesign
-- Etapa 5 (Tração): 20% - perfis OK, falta outreach e conteúdo
-- Etapa 6 (Fechamento): 0% - criar SalesCallExecution e ClientDelivery
-- Etapa 7 (Iteração): 0% - criar RetrospectiveAnalysis
+- Etapa 0 (Esclarecer ideia): 50% – versão completa pronta, falta variante rápida
+- Etapa 1 (Validação): 100% – identificação e entrevistas operacionais
+- Etapa 2 (Landing): 100% – LandingPageCreation publicado
+- Etapa 3 (Checkout): 100% – CheckoutSetup publicado e pronto para execução
+- Etapa 4 (MVP): 100% – ManualMVPDesign publicado
+- Etapa 5 (Tração): 100% – OutreachCampaign e ContentPublication publicados
+- Etapa 6 (Fechamento): 100% – SalesCallExecution e ClientDelivery publicados
+- Etapa 7 (Iteração): 100% – RetrospectiveAnalysis publicado
 
-**Cobertura geral:** ~14% completo
+**Cobertura geral:** 100% dos processos publicados (ajustes complementares ainda necessários)
 
 ---
 
 ### Esforço Estimado
 
-**Criação de processos:**
-- 9 processos × 3-5 horas cada = 27-45 horas
-- Média: 35 horas de criação
+**Execução inicial de processos:**
+- CheckoutSetup: 2-3 horas para testes simbólicos e integração final
 
 **Criação de artefatos compartilhados:**
 - 7 artefatos × 1-2 horas cada = 7-14 horas
-- Média: 10 horas de criação
+- Média: ~10 horas
 
-**Total geral:** 40-50 horas de trabalho
+**Total geral:** 9-17 horas de trabalho (além da execução contínua dos processos)
 
-**Distribuição recomendada:** 2-3 semanas (2-3 horas/dia)
+**Distribuição recomendada:** 1 semana dedicando 2-3 horas/dia
 
 ---
 
 ### Dependências Críticas
 
-**Para começar a executar ZeroUm:**
-- Mínimo necessário (Dias 1-6):
-  1. UserInterviewValidation
-  2. LandingPageCreation
-  3. CheckoutSetup
-  4. ManualMVPDesign (em paralelo)
-
-**Para fechar primeira venda (Dias 7-14):**
-- Adicionar:
-  5. OutreachCampaign
-  6. SalesCallExecution
-  7. ClientDelivery
-
-**Para escalar e melhorar (Dia 14+):**
-- Adicionar:
-  8. ContentPublication
-  9. RetrospectiveAnalysis
+**Infraestrutura de vendas:** finalizar CheckoutSetup para aceitar pagamentos e alimentar ClientDelivery.
+**Handoffs operacionais:** garantir fluxo de informações entre SalesCallExecution → ClientDelivery → RetrospectiveAnalysis via templates `_DATA/`.
+**Aprendizado contínuo:** primeira RetrospectiveAnalysis depende de métricas consolidadas (landing, outreach, vendas, entrega).
+**Templates compartilhados:** sem os artefatos em `_SHARED` a escala gera risco de inconsistências.
 
 ---
 
 ### Recomendação Final
 
-**Abordagem:** Opção A - Criação Sequencial
+**Abordagem:** concluir infraestrutura de checkout e iniciar execução supervisionada do ciclo completo.
 
 **Razão:**
-1. Menor risco de inconsistências
-2. Permite validar cada processo antes do próximo
-3. Artefatos compartilhados evoluem com aprendizados
-4. Mais sustentável para execução de longo prazo
+1. CheckoutSetup já publicado precisa ser executado e monitorado para liberar conversão imediata.
+2. Processos recém-criados precisam ser validados em campo para gerar dados.
+3. Templates compartilhados centralizam aprendizado e reduzem retrabalho.
+4. RetrospectiveAnalysis fecha o ciclo com priorização baseada em evidências.
 
 **Próximos passos imediatos:**
-1. Começar por **UserInterviewValidation** (Prioridade 1)
-2. Criar artefatos compartilhados:
-   - `templates/script-entrevista.md`
-   - `templates/persona.md`
-3. Documentar processo completo
-4. Testar com 2-3 entrevistas piloto
-5. Ajustar e finalizar
-6. Avançar para LandingPageCreation
-
----
+1. Executar CheckoutSetup com transação real ou simbólica e liberar go-live.
+2. Rodar piloto completo do ManualMVPDesign e ajustar materiais.
+3. Migrar templates recorrentes para `_SHARED` (script de entrevista, persona, follow-up, checklist, retrospectiva, planilha de métricas).
+4. Preparar insumos e agendar a primeira RetrospectiveAnalysis com métricas e feedbacks consolidados.
 
 ## 7. Matriz de Referências Cruzadas
 
@@ -771,30 +534,30 @@ Mapeei **11 processos** necessários para cobrir todas as 8 etapas da estratégi
 
 **Nível 0 - Sem dependências:**
 - ProblemHypothesisDefinition ✅
-- ManualMVPDesign ❌
+- ManualMVPDesign ✅
 
 **Nível 1 - Depende de Nível 0:**
 - TargetUserIdentification ✅ (depende: ProblemHypothesisDefinition)
 
 **Nível 2 - Depende de Nível 1:**
-- UserInterviewValidation ❌ (depende: TargetUserIdentification)
+- UserInterviewValidation ✅ (depende: TargetUserIdentification)
 
 **Nível 3 - Depende de Nível 2:**
-- LandingPageCreation ❌ (depende: UserInterviewValidation)
-- ContentPublication ❌ (depende: UserInterviewValidation)
+- LandingPageCreation ✅ (depende: UserInterviewValidation)
+- ContentPublication ✅ (depende: UserInterviewValidation)
 
 **Nível 4 - Depende de Nível 3:**
 - CheckoutSetup ❌ (depende: LandingPageCreation)
-- OutreachCampaign ❌ (depende: LandingPageCreation, TargetUserIdentification)
+- OutreachCampaign ✅ (depende: LandingPageCreation, TargetUserIdentification)
 
 **Nível 5 - Depende de Nível 4:**
-- SalesCallExecution ❌ (depende: OutreachCampaign, UserInterviewValidation)
+- SalesCallExecution ✅ (depende: OutreachCampaign, UserInterviewValidation)
 
 **Nível 6 - Depende de Nível 5:**
-- ClientDelivery ❌ (depende: SalesCallExecution, ManualMVPDesign, CheckoutSetup)
+- ClientDelivery ✅ (depende: SalesCallExecution, ManualMVPDesign, CheckoutSetup)
 
 **Nível 7 - Depende de todos:**
-- RetrospectiveAnalysis ❌ (depende: todos os processos)
+- RetrospectiveAnalysis ✅ (depende: todos os processos)
 
 ---
 

@@ -187,8 +187,8 @@ Entradas necessárias:
 - Artefatos criados em `_DATA/` (biblioteca de linguagem, citações)
 
 Saídas habilitam:
-- [CheckoutSetup](../ a definir) – integração com pagamentos
-- [OutreachCampaign] – direcionamento de tráfego
+- CheckoutSetup (processo a criar) – integração com pagamentos
+- OutreachCampaign (processo a criar) – direcionamento de tráfego
 - Métricas para revisões estratégicas em `strategies/ZeroUm`
 
 ## Referências
