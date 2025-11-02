@@ -2,113 +2,111 @@
 
 ## Propósito
 
-Garantir que cada ciclo semanal de conteúdo orgânico mantenha consistência com a estratégia ZeroUm, utilize linguagem real do cliente e gere aprendizados acionáveis para otimização contínua.
+Garantir que cada ciclo semanal de conteúdo orgânico mantenha consistência com a estratégia ZeroUm, utilize linguagem real do cliente e gere aprendizados acionáveis em todos os canais (LinkedIn, YouTube, TikTok/Reels/Shorts, Instagram Stories, Facebook e comunidades).
 
 ## Critérios de Validação por Etapa
 
 ### V1: Etapa 1 – Consolidação de insumos
-
-- [ ] Citações atualizadas da biblioteca de linguagem foram destacadas (mínimo 2 por semana).
+- [ ] Mínimo de 3 citações atualizadas da biblioteca de linguagem destacadas.
 - [ ] Aprendizados da semana anterior registrados no `_DATA/tracker-engajamento.MD`.
-- [ ] Temas prioritários documentados com vínculo claro a dores ou objetivos dos perfis.
-- [ ] CTA vigente confirmado (mesma URL e oferta da landing ativa).
+- [ ] Temas prioritários alinhados a dores/objetivos dos perfis documentados.
+- [ ] CTA vigente confirmado com LandingPageCreation.
 
-**Falha crítica:** avançar sem revisar a biblioteca de linguagem ou sem atualizar aprendizados.
-
----
-
-### V2: Etapa 2 – Planejamento da pauta
-
-- [ ] `_DATA/calendario-conteudo.MD` preenchido com datas, temas, CTAs e UTMs.
-- [ ] LinkedIn post definido com dor principal + insight + oferta.
-- [ ] Stories planejados com narrativa completa (mínimo 3 quadros) e CTA igual ao do post.
-- [ ] Lista de comunidades/postagens-alvo anotada (mínimo 3 interações).
-- [ ] Landing page confirmada como destino (link testado).
-
-**Falha crítica:** CTA divergente entre post, Stories e interações comunitárias.
+**Falha crítica:** avançar sem revisar biblioteca de linguagem ou sem atualizar aprendizados.
 
 ---
 
-### V3: Etapa 3 – Produção do post LinkedIn
+### V2: Etapa 2 – Planejamento multicanal
+- [ ] `_DATA/calendario-conteudo.MD` preenchido com datas, responsáveis, status e UTMs.
+- [ ] Cortes/reaproveitamentos planejados (YouTube → Shorts/Stories) documentados.
+- [ ] Comunidades/grupos priorizados com link e abordagem definidos (mínimo 3).
+- [ ] Dependências (assets, aprovações, apoio técnico) registradas.
 
-- [ ] Copy contém pelo menos 2 expressões literais da biblioteca de linguagem.
-- [ ] Estrutura completa: gancho, narrativa, prova social/dado, CTA.
-- [ ] Ortografia revisada e ausência de emojis (conforme padrão do framework).
+**Falha crítica:** CTA divergente entre canais ou calendário sem UTMs confirmadas.
+
+---
+
+### V3: Etapa 3 – LinkedIn + Facebook
+- [ ] Post do LinkedIn contém ≥ 2 expressões literais e estrutura gancho → insight → prova → CTA.
+- [ ] Adaptação do Facebook em `_DATA/briefing-facebook.MD` com headline clara, copy concisa e CTA igual.
 - [ ] Horário de publicação e hashtags registrados.
-- [ ] Link com UTM validado dentro do corpo do post ou primeiro comentário.
+- [ ] Links/UTMs testados e anexados aos briefings.
 
-**Falha crítica:** ausência de CTA para landing page ou copy sem linguagem do cliente.
-
----
-
-### V4: Etapa 4 – Roteiro de Stories
-
-- [ ] Sequência planejada com 3-5 quadros (situação → dor → insight → CTA → interação).
-- [ ] CTA explícito direcionando para a mesma landing do post.
-- [ ] Pelo menos um elemento interativo (enquete, sticker ou pergunta).
-- [ ] Assets necessários listados e viáveis com recursos atuais.
-- [ ] Legendas ou bullets preparados para acessibilidade.
-
-**Falha crítica:** Stories publicados sem CTA ou sem narrativa coerente.
+**Falha crítica:** ausência de CTA funcional ou copy sem linguagem do cliente.
 
 ---
 
-### V5: Etapa 5 – Engajamento em comunidades
+### V4: Etapa 4 – Vídeo YouTube
+- [ ] `_DATA/roteiro-youtube.MD` preenchido com título, estrutura, evidências e CTA.
+- [ ] Recursos visuais planejados (slides, b-roll) e responsáveis definidos.
+- [ ] Descrição prevista com resumo, CTA e capítulos.
+- [ ] Agenda de gravação/edição registrada no calendário.
 
-- [ ] No mínimo 3 interações relevantes realizadas (comentários, respostas, threads).
-- [ ] Interações registradas no calendário/tracker com link ou descrição.
-- [ ] Perguntas ou objeções novas documentadas.
-- [ ] Leads potenciais ou follow-ups marcados quando aplicável.
-- [ ] Tom de voz alinhado (sem pitch agressivo ou copy-colado).
-
-**Falha crítica:** ausência de registros ou abordagem desalinhada com o tom consultivo.
+**Falha crítica:** roteiro sem CTA ou sem evidência concreta para sustentar a narrativa.
 
 ---
 
-### V6: Etapa 6 – Publicação e monitoramento
+### V5: Etapa 5 – Vídeos curtos e Stories
+- [ ] `_DATA/roteiro-tiktok.MD` contém ao menos 1 script completo com gancho, corpo e CTA.
+- [ ] `_DATA/roteiro-stories.MD` possui sequência(s) com situação → dor → insight → CTA → interação.
+- [ ] Elementos visuais/legendas listados e viáveis com recursos atuais.
+- [ ] Lembretes de publicação manual configurados (Stories e TikTok/Reels).
 
-- [ ] Post publicado e evidência (link) registrada.
-- [ ] Stories publicados, prints ou métricas iniciais armazenados.
-- [ ] Métricas-chave atualizadas no `_DATA/tracker-engajamento.MD` até 24h após publicação.
-- [ ] Mínimo de 3 aprendizados ou hipóteses documentados.
-- [ ] Links com UTM testados e funcionando.
+**Falha crítica:** ausência de CTA consistente ou falta de elemento interativo nos Stories.
+
+---
+
+### V6: Etapa 6 – Engajamento em comunidades
+- [ ] No mínimo 3 interações relevantes realizadas e registradas (link + resumo).
+- [ ] Perguntas/objeções novas documentadas no tracker.
+- [ ] Leads ou follow-ups sinalizados quando aplicável.
+- [ ] Tom de voz consultivo, sem pitch agressivo, observado.
+
+**Falha crítica:** ausência de registros ou abordagem desalinhada com o tom definido.
+
+---
+
+### V7: Etapa 7 – Publicação e monitoramento
+- [ ] LinkedIn, Facebook e YouTube publicados/agendados com evidências (links/prints).
+- [ ] Vídeos curtos e Stories publicados, com prints ou links armazenados.
+- [ ] `_DATA/tracker-engajamento.MD` atualizado até 24h após publicação (métricas por canal).
+- [ ] Mínimo de 3 aprendizados/histórias registrados e compartilhados com times relevantes.
+- [ ] Links com UTM testados e funcionando em todos os canais.
 
 **Falha crítica:** não registrar métricas/aprendizados ou publicação sem CTA funcional.
 
 ---
 
 ## Checklist Consolidado (Encerramento da Semana)
-
-- [ ] Frequência cumprida: 1 post LinkedIn + 1-2 sequências de Stories publicados.
-- [ ] CTA consistente em 100% dos pontos de contato.
-- [ ] Tracker atualizado com visualizações, cliques, comentários, DMs, saves.
-- [ ] Insight mais relevante compartilhado com responsáveis por landing/vendas.
-- [ ] Tempo total registrado (≤ 3h) e gargalos identificados.
-- [ ] Próxima semana já tem temas preliminares anotados.
+- [ ] Frequência cumprida: post LinkedIn, vídeo YouTube, ≥1 vídeo curto, ≥1 sequência de Stories, post Facebook.
+- [ ] CTA consistente em 100% dos canais e comunidades.
+- [ ] Tracker atualizado com visualizações, retenção, cliques, interações e novos seguidores por canal.
+- [ ] Insight mais relevante comunicado aos donos de Landing/Vendas.
+- [ ] Tempo total registrado (≤ 5h) e gargalos identificados quando excedido.
+- [ ] Próxima semana com temas preliminares anotados no calendário.
 
 ## Métricas de Qualidade e Limiar Mínimo
-
-- **CTR do post no CTA principal:** meta inicial ≥ 1,5%; se < 1% por duas semanas, revisar narrativa.
-- **Interações qualificadas (comentários, DMs, respostas Stories):** meta ≥ 5/semana.
-- **Taxa de reutilização de linguagem:** pelo menos 2 expressões literais diferentes por semana.
-- **Tempo de resposta a comentários iniciais:** ≤ 60 minutos após publicação.
-- **Evolução semanal de aprendizados:** mínimo 1 insight acionável registrado.
+- **CTR do CTA principal:** LinkedIn ≥ 1,5%; Facebook ≥ 1,0%.
+- **Retenção média YouTube:** ≥ 45%.
+- **Retenção média vídeos curtos:** ≥ 35%.
+- **Interações qualificadas (comentários, DMs, respostas):** ≥ 8/semana.
+- **Tempo de resposta a comentários iniciais:** ≤ 60 minutos.
+- **Reutilização de linguagem:** ≥ 2 expressões literais diferentes por semana.
 
 ## Sinais de Alerta
-
-- **Queda de engajamento >30% vs. média:** avaliar mudança de dor abordada ou saturação de mensagem.
-- **Feedback confuso sobre oferta ou CTA:** revisar alinhamento com landing page e hipótese.
-- **Tempo de execução ultrapassando 3h consistentemente:** simplificar roteiros ou reduzir escopo de interações.
-- **Aumento de interações negativas:** documentar objeções e coordenar resposta com time de produto/vendas.
+- Engajamento cai por duas semanas consecutivas.
+- Retenção de YouTube ou vídeos curtos abaixo do limiar por duas semanas.
+- Feedbacks pedindo clareza adicional sobre oferta/CTA.
+- Tempo de execução acima de 5h sem justificativa.
+- Ausência de registros no tracker.
 
 ## Procedimento em Caso de Falha Crítica
-
-1. Pausar publicações futuras até corrigir CTA/mensagem.
-2. Revisitar tarefas correspondentes (1-6) usando esta lista como checklist.
-3. Atualizar `_DATA/tracker-engajamento.MD` com causa raiz identificada.
-4. Comunicar responsáveis pela landing e entrevistas para ajustar narrativa conjunta.
+1. Pausar publicações futuras até corrigir CTA ou mensagem divergente.
+2. Revisitar a tarefa correspondente usando esta lista como checklist.
+3. Atualizar `_DATA/tracker-engajamento.MD` com causa raiz e ação corretiva.
+4. Comunicar responsáveis por landing, vendas e entrevistas para ajustes conjuntos.
 
 ---
 
 **Última atualização:** 2025-10-31  
-**Versão:** 1.0
+**Versão:** 2.0

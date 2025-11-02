@@ -5,10 +5,10 @@ Preencha este calendário ao iniciar a semana (Etapa 2) e atualize com status de
 ## Identificação
 
 - Semana de referência: ___/___/____ a ___/___/____
-- Responsável: 
+- Responsável:
 - Oferta/Produto em destaque:
 - CTA principal (texto):
-- URL com UTM: 
+- URL com UTM:
   - utm_source:
   - utm_medium:
   - utm_campaign:
@@ -16,16 +16,27 @@ Preencha este calendário ao iniciar a semana (Etapa 2) e atualize com status de
 
 ## Resumo de Temas
 
-- Tema 1 (Post LinkedIn):
+- Tema A (Post LinkedIn):
   - Dor principal:
   - Insight/História:
   - Prova social ou dado:
   - CTA específico:
-- Tema 2 (Stories Sequência 1):
+- Tema B (Vídeo YouTube):
+  - Pergunta central:
+  - Framework/Passos:
+  - Evidência/Case:
+- Tema C (Vídeos Curtos TikTok/Reels/Shorts):
+  - Gancho 1:
+  - Gancho 2 (opcional):
+- Tema D (Stories Sequência 1):
   - Ângulo:
   - CTA:
-- Tema 3 (Stories Sequência 2 - opcional):
+- Tema E (Stories Sequência 2 - opcional):
   - Ângulo:
+  - CTA:
+- Tema F (Post Facebook):
+  - Headline:
+  - Oferta/Benefício destacado:
   - CTA:
 
 ## Post LinkedIn
@@ -46,6 +57,47 @@ Preencha este calendário ao iniciar a semana (Etapa 2) e atualize com status de
   - 
 - Link do post (preencher após publicação):
 - Status: [ ] Planejado [ ] Em produção [ ] Agendado [ ] Publicado
+
+## Vídeo YouTube
+
+- Data de gravação:
+- Data de publicação:
+- Título:
+- Objetivo:
+- Estrutura principal (bullets):
+  - 
+  - 
+  - 
+- CTA verbal/texto:
+- Recursos visuais (slides, prints, b-roll):
+- Link do vídeo (após publicação):
+- Status: [ ] Planejado [ ] Em produção [ ] Gravado [ ] Editado [ ] Publicado
+
+## Vídeos Curtos (TikTok / Reels / Shorts)
+
+### Vídeo Curto 1
+- Plataforma alvo:
+- Data planejada:
+- Gancho inicial:
+- Script resumido:
+  - 
+  - 
+  - 
+- CTA:
+- Link/arquivo final:
+- Status: [ ] Planejado [ ] Em produção [ ] Gravado [ ] Editado [ ] Publicado
+
+### Vídeo Curto 2 (opcional)
+- Plataforma alvo:
+- Data planejada:
+- Gancho inicial:
+- Script resumido:
+  - 
+  - 
+  - 
+- CTA:
+- Link/arquivo final:
+- Status: [ ] Planejado [ ] Em produção [ ] Gravado [ ] Editado [ ] Publicado
 
 ## Stories
 
@@ -78,6 +130,19 @@ Preencha este calendário ao iniciar a semana (Etapa 2) e atualize com status de
 - Status: [ ] Planejado [ ] Em produção [ ] Gravado [ ] Publicado
 - Link/print após publicação:
 
+## Post Facebook
+
+- Data/Horário programado:
+- Objetivo:
+- Headline:
+- Copy curta:
+- CTA:
+- Asset/arte:
+- Link do post (após publicação):
+- Status: [ ] Planejado [ ] Em produção [ ] Agendado [ ] Publicado
+- Métricas 24h (alcance, cliques, compartilhamentos):
+- Aprendizados:
+
 ## Comunidades e Comentários
 
 - Onde interagir (links ou nomes dos grupos/posts):
@@ -91,18 +156,23 @@ Preencha este calendário ao iniciar a semana (Etapa 2) e atualize com status de
   - 
   - 
 - Resultados (preencher após execução):
-  - Interação 1 – comentários/DMS gerados:
+  - Interação 1 – comentários/DMs gerados:
   - Interação 2:
   - Interação 3:
 
 ## Monitoramento Rápido (preencher no fechamento da semana)
 
-- Visualizações do post:
-- Cliques no CTA (post):
-- Comentários relevantes:
-- DMs originadas (LinkedIn ou Instagram):
+- Visualizações do post LinkedIn:
+- Cliques no CTA (LinkedIn):
+- Visualizações do vídeo YouTube:
+- Tempo médio assistido (YouTube):
+- Visualizações dos vídeos curtos (TikTok/Reels/Shorts):
+- Retenção média (TikTok/Reels/Shorts):
+- Alcance do post Facebook:
+- Cliques no link (Facebook):
+- DMs originadas (LinkedIn, Instagram, TikTok):
 - Respostas a Stories (enquetes, perguntas):
-- Saves/Compartilhamentos:
+- Saves/Compartilhamentos (por canal):
 - Novas conexões/seguidores qualificados:
 - Tempo total investido (horas/minutos):
 

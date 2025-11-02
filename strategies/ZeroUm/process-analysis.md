@@ -109,16 +109,16 @@
 ### ContentPublication
 
 **Status:** Bem estruturado e completo
-**Tempo:** 2-3 horas/semana
-**Cobertura:** Etapa 5 da ZeroUm (conteúdo orgânico de apoio)
-**Qualidade:** Alta – copy guiada por linguagem do cliente e personas atualizadas
+**Tempo:** 4-5 horas/semana
+**Cobertura:** Etapa 5 da ZeroUm (conteúdo orgânico multicanal)
+**Qualidade:** Alta – linguagem do cliente aplicada em vídeos, posts e comunidades com tracking consistente
 **Localização:** [process/ContentPublication/](../../process/ContentPublication/)
 
 **Avaliação:**
-- Rotina semanal conecta hipóteses, biblioteca de linguagem e personas compartilhadas.
-- Referencia o template `persona.MD` para manter copy alinhada ao público-alvo.
-- Trackers de engajamento e briefings facilitam retroalimentação com OutreachCampaign.
-- Produção contempla LinkedIn, Stories e interações em comunidades dentro do mesmo ciclo.
+- Rotina semanal conecta hipóteses, biblioteca de linguagem e personas compartilhadas para LinkedIn, YouTube, TikTok, Stories e Facebook.
+- Usa templates compartilhados (`persona.MD`, `email-followup.MD`, `checklist-qualidade.MD`) e novos roteiros (`roteiro-youtube`, `roteiro-tiktok`, `briefing-facebook`) para padronizar entregas.
+- Tracker multicanal documenta visualizações, retenção, cliques e aprendizados, alimentando OutreachCampaign e SalesCallExecution.
+- Engajamento em comunidades e grupos reforça CTA único e gera insights práticos para ajustes na landing e nos processos comerciais.
 
 ### SalesCallExecution
 
