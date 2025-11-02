@@ -297,18 +297,17 @@ Mapeei **11 processos** necessários para cobrir todas as 8 etapas da estratégi
 
 #### 8. ContentPublication
 **Status:** ✅ Criado (PRIORIDADE 6 concluída)
-**Tempo estimado:** 2-3 horas/semana
-**Entradas:** Linguagem do cliente, dores identificadas
-**Saídas:** Posts publicados, engajamento orgânico
+**Tempo estimado:** 4-5 horas/semana
+**Entradas:** Linguagem do cliente, dores identificadas, hipóteses vigentes
+**Saídas:** Conteúdos multicanal (LinkedIn, YouTube, TikTok, Stories, Facebook) publicados com métricas e aprendizados documentados
 **Localização:** [process/ContentPublication/](../../process/ContentPublication/)
 
 **Escopo:**
-- Consolidar insumos da semana (linguagem do cliente, hipóteses vigentes, aprendizados)
-- Planejar pauta e agenda no calendário de conteúdo com tema, canal e CTA
-- Produzir copy completa para LinkedIn e roteiros de Stories alinhados
-- Interagir em comunidades e comentários estratégicos com linguagem do cliente
-- Publicar conteúdos, acompanhar respostas e registrar métricas chave
-- Documentar aprendizados e atualizar tracker de engajamento
+- Consolidar insumos da semana (linguagem, hipóteses, métricas e CTA vigente).
+- Planejar pauta multicanal no calendário com UTMs e cortes previstos (YouTube → Shorts/Stories).
+- Produzir copy para LinkedIn + adaptação Facebook, roteirizar vídeo YouTube e vídeos curtos.
+- Executar Stories, TikTok/Reels, postagens e interações em comunidades com linguagem do cliente.
+- Publicar conteúdos, acompanhar respostas, registrar métricas por canal e aprendizados no tracker.
 
 ---
 
