@@ -67,6 +67,15 @@ This document provides specific instructions for AI agents (like Claude, ChatGPT
 - Consult relevant playbooks and triggers before proposing new processes
 - Align process objectives with strategic theses
 
+### During process execution
+
+1. Request a clear context from the requester before starting any process, capturing objectives, assumptions, and constraints.
+2. Convert the context into a short English title and apply CamelCase; this becomes the folder name in `drive/` (e.g., `drive/MarketEntryDiagnostics`).
+3. Check whether the CamelCase folder already exists in `drive/`; if not, create it following the naming guidance in `drive/README.MD`.
+4. For each process executed within that context, create a subfolder named exactly after the process (e.g., `drive/MarketEntryDiagnostics/ProblemHypothesisExpress`).
+5. Copy every relevant artifact from `process/<Process>/_DATA/` into the corresponding subfolder, preserving structure and sequence; rename files to the numeric `01-`, `02-`, etc. pattern when needed, and place them directly in the process folder without recreating `_DATA` inside `drive/`.
+6. Update the copied files with execution-specific results while keeping the text in Portuguese, aligned with the process model, and referencing the recorded context.
+
 ## File Conventions
 
 ### Naming
