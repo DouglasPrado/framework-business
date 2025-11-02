@@ -2,17 +2,20 @@
 
 ## Propósito
 
-Garantir presença orgânica consistente nos canais prioritários (LinkedIn e Instagram Stories), utilizando a linguagem real do cliente para gerar engajamento, nutrir interesse pela oferta em validação e direcionar tráfego qualificado para a landing page ativa.
+Garantir presença orgânica consistente nos canais prioritários (LinkedIn, Instagram Stories, YouTube, TikTok e Facebook), utilizando a linguagem real do cliente para gerar engajamento, nutrir interesse pela oferta em validação e direcionar tráfego qualificado para a landing page ativa.
 
 ## Objetivo
 
 Planejar, produzir, publicar e monitorar semanalmente:
 - 1 post completo no LinkedIn com CTA para a landing page vigente
+- 1 vídeo no YouTube (3-5 minutos) com narrativa orientada a dor/solução
+- 1-2 vídeos curtos (TikTok/Reels/Shorts) derivando os principais ganchos
 - 1-2 sequências de Instagram Stories alinhadas à mesma mensagem
+- 1 adaptação do conteúdo para Facebook (post + asset simples)
 - Participação ativa em comunidades e comentários relevantes
 - Registro estruturado do que gerou mais engajamento e feedback qualitativo
 
-Tempo estimado: 2-3 horas por semana.
+Tempo estimado: 4-5 horas por semana.
 
 ## Escopo
 
@@ -26,7 +29,7 @@ Tempo estimado: 2-3 horas por semana.
 
 ### Fora do escopo
 - Gestão de campanhas pagas ou tráfego pago
-- Produção de vídeos longos ou materiais ricos (e-books, webinars)
+- Produção de vídeos longos (>10 minutos) ou materiais ricos (e-books, webinars)
 - Criação de identidade visual avançada ou peças gráficas complexas
 - Automação de nutrição por e-mail ou chatbots
 - Monitoramento aprofundado de SEO ou relatórios extensos de analytics
@@ -49,116 +52,137 @@ Outputs:
 - Notas com citações e objeções para usar na copy
 - Atualização rápida do bloco “Aprendizados da semana anterior” no tracker
 
-### Etapa 2: Planejar pauta e agenda (30 minutos)
+### Etapa 2: Planejar pauta multicanal (35 minutos)
 
-Objetivo: definir temas, objetivos e CTAs para cada formato da semana.
-
-Passos:
-- Preencher o `calendário de conteúdo` (`_DATA/calendario-conteudo.MD`) com tema, canal, data e objetivo
-- Garantir que o LinkedIn post cubra uma dor central e apresente a oferta com CTA direto
-- Definir 1-2 sequências de Stories com narrativa (dor → insight → CTA)
-- Mapear 3-5 tópicos ou perguntas para interagir em comunidades e comentários
-- Validar que mensagens e CTAs estão consistentes com a landing page atual ([LandingPageCreation](../LandingPageCreation/process.MD))
-
-Outputs:
-- Calendário semanal preenchido e salvo
-- Lista de comunidades/postagens-alvo com link e ângulo de comentário
-- Confirmação do CTA e URL a serem utilizados em todos os pontos
-
-### Etapa 3: Produzir post do LinkedIn (45 minutos)
-
-Objetivo: criar copy completa e pronta para publicação no LinkedIn, usando linguagem real do cliente.
+Objetivo: definir temas, formatos, CTAs e canais de distribuição de forma integrada.
 
 Passos:
-- Utilizar o `briefing do post LinkedIn` (`_DATA/briefing-post-linkedin.MD`) para estruturar gancho, história, prova e CTA
-- Incorporar citações literais da biblioteca de linguagem para reforçar empatia
-- Destacar uma dor principal, apresentar um insight ou solução e direcionar para a landing
-- Revisar clareza, escaneabilidade (quebras de linha, emojis não permitidos) e adequação ao tom de voz
-- Preparar variantes para headline inicial (primeira linha) e CTA final para teste A/B manual
+- Preencher o `calendário de conteúdo` (`_DATA/calendario-conteudo.MD`) com datas, responsáveis e status de cada entrega (LinkedIn, YouTube, TikTok/Reels/Shorts, Stories, Facebook).
+- Garantir coerência de mensagem e CTA entre todos os canais, validando a landing ativa ([LandingPageCreation](../LandingPageCreation/process.MD)).
+- Mapear cortes previstos do vídeo do YouTube para vídeos curtos e Stories.
+- Selecionar comunidades/grupos (LinkedIn, Facebook, fóruns) onde interagir na semana.
+- Registrar UTMs, links encurtados e dependências (assets, aprovação) antes da execução.
 
 Outputs:
-- Post finalizado em formato texto com variações de abertura
-- Documento salvo no `_DATA/briefing-post-linkedin.MD` com status “Pronto para publicar”
-- Nota sobre horário recomendado de publicação (baseado em histórico ou benchmarks)
+- Calendário semanal salvo com temas, CTAs e UTMs definidos.
+- Lista de cortes/reaproveitamentos planejados por canal.
+- Mapa de interações comunitárias com ângulo de mensagem.
 
-### Etapa 4: Roteirizar Stories e assets (30 minutos)
+### Etapa 3: Produzir post LinkedIn e adaptação Facebook (45 minutos)
 
-Objetivo: planejar sequência de Stories alinhada ao mesmo tema, cumprindo 1-2 execuções na semana.
+Objetivo: criar a copy base da semana e sua versão adaptada ao público de Facebook.
 
 Passos:
-- Preencher o `roteiro de Stories` (`_DATA/roteiro-stories.MD`) com sequência de quadros (máx. 5 por sequência)
-- Definir combinação de formatos (texto, vídeo curto, enquete, caixa de perguntas) mantendo coerência visual
-- inserir gatilho narrativo (situação → conflito → insight → CTA) e prompts para interação
-- Preparar breve guia de produção (tom, cenário, legendas obrigatórias)
-- Planejar publicação complementar (ex: story fixo com depoimento ou bastidor)
+- Preencher `_DATA/briefing-post-linkedin.MD` com gancho, narrativa, prova social e CTA.
+- Incorporar pelo menos duas citações literais da biblioteca de linguagem.
+- Registrar alternativas de primeira linha e CTA para testes manuais.
+- Adaptar a mensagem para Facebook em `_DATA/briefing-facebook.MD` (headline curta, copy objetiva, asset sugerido).
+- Validar links/UTMs e planejar comentário fixado (quando aplicável).
 
 Outputs:
-- Sequência(s) de Stories roteirizadas com copy, formato e CTA
-- Lista de elementos visuais necessários (imagens, prints, stickers)
-- Agendamento manual ou lembrete registrado no calendário
+- Post do LinkedIn sinalizado como “Pronto para publicar”.
+- Post do Facebook com copy e asset definidos.
+- Nota com horários recomendados e hashtags principais.
 
-### Etapa 5: Executar engajamento pró-ativo (25 minutos)
+### Etapa 4: Roteirizar vídeo YouTube (60 minutos)
 
-Objetivo: fortalecer presença nas comunidades e gerar tráfego indireto por interação relevante.
+Objetivo: estruturar roteiro, assets e plano de gravação do vídeo semanal (3-5 minutos).
 
 Passos:
-- Priorizar lista de comunidades/posts (do calendário) e reservar janela de interação
-- Comentar com insights úteis, respondendo perguntas com linguagem concreta (sem pitch agressivo)
-- Participar de discussões trazendo dados das entrevistas ou aprendizados recentes
-- Registrar feedbacks, perguntas frequentes e oportunidades de conteúdo futuro
-- Marcar leads potenciais ou mensagens para follow-up manual
+- Completar `_DATA/roteiro-youtube.MD` com título, introdução, sequência de tópicos e CTA.
+- Definir evidências concretas (dados, caso, depoimento) que sustentam o conteúdo.
+- Planejar recursos visuais adicionais (slides simples, prints, b-roll).
+- Registrar descrição, tags, capítulos e link para CTA na planilha.
+- Agendar gravação/edição e listar dependências técnicas (iluminação, áudio, thumbnail).
 
 Outputs:
-- Registro no `calendário de conteúdo` sobre interações realizadas
-- Notas com perguntas recorrentes adicionadas ao tracker
-- Lista de DMs ou conexões que pedem abordagem posterior
+- Roteiro aprovado com checkpoints de gravação e edição.
+- Lista de assets necessários e responsáveis.
+- Agenda de produção atualizada no calendário.
 
-### Etapa 6: Publicar e monitorar resultados (25 minutos)
+### Etapa 5: Planejar vídeos curtos e Stories (45 minutos)
 
-Objetivo: publicar conteúdos planejados e capturar dados de performance e aprendizados.
+Objetivo: transformar os principais ganchos em conteúdos verticais para TikTok/Reels/Shorts e Stories.
 
 Passos:
-- Publicar o post no horário definido e monitorar primeiras reações por 30-60 minutos
-- Lançar Stories conforme roteiro e acompanhar respostas (enquetes, caixas de pergunta, DMs)
-- Garantir que todos os conteúdos incluem CTA claro para a landing (`../LandingPageCreation/process.MD`)
-- Atualizar `_DATA/tracker-engajamento.MD` com métricas (visualizações, cliques, comentários, respostas)
-- Documentar top 3 aprendizados, incluindo linguagem que performou melhor e objeções levantadas
+- Preencher `_DATA/roteiro-tiktok.MD` com script, gancho e CTA dos vídeos curtos (mínimo 1, ideal 2).
+- Preencher `_DATA/roteiro-stories.MD` com 1-2 sequências completas (situação → dor → insight → CTA → interação).
+- Definir elementos visuais/legendas e garantir consistência com o CTA principal.
+- Programar lembretes de publicação manual em cada plataforma.
+- Mapear cortes do vídeo do YouTube que serão adaptados para vídeos curtos/Stories.
 
 Outputs:
-- Post e Stories publicados com evidência (links, capturas)
-- Tracker atualizado com métricas quantitativas e anotações qualitativas
-- Lista de ajustes recomendados para próxima semana
+- Roteiros dos vídeos curtos e Stories marcados como “Pronto para gravar”.
+- Lista de assets (legendas, stickers, prints) preparada.
+- Plano de publicação manual (dia/horário) atualizado.
+
+### Etapa 6: Executar engajamento pró-ativo (25 minutos)
+
+Objetivo: fortalecer presença em comunidades e grupos relevantes, gerando tráfego indireto.
+
+Passos:
+- Executar interações planejadas (LinkedIn, Facebook, fóruns, comentários do YouTube/TikTok).
+- Responder dúvidas com dados das entrevistas, compartilhando insights acionáveis.
+- Registrar perguntas/objeções novas no `_DATA/tracker-engajamento.MD`.
+- Sinalizar leads potenciais para follow-up e marcar responsáveis.
+- Copiar links ou prints das interações relevantes para `_DATA/`.
+
+Outputs:
+- Calendário atualizado com interações realizadas e resultados.
+- Lista de objeções e perguntas para alimentar conteúdo da semana seguinte.
+- Leads e follow-ups documentados.
+
+### Etapa 7: Publicar, monitorar e documentar resultados (30 minutos)
+
+Objetivo: garantir execução sem gaps, consistência de CTA e registro de métricas/aprendizados.
+
+Passos:
+- Publicar/agendar LinkedIn, Facebook e YouTube; responder comentários iniciais em até 60 minutos.
+- Publicar vídeos curtos e Stories, salvando prints e conferindo links/CTAs.
+- Atualizar `_DATA/tracker-engajamento.MD` com métricas iniciais (24h) por canal.
+- Registrar aprendizados (linguagem, formato, CTA) e hipóteses para próxima semana.
+- Compartilhar insights relevantes com LandingPageCreation, OutreachCampaign e SalesCallExecution.
+
+Outputs:
+- Evidências de publicação (links, prints, arquivos) armazenadas em `_DATA/`.
+- Tracker alimentado com métricas quantitativas e qualitativas.
+- Lista de ajustes recomendados para o próximo ciclo documentada.
 
 ## Pontos de Decisão
 
 1. Após Etapa 1: Há novos insights ou objeções que exigem mudança de tema ou CTA?  
    - Se sim, atualizar pauta antes de planejar agenda.
-2. Após Etapa 2: Temas cobrem dores prioritárias e mantêm foco no objetivo comercial da semana?  
-   - Se não, ajustar calendário e priorizar mensagens mais próximas da oferta.
-3. Após Etapa 3: Post reforça dor principal, apresenta solução e CTA direto?  
+2. Após Etapa 2: Todas as peças compartilham a mesma promessa/CTA e o calendário contempla recursos necessários?  
+   - Se não, ajustar calendário e prioridades antes de iniciar produção.
+3. Após Etapa 3: Copys de LinkedIn e Facebook reforçam a dor principal, apresentam solução e CTA direto?  
    - Se não, revisar copy antes de avançar.
-4. Após Etapa 4: Stories conduzem a narrativa até CTA claro e oferecem interação?  
-   - Se não, ajustar roteiro e formatos.
-5. Após Etapa 6: Algum conteúdo ficou abaixo do limiar mínimo de engajamento (ex: <1% CTR, <5 interações)?  
+4. Após Etapa 4: Roteiro do YouTube apresenta narrativa coerente, evidências e CTA forte?  
+   - Se não, revisar antes de gravar.
+5. Após Etapa 5: Vídeos curtos e Stories têm ganchos claros, CTA consistente e elementos de interação?  
+   - Se não, ajustar roteiro/formato.
+6. Após Etapa 7: Algum canal ficou abaixo do limiar mínimo (ex.: CTR <1%, retenção TikTok <35%, alcance Facebook <300)?  
    - Se sim, documentar hipótese de melhoria e ajustar abordagem na semana seguinte.
 
 ## Resultados Esperados
 
-1. Calendário semanal de conteúdo preenchido e aprovado
-2. Post do LinkedIn redigido, revisado e publicado com CTA coerente
-3. 1-2 sequências de Stories roteirizadas e executadas
-4. Registro de interações em comunidades e comentários relevantes
-5. Tracker de engajamento atualizado com métricas e aprendizados
-6. Lista de oportunidades e insights para otimizar a próxima semana
+1. Calendário semanal aprovado com temas, CTAs e UTMs consolidados.
+2. Post do LinkedIn e adaptação para Facebook finalizados e publicados.
+3. Vídeo do YouTube roteirizado, gravado/editado e publicado com CTA funcional.
+4. Pelo menos 1 vídeo curto e 1 sequência de Stories produzidos e publicados.
+5. Registro de interações em comunidades e comentários relevantes.
+6. Tracker de engajamento atualizado com métricas por canal e aprendizados acionáveis.
+7. Lista de oportunidades e hipóteses para otimizar o ciclo seguinte documentada.
 
 ## Indicadores-Chave de Desempenho
 
-- Frequência de publicação cumprida (meta: 100% do planejado semanal)
-- Taxa de cliques/UTM no CTA da landing (meta inicial: ≥ 1,5% das visualizações do post)
-- Número de interações qualificadas (comentários, DMs, respostas a Stories) por semana (meta: ≥ 5)
-- Crescimento de audiência relevante (novas conexões/seguidores alinhados ao perfil-alvo)
-- Taxa de reutilização de linguagem do cliente (citações documentadas usadas ≥ 2 por semana)
-- Tempo total investido (manter dentro de 2-3 horas semanais)
+- Frequência de publicação cumprida (meta: 100% das peças previstas).
+- CTR do CTA principal (meta inicial: ≥ 1,5% em LinkedIn e ≥ 1,0% em Facebook).
+- Tempo médio assistido no YouTube (meta: ≥ 45% do vídeo).
+- Retenção média nos vídeos curtos (meta: ≥ 35%).
+- Interações qualificadas (comentários, DMs, respostas) por semana (meta: ≥ 8).
+- Crescimento de audiência relevante (novas conexões/seguidores por canal).
+- Taxa de reutilização de linguagem do cliente (≥ 2 expressões literais por semana).
+- Tempo total investido (meta: ≤ 5 horas semanais).
 
 ## Avisos e Armadilhas Comuns
 
@@ -168,6 +192,7 @@ Outputs:
 4. **Ausência de registro:** sem tracker atualizado não é possível evoluir narrativas e testes.
 5. **Stories sem narrativa:** evitar sequências soltas; manter começo-meio-fim com gatilhos de interação.
 6. **Falta de alinhamento com etapas da ZeroUm:** ajustar tema conforme estágio (validação, MVP, etc.).
+7. **Tempo de produção ultrapassando 5h:** identificar gargalo (roteiro, gravação, edição) e simplificar entregáveis.
 
 ## Dependências
 
@@ -185,7 +210,10 @@ Saídas habilitam:
 ## Referências
 
 - [_DATA/calendario-conteudo.MD](./_DATA/calendario-conteudo.MD) – pauta semanal
-- [_DATA/briefing-post-linkedin.MD](./_DATA/briefing-post-linkedin.MD) – estrutura do post
+- [_DATA/briefing-post-linkedin.MD](./_DATA/briefing-post-linkedin.MD) – estrutura do post LinkedIn
+- [_DATA/briefing-facebook.MD](./_DATA/briefing-facebook.MD) – adaptação do conteúdo para Facebook
+- [_DATA/roteiro-youtube.MD](./_DATA/roteiro-youtube.MD) – roteiro do vídeo principal
+- [_DATA/roteiro-tiktok.MD](./_DATA/roteiro-tiktok.MD) – planejamento de vídeos curtos
 - [_DATA/roteiro-stories.MD](./_DATA/roteiro-stories.MD) – planejamento de Stories
 - [_DATA/tracker-engajamento.MD](./_DATA/tracker-engajamento.MD) – monitoramento de resultados
 - [tasks.MD](tasks.MD) – sequência operacional
