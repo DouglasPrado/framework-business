@@ -1,14 +1,14 @@
 # Consolidation – MEIFinancialHealth
 
 ## Andamento por etapa
-- Etapa 0 (Esclarecer ideia): 80% – Frase problema validada com a Carla e backlog de aprendizados atualizado; falta registrar a segunda rodada de validação para consolidar padrões de linguagem.
+- Etapa 0 (Esclarecer ideia): 80% – Frase problema validada com Carla e backlog de aprendizados atualizado; falta registrar a segunda rodada de validação para consolidar padrões de linguagem.
 - Etapa 1 (Validação): 70% – Hipótese final estruturada com indicadores claros e entrevistas agendadas, mas ainda sem evidências coletadas das cinco conversas planejadas.
-- Etapa 2 (Landing): 60% – Copy completa, estrutura aprovada e plano de analytics pronto, porém publicação e checklist de QA seguem pendentes.
-- Etapa 3 (Checkout): 50% – Configuração do PagSeguro, integrações e política de ofertas mapeadas; aguardamos aprovação do gateway e execução dos testes de PIX e cartão.
+- Etapa 2 (Landing): 65% – Copy completa, estrutura aprovada e plano de analytics pronto; checklist de QA 80% concluído e publicação agendada para 08/11 após validação final.
+- Etapa 3 (Checkout): 60% – Configuração do PagSeguro e integrações prontas; testes de PIX concluídos e cartão/boleto programados até 09/11 para liberar link definitivo.
 - Etapa 4 (MVP): 100% – Manual operacional do MVP manual finalizado com fluxos, SLAs e plano de contingência documentados.
-- Etapa 5 (Tração): 40% – Calendário de conteúdo multicanal e matriz de outreach definidos, mas nenhuma abordagem ou postagem executada.
+- Etapa 5 (Tração): 40% – Calendário de conteúdo multicanal e matriz de outreach definidos, com cadência de 50 abordagens programada para 08-10/11.
 - Etapa 6 (Fechamento): 30% – Roteiros de vendas personalizados e briefs de entrega para Carla e João elaborados, dependendo das primeiras calls e check-ins do beta.
-- Etapa 7 (Iteração): 0% – Ainda não existe retrospectiva consolidada após execuções reais.
+- Etapa 7 (Iteração): 40% – Primeira retrospectiva registrada em `RetrospectiveAnalysis` com aprendizados, ações priorizadas e follow-ups agendados; próximos ciclos dependem de dados reais de execução.
 
 ## Visão integrada dos processos
 ### ProblemHypothesisExpress
@@ -56,6 +56,11 @@
 - Briefings de preparação das calls listam dados essenciais, objeções previstas e materiais de apoio.
 - Follow-up template garante resumo pós-call e reforça próximos passos com link de pagamento e agendamento de onboarding.
 
+### RetrospectiveAnalysis
+- Pasta `drive/MEIFinancialHealth/RetrospectiveAnalysis` criada com checklist, métricas, análise de feedbacks e registro de aprendizados do ciclo 24/10 a 06/11.
+- Ações priorizadas: publicar landing até 08/11, disparar 50 abordagens de outreach até 10/11 e concluir testes do checkout até 09/11.
+- Relatório final compartilhado no Slack assegurou alinhamento entre Douglas e Ana Luiza, com checkpoints marcados para monitorar execução.
+
 ### ClientDelivery
 - Pastas por cliente consolidam briefs, planos de execução e pendências para Carla Ferreira e João Mendes.
 - Onboardings trazem cronogramas com marcos de diagnóstico, acompanhamentos e garantias pós-entrega.
@@ -63,5 +68,7 @@
 
 ### Próximas necessidades globais
 - Concluir entrevistas da etapa de validação para confirmar premissas e priorizar mensagens consistentes.
-- Publicar a landing, finalizar QA e ativar o checkout após testes para receber pagamentos do beta.
-- Iniciar execuções de outreach e conteúdo para alimentar pipeline das sales calls e do MVP manual.
+- Publicar a landing após finalizar QA e homologar Typeform → Google Sheets, garantindo GA4 ativo antes do tráfego.
+- Finalizar testes de cartão e boleto no checkout para liberar cobrança dos primeiros clientes beta.
+- Iniciar execuções de outreach (50 abordagens até 10/11) e conteúdo para alimentar pipeline das sales calls e do MVP manual.
+- Registrar esforço real das primeiras entregas do piloto para ajustar SLAs e reavaliar preço sugerido de R$129/mês.
