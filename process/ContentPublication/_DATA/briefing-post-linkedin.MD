@@ -13,7 +13,7 @@ Use este briefing na Etapa 3 para estruturar a copy do post. O documento deve se
 
 ## Contexto e Referências
 
-- Perfil-alvo principal (link para `../TargetUserIdentification/_DATA/template-perfil-usuario.MD`):
+- Perfil-alvo principal (link para `../_SHARED/templates/persona.MD`):
 - Dores específicas a abordar:
   - 
   - 

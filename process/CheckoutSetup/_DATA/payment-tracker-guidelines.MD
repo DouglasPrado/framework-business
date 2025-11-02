@@ -28,15 +28,15 @@ Adicione abas opcionais:
 
 ## Cadência de Atualização
 
-- Verificação diária em até 2 horários (ex: 10h e 17h) – anotar no rodapé da planilha.
-- Reconciliar valores com painel do gateway pelo menos 1 vez/semana.
-- Atualizar status para `Recibo enviado` e `NF emitida` assim que ações forem concluídas.
+- Verificação diária em dois horários fixos: 10h00 e 17h00 (horário de Brasília) – registrar no rodapé da planilha.
+- Reconciliar valores com painel do gateway toda segunda-feira às 18h.
+- Atualizar status para `Recibo enviado` e `NF emitida` imediatamente após conclusão das ações (máximo 2h após confirmação do pagamento).
 
 ## Responsabilidades
 
-- Owner da planilha:
-- Substituto em caso de ausência:
-- Canal para reportar falhas (Slack, e-mail, outro):
+- Owner da planilha: Ana Martins (Growth) – growth@zeroum.team
+- Substituto em caso de ausência: Bruno Costa (Ops Enablement) – ops@zeroum.team
+- Canal para reportar falhas (Slack, e-mail, outro): Slack #alerts-checkout + e-mail para ops@zeroum.team
 
 ## Procedimentos Operacionais
 

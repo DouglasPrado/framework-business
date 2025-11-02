@@ -1,5 +1,7 @@
 # Estrutura de Seções da Landing Page
 
+> Copie este arquivo a partir de `../_SHARED/templates/estrutura-landing.MD` antes de iniciar uma nova landing para manter consistência estrutural.
+
 ## Resumo
 
 - Objetivo principal da página:

@@ -40,7 +40,7 @@ Objetivo: reunir todas as informações necessárias para definir pauta e mensag
 Passos:
 - Revisar hipóteses vigentes e proposta de valor em `../_SHARED/templates/declaracao-hipotese.md`
 - Acessar a biblioteca de linguagem do cliente (`../UserInterviewValidation/_DATA/biblioteca-linguagem.MD`) e destacar expressões relevantes
-- Consultar perfis priorizados e dores recentes (`../TargetUserIdentification/_DATA/template-perfil-usuario.MD`)
+- Consultar perfis priorizados e dores recentes ([`../_SHARED/templates/persona.MD`](../_SHARED/templates/persona.MD))
 - Analisar resultados da semana anterior (`_DATA/tracker-engajamento.MD`)
 - Registrar datas-chave (lançamentos, eventos, entrevistas) que precisam de destaque
 

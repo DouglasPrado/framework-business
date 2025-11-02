@@ -36,6 +36,132 @@
 - Prepara base para prospecção ativa (Etapa 5)
 - Referencia template compartilhado de declaração de hipótese
 
+### UserInterviewValidation
+
+**Status:** Bem estruturado e completo
+**Tempo:** 2-4 dias
+**Cobertura:** Etapa 1 da ZeroUm (validação qualitativa)
+**Qualidade:** Alta – pipeline disciplina entrevistas, análise e classificação de hipóteses
+**Localização:** [process/UserInterviewValidation/](../../process/UserInterviewValidation/)
+
+**Avaliação:**
+- Fluxo em 6 etapas cobre briefing, roteiros, recrutamento, execução e síntese.
+- Usa o script compartilhado `script-entrevista.MD` e mantém biblioteca de linguagem centralizada.
+- Trackers de recrutamento e classificação dão visibilidade ao status de cada hipótese.
+- Outputs conectam com LandingPageCreation e SalesCallExecution via linguagem real do cliente.
+
+### LandingPageCreation
+
+**Status:** Bem estruturado e completo
+**Tempo:** 6-8 horas
+**Cobertura:** Etapa 2 da ZeroUm (landing de pré-venda)
+**Qualidade:** Alta – copy orientada por entrevistas e QA completo antes do go-live
+**Localização:** [process/LandingPageCreation/](../../process/LandingPageCreation/)
+
+**Avaliação:**
+- Estrutura clara com briefing, copy, implementação e QA antes da publicação.
+- Integra `estrutura-landing.MD` e `checklist-qualidade.MD` compartilhados para padronizar execuções.
+- Inclui plano de analytics, UTMs e validação de performance desktop/mobile.
+- Outputs organizados em `_DATA/` garantem handoff suave para CheckoutSetup.
+
+### CheckoutSetup
+
+**Status:** Bem estruturado e pronto para execução
+**Tempo:** 2-3 horas
+**Cobertura:** Etapa 3 da ZeroUm (checkout mínimo)
+**Qualidade:** Alta – integra testes, notificações e controle financeiro contínuo
+**Localização:** [process/CheckoutSetup/](../../process/CheckoutSetup/)
+
+**Avaliação:**
+- Checklist orienta seleção de gateway, configuração, testes e integrações end-to-end.
+- Passo de QA usa o checklist compartilhado de qualidade para validar landing → checkout → notificações.
+- Documentação `_DATA/` cobre logs, página de obrigado, e-mails, recibo e planilha de pagamentos.
+- Integração-log e cadência definidos asseguram monitoramento diário e comunicação com operações.
+
+### ManualMVPDesign
+
+**Status:** Bem estruturado e completo
+**Tempo:** 1-2 semanas
+**Cobertura:** Etapa 4 da ZeroUm (MVP manual operável)
+**Qualidade:** Alta – transforma oferta em operação manual repetível antes da automação
+**Localização:** [process/ManualMVPDesign/](../../process/ManualMVPDesign/)
+
+**Avaliação:**
+- Processo converte proposta em fluxo manual com board, checklists e cronograma detalhado.
+- Templates de comunicação (onboarding, entrega, follow-up) derivam de `email-followup.MD`.
+- Rodada de piloto interno mede tempos reais e gera ajustes antes de atender clientes.
+- Outputs alimentam ClientDelivery com padrões de qualidade e materiais reutilizáveis.
+
+### OutreachCampaign
+
+**Status:** Bem estruturado e completo
+**Tempo:** Contínuo (2 horas/dia)
+**Cobertura:** Etapa 5 da ZeroUm (tração inicial)
+**Qualidade:** Alta – cadência semanal com metas e métricas de resposta
+**Localização:** [process/OutreachCampaign/](../../process/OutreachCampaign/)
+
+**Avaliação:**
+- Cadência semanal cobre planejamento, execução diária e retrospectiva de resultados.
+- Matriz de mensagens usa snippets de follow-up compartilhados para manter consistência.
+- Monitoramento diário em `_DATA/registro-interacoes.MD` evita perda de leads e follow-ups.
+- Integra com LandingPageCreation e SalesCallExecution ao alinhar CTAs e objeções recorrentes.
+
+### ContentPublication
+
+**Status:** Bem estruturado e completo
+**Tempo:** 2-3 horas/semana
+**Cobertura:** Etapa 5 da ZeroUm (conteúdo orgânico de apoio)
+**Qualidade:** Alta – copy guiada por linguagem do cliente e personas atualizadas
+**Localização:** [process/ContentPublication/](../../process/ContentPublication/)
+
+**Avaliação:**
+- Rotina semanal conecta hipóteses, biblioteca de linguagem e personas compartilhadas.
+- Referencia o template `persona.MD` para manter copy alinhada ao público-alvo.
+- Trackers de engajamento e briefings facilitam retroalimentação com OutreachCampaign.
+- Produção contempla LinkedIn, Stories e interações em comunidades dentro do mesmo ciclo.
+
+### SalesCallExecution
+
+**Status:** Bem estruturado e completo
+**Tempo:** 1 dia por cliente
+**Cobertura:** Etapa 6 da ZeroUm (fechamento comercial)
+**Qualidade:** Alta – call consultiva com follow-up disciplinado e registros completos
+**Localização:** [process/SalesCallExecution/](../../process/SalesCallExecution/)
+
+**Avaliação:**
+- Divide preparação, execução, follow-up e confirmação de pagamento com responsabilidades claras.
+- Utiliza as variações de `email-followup.MD` para acelerar sequência pós-call.
+- Registros padronizados de objeções e resumos alimentam RetrospectiveAnalysis e ClientDelivery.
+- Integra com CheckoutSetup e ClientDelivery garantindo handoff imediato após pagamento.
+
+### ClientDelivery
+
+**Status:** Bem estruturado e completo
+**Tempo:** Variável (conforme escopo do MVP)
+**Cobertura:** Etapa 6 da ZeroUm (entrega e pós-entrega)
+**Qualidade:** Alta – garante QA, documentação e feedback contínuo do cliente
+**Localização:** [process/ClientDelivery/](../../process/ClientDelivery/)
+
+**Avaliação:**
+- Fluxo cobre handoff, planejamento, execução, QA, entrega oficial e pós-entrega.
+- Checklists de execução e QA derivam do template compartilhado de qualidade.
+- Follow-up pós-entrega usa `email-followup.MD`, assegurando coleta estruturada de feedback.
+- Documentação robusta em `_DATA/` gera provas sociais e insights para melhorias.
+
+### RetrospectiveAnalysis
+
+**Status:** Bem estruturado e completo
+**Tempo:** 2 horas a cada 2 semanas
+**Cobertura:** Etapa 7 da ZeroUm (aprendizado e iteração)
+**Qualidade:** Alta – decisões orientadas por dados com priorização disciplinada
+**Localização:** [process/RetrospectiveAnalysis/](../../process/RetrospectiveAnalysis/)
+
+**Avaliação:**
+- Preparação garante métricas e feedbacks consolidados antes da sessão.
+- Registro final utiliza `retrospectiva.MD`, mantendo histórico rastreável de aprendizados e ações.
+- Integra métricas de landing, outreach, vendas e entrega para decisões centradas em evidências.
+- Limita ações a três com owners, métricas e follow-up agendado, reforçando accountability.
+
 ---
 
 ## 2. Mapeamento Completo - Processos Necessários
@@ -242,130 +368,55 @@ Mapeei **11 processos** necessários para cobrir todas as 8 etapas da estratégi
 
 ## 3. Oportunidades de Compartilhamento de Artefatos
 
-### Artefatos JÁ Compartilhados
+### Artefatos Compartilhados (Atualização 2025-10-31)
 
 #### 1. Template de Declaração de Hipótese
-**Localização:** `_SHARED/templates/declaracao-hipotese.md`
-**Status:** ✅ Existe
-**Usado por:**
-- ProblemHypothesisDefinition (processo completo)
-- TargetUserIdentification (versão rápida)
-
-**Conteúdo:**
-- Template: "Meu produto ajuda [QUEM] a [RESULTADO] sem [DOR]"
-- Variações alternativas
-- Checklist de validação rápida
-- Checklist de validação completa
-
----
-
-### Artefatos que DEVEM ser Compartilhados
+**Localização:** `_SHARED/templates/declaracao-hipotese.md`  
+**Status:** ✅ Disponível  
+**Usado por:** ProblemHypothesisDefinition, TargetUserIdentification, LandingPageCreation  
+**Conteúdo:** frase padrão, variações alternativas, checklists de validação rápida e completa.
 
 #### 2. Template de Script de Entrevista
-**Localização sugerida:** `_SHARED/templates/script-entrevista.md`
-**Status:** ❌ Criar
-**Usado por:**
-- UserInterviewValidation (principal)
-- SalesCallExecution (adaptado para vendas)
-
-**Conteúdo:**
-- Abertura (1 min)
-- 5 perguntas principais (10 min)
-- Encerramento e follow-up (2 min)
-- Técnicas de escuta ativa
-- Como documentar respostas
-- Variações para diferentes contextos (validação vs vendas)
+**Localização:** `_SHARED/templates/script-entrevista.MD`  
+**Status:** ✅ Disponível  
+**Usado por:** UserInterviewValidation, SalesCallExecution (adaptação consultiva)  
+**Conteúdo:** abertura, 5 perguntas principais com follow-ups, encerramento, técnicas de escuta, orientações de documentação.
 
 #### 3. Template de Persona
-**Localização sugerida:** `_SHARED/templates/persona.md`
-**Status:** ❌ Criar
-**Usado por:**
-- TargetUserIdentification
-- UserInterviewValidation
-- LandingPageCreation
-- OutreachCampaign
+**Localização:** `_SHARED/templates/persona.MD`  
+**Status:** ✅ Disponível  
+**Usado por:** TargetUserIdentification, UserInterviewValidation, LandingPageCreation, OutreachCampaign, ContentPublication  
+**Conteúdo:** identificação do perfil, contexto profissional, dores, acessibilidade, canais, conteúdos consumidos, evidências.
 
-**Conteúdo:**
-- Nome fictício
-- Ocupação e contexto profissional
-- Maior dor
-- Onde está online
-- Momento de compra
-- Hipóteses a testar
-
-#### 4. Template de E-mail de Follow-up
-**Localização sugerida:** `_SHARED/templates/email-followup.md`
-**Status:** ❌ Criar
-**Usado por:**
-- OutreachCampaign (prospecção)
-- ClientDelivery (pós-entrega)
-- SalesCallExecution (pós-call)
-
-**Conteúdo:**
-- E-mail de primeira abordagem
-- E-mail de follow-up pós-conversa
-- E-mail de reagendamento
-- E-mail de check-in pós-entrega
-- E-mail de solicitação de depoimento
-- Boas práticas de personalização
+#### 4. Template de E-mail / Mensagem de Follow-up
+**Localização:** `_SHARED/templates/email-followup.MD`  
+**Status:** ✅ Disponível  
+**Usado por:** OutreachCampaign, SalesCallExecution, ClientDelivery, ManualMVPDesign, CheckoutSetup  
+**Conteúdo:** variações para primeiro follow-up, pós-call, pós-entrega, reengajamento e boas práticas gerais.
 
 #### 5. Template de Estrutura de Landing Page
-**Localização sugerida:** `_SHARED/templates/estrutura-landing.md`
-**Status:** ❌ Criar
-**Usado por:**
-- LandingPageCreation (principal)
-- Pode ser útil para outros produtos no futuro
-
-**Conteúdo:**
-- Estrutura de 6 seções (Hero, Problema, Solução, Prova Social, Oferta, FAQ)
-- Como escrever headline efetiva
-- Como criar bullets de benefícios
-- Onde posicionar CTAs
-- Checklist de elementos obrigatórios
-- Exemplos de boas práticas
+**Localização:** `_SHARED/templates/estrutura-landing.MD`  
+**Status:** ✅ Disponível  
+**Usado por:** LandingPageCreation (padrão de layout)  
+**Conteúdo:** blueprint com resumo, hero, problema, solução, prova social, oferta, FAQ, CTA final, seções extras e checklist de aprovação.
 
 #### 6. Checklist de Qualidade
-**Localização sugerida:** `_SHARED/templates/checklist-qualidade.md`
-**Status:** ❌ Criar
-**Usado por:**
-- LandingPageCreation (validar página)
-- CheckoutSetup (validar fluxo)
-- ManualMVPDesign (validar processo)
-- ClientDelivery (validar entrega)
-
-**Conteúdo:**
-- Critérios de qualidade por tipo de entregável
-- Checklist de testes funcionais
-- Checklist de testes de usabilidade
-- Checklist de performance
-- Checklist de compatibilidade
+**Localização:** `_SHARED/templates/checklist-qualidade.MD`  
+**Status:** ✅ Disponível  
+**Usado por:** LandingPageCreation, CheckoutSetup, ManualMVPDesign, ClientDelivery  
+**Conteúdo:** módulos de conteúdo, funcionalidade, responsividade, performance e operação/handoff com observações e decisão final.
 
 #### 7. Template de Retrospectiva
-**Localização sugerida:** `_SHARED/templates/retrospectiva.md`
-**Status:** ❌ Criar
-**Usado por:**
-- RetrospectiveAnalysis (principal)
-- Pode ser usado em qualquer processo para melhoria contínua
-
-**Conteúdo:**
-- Estrutura de coleta de métricas
-- Framework de categorização (funcionou/não funcionou/testar)
-- Matriz de decisão de melhorias
-- Template de priorização (máx 3 ações)
-- Como definir owners e prazos
+**Localização:** `_SHARED/templates/retrospectiva.MD`  
+**Status:** ✅ Disponível  
+**Usado por:** RetrospectiveAnalysis e demais processos para loops de melhoria  
+**Conteúdo:** dados da sessão, blocos Manter/Corrigir/Testar, priorização de ações, plano de comunicação e follow-up.
 
 #### 8. Planilha de Controle de Métricas
-**Localização sugerida:** `_SHARED/templates/planilha-metricas.xlsx`
-**Status:** ❌ Criar
-**Usado por:** Todos os processos (tracking)
-
-**Conteúdo (abas):**
-- Aba 1: Entrevistas (nome, data, persona, dor, solução atual, objeção, status)
-- Aba 2: Métricas Landing (visitas, origem, conversões, taxa)
-- Aba 3: Leads (nome, canal, status, resposta, objeção, próxima ação)
-- Aba 4: Pagamentos (data, cliente, valor, status, método, entregue)
-- Aba 5: Entregas (cliente, início, fim, tempo, NPS, depoimento)
-- Aba 6: Retrospectivas (data, métricas consolidadas, ações)
+**Localização:** `_SHARED/sheets/planilha-metricas.MD`  
+**Status:** ✅ Disponível  
+**Usado por:** Todos os processos (tracking central)  
+**Conteúdo (abas):** entrevistas, landing/tráfego, outreach/leads, pagamentos, entregas e retrospectivas com colunas obrigatórias e boas práticas de governança.
 
 ---
 
@@ -380,7 +431,7 @@ Mapeei **11 processos** necessários para cobrir todas as 8 etapas da estratégi
 - **Ações-chave:**
   - Executar pagamento simbólico conforme `_DATA/test-log.MD` e validar notificações em tempo real.
   - Revisar landing, página de obrigado e templates (`confirmation-email.MD`, `receipt-template.MD`) antes do go-live.
-  - Atualizar `_DATA/integration-log.MD` e `payment-tracker-guidelines.MD` com responsáveis e cadência de monitoramento.
+- Atualizar `_DATA/integration-log.MD` e `payment-tracker-guidelines.MD` com responsáveis e cadência de monitoramento (✅ concluído).
 
 ### 4.2 Processos recém-criados – execução e validação
 
@@ -392,7 +443,7 @@ Mapeei **11 processos** necessários para cobrir todas as 8 etapas da estratégi
 ### 4.3 Ajustes estruturais complementares
 
 - Criar variante rápida (30 minutos) da ProblemHypothesisDefinition para uso na Etapa 0.
-- Mapear templates recorrentes e migrar versões finais para `_SHARED/templates/` (script de entrevista, persona, email follow-up, checklist de qualidade, retrospectiva, planilha de métricas).
+- Garantir adoção dos templates compartilhados já migrados em `_SHARED/templates/` e `_SHARED/sheets/` (script de entrevista, persona, email follow-up, checklist de qualidade, retrospectiva, planilha de métricas).
 - Avaliar automações leves após rodar primeiro ciclo completo (ex: atualização automática de planilha de pagamentos).
 
 ---
@@ -427,9 +478,9 @@ Mapeei **11 processos** necessários para cobrir todas as 8 etapas da estratégi
 - ❌ Pendências de criação: nenhuma.
 
 **Artefatos Compartilhados:**
-- ✅ Existentes: 1/8 (12,5%)
-  - declaracao-hipotese.md
-- ❌ A criar: 7/8 (87,5%)
+- ✅ Existentes: 8/8 (100%)
+  - declaracao-hipotese.md, script-entrevista.MD, persona.MD, email-followup.MD, estrutura-landing.MD, checklist-qualidade.MD, retrospectiva.MD, planilha-metricas.MD
+- ❌ Pendências: nenhuma
 
 **Cobertura das Etapas ZeroUm:**
 - Etapa 0 (Esclarecer ideia): 50% – versão completa pronta, falta variante rápida
@@ -450,13 +501,13 @@ Mapeei **11 processos** necessários para cobrir todas as 8 etapas da estratégi
 **Execução inicial de processos:**
 - CheckoutSetup: 2-3 horas para testes simbólicos e integração final
 
-**Criação de artefatos compartilhados:**
-- 7 artefatos × 1-2 horas cada = 7-14 horas
-- Média: ~10 horas
+**Treinamentos e adoção dos templates:**
+- 2 horas para walkthrough com time de Growth/Entrega
+- 1 hora para validar preenchimento inicial em cada processo
 
-**Total geral:** 9-17 horas de trabalho (além da execução contínua dos processos)
+**Total geral:** 5-8 horas de trabalho (além da execução contínua dos processos)
 
-**Distribuição recomendada:** 1 semana dedicando 2-3 horas/dia
+**Distribuição recomendada:** 2 dias dedicando 2-3 horas/dia
 
 ---
 
@@ -465,7 +516,7 @@ Mapeei **11 processos** necessários para cobrir todas as 8 etapas da estratégi
 **Infraestrutura de vendas:** finalizar CheckoutSetup para aceitar pagamentos e alimentar ClientDelivery.
 **Handoffs operacionais:** garantir fluxo de informações entre SalesCallExecution → ClientDelivery → RetrospectiveAnalysis via templates `_DATA/`.
 **Aprendizado contínuo:** primeira RetrospectiveAnalysis depende de métricas consolidadas (landing, outreach, vendas, entrega).
-**Templates compartilhados:** sem os artefatos em `_SHARED` a escala gera risco de inconsistências.
+**Templates compartilhados:** garantir adoção e versionamento único em `_SHARED` para evitar inconsistências entre processos.
 
 ---
 
@@ -482,7 +533,7 @@ Mapeei **11 processos** necessários para cobrir todas as 8 etapas da estratégi
 **Próximos passos imediatos:**
 1. Executar CheckoutSetup com transação real ou simbólica e liberar go-live.
 2. Rodar piloto completo do ManualMVPDesign e ajustar materiais.
-3. Migrar templates recorrentes para `_SHARED` (script de entrevista, persona, follow-up, checklist, retrospectiva, planilha de métricas).
+3. Socializar templates compartilhados em `_SHARED` (script de entrevista, persona, follow-up, checklist, retrospectiva, planilha de métricas) e garantir adoção pelos times.
 4. Preparar insumos e agendar a primeira RetrospectiveAnalysis com métricas e feedbacks consolidados.
 
 ## 7. Matriz de Referências Cruzadas
@@ -495,37 +546,37 @@ Mapeei **11 processos** necessários para cobrir todas as 8 etapas da estratégi
 - UserInterviewValidation (opcional)
 - LandingPageCreation (para headline)
 
-**script-entrevista.md** (a criar):
+**script-entrevista.MD** (✅ compartilhado):
 - UserInterviewValidation (uso principal)
 - SalesCallExecution (adaptado para vendas)
 
-**persona.md** (a criar):
+**persona.MD** (✅ compartilhado):
 - TargetUserIdentification (criação)
 - UserInterviewValidation (validação)
 - LandingPageCreation (referência para copy)
 - OutreachCampaign (segmentação)
 - ContentPublication (criação de conteúdo)
 
-**email-followup.md** (a criar):
+**email-followup.MD** (✅ compartilhado):
 - OutreachCampaign (prospecção)
 - SalesCallExecution (pós-call)
 - ClientDelivery (onboarding e pós-entrega)
 - CheckoutSetup (confirmação)
 
-**estrutura-landing.md** (a criar):
+**estrutura-landing.MD** (✅ compartilhado):
 - LandingPageCreation (uso exclusivo inicialmente)
 
-**checklist-qualidade.md** (a criar):
+**checklist-qualidade.MD** (✅ compartilhado):
 - LandingPageCreation (validação)
 - CheckoutSetup (validação)
 - ManualMVPDesign (validação)
 - ClientDelivery (validação)
 
-**retrospectiva.md** (a criar):
+**retrospectiva.MD** (✅ compartilhado):
 - RetrospectiveAnalysis (uso principal)
 - Todos os processos (melhoria contínua)
 
-**planilha-metricas.xlsx** (a criar):
+**planilha-metricas.MD** (✅ compartilhada):
 - Todos os processos (tracking)
 
 ---
@@ -547,7 +598,7 @@ Mapeei **11 processos** necessários para cobrir todas as 8 etapas da estratégi
 - ContentPublication ✅ (depende: UserInterviewValidation)
 
 **Nível 4 - Depende de Nível 3:**
-- CheckoutSetup ❌ (depende: LandingPageCreation)
+- CheckoutSetup ✅ (depende: LandingPageCreation)
 - OutreachCampaign ✅ (depende: LandingPageCreation, TargetUserIdentification)
 
 **Nível 5 - Depende de Nível 4:**

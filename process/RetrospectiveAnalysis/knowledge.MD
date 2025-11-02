@@ -125,7 +125,7 @@ Use o gatilho de >10h manuais/cliente. Primeiro liste tarefas repetitivas, avali
 - `_DATA/checklist-preparacao.MD` – checklist para garantir insumos e participantes
 - `_DATA/coleta-metricas.MD` – template de consolidação quantitativa
 - `_DATA/analise-feedback.MD` – planilha textual para sintetizar feedbacks por fonte
-- `_DATA/registro-aprendizados.MD` – registro oficial de aprendizados e causas raiz
+- `_DATA/registro-aprendizados.MD` – registro oficial de aprendizados e causas raiz (preenchido a partir de `../_SHARED/templates/retrospectiva.MD`)
 - `_DATA/priorizacao-acoes.MD` – matriz de decisão e backlog priorizado
 
 ## Conexões com Outros Processos

@@ -57,6 +57,7 @@ Data conclusão: ___/___/___
 
 ### Tarefas
 
+- [ ] Copiar `../_SHARED/templates/script-entrevista.MD` para `_DATA/roteiro-entrevista-base.MD` antes de personalizar
 - [ ] Definir abertura, reforço de consentimento e fechamento da entrevista
 - [ ] Escrever 5 perguntas principais alinhadas às hipóteses
 - [ ] Adicionar follow-ups que explorem exemplos, números e emoções
@@ -73,7 +74,7 @@ Data conclusão: ___/___/___
 
 ### Output
 
-- [ ] Arquivo `roteiro-entrevista-base.MD` completo na pasta `_DATA/`
+- [ ] Arquivo `roteiro-entrevista-base.MD` completo na pasta `_DATA/` (derivado do template compartilhado)
 
 ---
 

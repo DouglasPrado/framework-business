@@ -1,5 +1,7 @@
 # Template de E-mail / Mensagem de Follow-up
 
+> Este arquivo deriva de `../_SHARED/templates/email-followup.MD`. Ajuste campos e CTAs conforme o contexto do MVP antes de enviar.
+
 Assunto sugerido: `Queremos ouvir você sobre o [Nome do MVP]`
 
 ```

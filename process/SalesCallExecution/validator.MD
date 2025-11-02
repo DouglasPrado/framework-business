@@ -79,7 +79,7 @@ Evidências: `_DATA/pos-call-resumo.MD`, `_DATA/objection-log.MD`, gravação/no
 
 **Critério 5.1 – Comunicação**
 - [ ] Follow-up enviado em até 30 minutos (timestamp registrado).
-- [ ] Mensagem inclui resumo da dor, proposta, link de pagamento e prazo acordado.
+- [ ] Mensagem inclui resumo da dor, proposta, link de pagamento e prazo acordado (derivada de [`../_SHARED/templates/email-followup.MD`](../_SHARED/templates/email-followup.MD)).
 - [ ] Materiais prometidos anexados ou compartilhados.
 
 **Critério 5.2 – Pipeline**
@@ -95,7 +95,7 @@ Evidências: `_DATA/pos-call-resumo.MD`, cópia do follow-up em `_DATA/followups
 **Critério 6.1 – Pagamento**
 - [ ] Comprovante ou confirmação do gateway arquivado.
 - [ ] Agradecimento enviado ao lead/cliente com próxima etapa definida.
-- [ ] Sequência de follow-up pós-call em andamento quando pagamento não realizado.
+- [ ] Sequência de follow-up pós-call em andamento quando pagamento não realizado (mensagens alinhadas ao template compartilhado).
 
 **Critério 6.2 – Onboarding**
 - [ ] Resumo da call enviado ao responsável por ClientDelivery.

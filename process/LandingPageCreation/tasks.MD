@@ -42,6 +42,7 @@ Data conclusão:
 ### Tarefas
 - [ ] Selecionar layout base/template dentro da ferramenta escolhida
 - [ ] Mapear seções obrigatórias (Hero, Problema, Solução, Benefícios, Prova Social, Oferta, FAQ, CTA)
+- [ ] Copiar `../_SHARED/templates/estrutura-landing.MD` para `_DATA/estrutura-secoes.MD` antes de personalizar
 - [ ] Organizar ordem das seções e CTAs intermediários
 - [ ] Esboçar wireframe textual utilizando `_DATA/estrutura-secoes.MD`
 - [ ] Identificar assets adicionais necessários (imagens, ícones, vídeos) e responsáveis
@@ -121,7 +122,7 @@ Data publicação:
 URL final:
 
 ### Tarefas
-- [ ] Executar `_DATA/checklist-qa.MD` (responsividade, links, ortografia, tempo de carregamento)
+- [ ] Executar `_DATA/checklist-qa.MD` (responsividade, links, ortografia, tempo de carregamento) adaptado de `../_SHARED/templates/checklist-qualidade.MD`
 - [ ] Ajustar imagens (compressão ≤ 300 KB) e verificar contraste de cores
 - [ ] Validar tempo de carregamento (PageSpeed / GTmetrix) em desktop e mobile
 - [ ] Revisar copy final com stakeholder (se necessário)
@@ -167,3 +168,5 @@ _DATA/
 ```
 
 Organize evidências e métricas adicionais nesta estrutura para facilitar auditorias e iterações futuras.
+
+> Sempre atualize `estrutura-secoes.MD` e `checklist-qa.MD` a partir dos templates compartilhados em `../_SHARED/templates/` antes de cada nova landing.

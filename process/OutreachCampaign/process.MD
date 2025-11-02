@@ -57,7 +57,7 @@ Passos:
 - Produzir 3 variações de abertura (quente, morna, fria) e 3 CTA principais (call, feedback, resposta rápida).
 - Registrar scripts em `_DATA/matriz-mensagens.MD`, alinhando cada variação a um canal e tipo de contato.
 - Validar coerência com a landing page atual e atualizar links de tracking (UTMs, parâmetros de referência).
-- Preparar snippets de follow-up (resposta a silêncio, objeções comuns, confirmação de call).
+- Preparar snippets de follow-up (resposta a silêncio, objeções comuns, confirmação de call) utilizando [`../_SHARED/templates/email-followup.MD`](../_SHARED/templates/email-followup.MD).
 
 Outputs:
 - Matriz de mensagens atualizada com variações testáveis.
@@ -74,7 +74,7 @@ Passos diários:
 - Enviar 10 mensagens em comunidades (postagens, grupos, fóruns) com CTA claro.
 - Enviar 10 mensagens de outreach frio por dia (DMs ou e-mails) respeitando limites de cada canal.
 - Registrar cada tentativa em `_DATA/registro-interacoes.MD` com data, canal, script usado e status (enviado, respondido, silencioso).
-- Marcar follow-ups necessários (24h, 48h, 72h) dentro do mesmo arquivo e/ou CRM utilizado.
+- Marcar follow-ups necessários (24h, 48h, 72h) dentro do mesmo arquivo e/ou CRM utilizado, usando as variações do template compartilhado.
 - Ajustar mensagens em tempo real caso taxa de resposta do bloco fique < 10%.
 
 Outputs:

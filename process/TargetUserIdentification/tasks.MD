@@ -371,6 +371,7 @@ Data conclusão: ___/___/___
 ### Tarefas
 
 - [ ] Compilar informações de todas as etapas anteriores
+- [ ] Copiar `../_SHARED/templates/persona.MD` para cada arquivo de perfil em `_DATA/` antes de preencher
 - [ ] Preencher template completo para cada perfil
 - [ ] Criar tabela comparativa dos 5 perfis
 - [ ] Ordenar perfis por prioridade de validação

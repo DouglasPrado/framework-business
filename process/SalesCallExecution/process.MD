@@ -107,7 +107,7 @@ Objetivo: reforçar decisão, enviar materiais e manter momento da venda.
 
 Passos:
 - Preencher `_DATA/pos-call-resumo.MD` com principal dor, proposta apresentada, condição acordada e próximos passos.
-- Enviar e-mail ou mensagem de follow-up em até 30 minutos com resumo, link de pagamento e prazos combinados.
+- Enviar e-mail ou mensagem de follow-up em até 30 minutos usando a variação adequada de [`../_SHARED/templates/email-followup.MD`](../_SHARED/templates/email-followup.MD) com resumo, link de pagamento e prazos combinados.
 - Compartilhar gravação ou materiais extras prometidos durante a call.
 - Atualizar pipeline/CRM com status (Fechado, Follow-up, Perdeu) e data da próxima ação.
 - Programar lembretes automáticos ou pessoais para confirmação do pagamento.
@@ -124,7 +124,7 @@ Objetivo: garantir que a venda seja concluída operacionalmente e o cliente seja
 Passos:
 - Monitorar confirmações do gateway ou comprovantes manuais.
 - Confirmar recebimento com o cliente e agradecer (mesmo se pagamento for futuro, confirmar status).
-- Se pagamento atrasar, executar sequência de follow-up predefinida (D+1, D+3).
+- Se pagamento atrasar, executar sequência de follow-up predefinida (D+1, D+3) com base nas variações do template compartilhado.
 - Notificar time de entrega (ClientDelivery) com resumo da call e expectativas.
 - Atualizar indicadores (taxa de fechamento, ticket, motivo de perda se aplicável).
 - Arquivar evidências (comprovante, confirmação, resumo final) em `_DATA/`.

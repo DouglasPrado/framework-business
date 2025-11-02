@@ -104,7 +104,7 @@ Passos principais:
 Use os templates:
 - `_DATA/modelo-email-onboarding.MD`
 - `_DATA/modelo-email-entrega.MD`
-- `_DATA/modelo-email-follow-up.MD`
+- `_DATA/modelo-email-follow-up.MD` (derivado de [`../_SHARED/templates/email-followup.MD`](../_SHARED/templates/email-followup.MD))
 
 Outputs esperados:
 - Três templates aprovados prontos para uso (e-mail ou mensagem)

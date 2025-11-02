@@ -134,7 +134,7 @@ Observação: Reforçar esse benefício na copy.
 4. Para cada item, anotar causa raiz (usando 5 porquês), evidência e impacto esperado.
 
 **Ferramentas:**
-- Template `_DATA/registro-aprendizados.MD`
+- Template `_DATA/registro-aprendizados.MD` (derivado de `../_SHARED/templates/retrospectiva.MD`)
 - Dashboard/planilha das métricas compiladas
 - Canal de videoconferência aprovado
 
@@ -200,13 +200,14 @@ Ação 2: Criar automação de onboarding (Owner: Lucas, Prazo: 29/03, Métrica:
 **Objetivo:** Consolidar decisões em relatório acessível e garantir que todos saibam o que será feito.
 
 **Passos:**
-1. Atualizar `_DATA/registro-aprendizados.MD` com resumo final, próximos checkpoints e anexos relevantes.
+1. Duplicar [`../_SHARED/templates/retrospectiva.MD`](../_SHARED/templates/retrospectiva.MD) para `_DATA/registro-aprendizados.MD` (se ainda não existir) e preencher com resumo final, próximos checkpoints e anexos relevantes.
 2. Compartilhar comunicação no canal oficial (ex: resumo semanal) com aprendizados, ações e métricas em destaque.
 3. Garantir que cada owner confirme recebimento e crie tarefas nos processos responsáveis.
 4. Registrar data da próxima retrospectiva e eventuais requisitos adicionais.
 
 **Ferramentas:**
 - Templates do `_DATA/`
+- `../_SHARED/templates/retrospectiva.MD`
 - Canal de comunicação interno aprovado
 - Ferramenta de gestão de tarefas
 

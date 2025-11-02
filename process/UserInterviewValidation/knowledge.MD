@@ -85,7 +85,7 @@ Quando houver evidência consistente de que pelo menos 70% dos perfis priorizado
 ## Documentação Recomendada
 
 - **Briefing de validação** – `_DATA/briefing-entrevistas.MD`
-- **Roteiro padrão** – `_DATA/roteiro-entrevista-base.MD`
+- **Roteiro padrão** – [`../_SHARED/templates/script-entrevista.MD`](../_SHARED/templates/script-entrevista.MD) (duplicar para `_DATA/roteiro-entrevista-base.MD`)
 - **Plano de recrutamento** – `_DATA/plano-recrutamento.MD`
 - **Controle de convites** – `_DATA/tracker-recrutamento.MD`
 - **Notas por entrevista** – `_DATA/notas-entrevista.MD`

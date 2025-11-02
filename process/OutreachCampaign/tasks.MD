@@ -56,7 +56,7 @@ Data conclusão: ___/___/___
 - [ ] Criar pelo menos 3 variações de abertura (quente, morna, fria).
 - [ ] Definir 3 CTAs (call, feedback, material) e associar a cada variação.
 - [ ] Atualizar `_DATA/matriz-mensagens.MD` com variações, canais e gatilhos.
-- [ ] Preparar snippets de follow-up (24h, 48h, 72h) dentro do mesmo arquivo.
+- [ ] Preparar snippets de follow-up (24h, 48h, 72h) no arquivo usando `../_SHARED/templates/email-followup.MD` como base.
 - [ ] Atualizar UTMs e links rastreáveis usados nas mensagens.
 
 ### Critério de Aceite
@@ -83,7 +83,7 @@ Data conclusão: ___/___/___
 - [ ] Executar bloco 3 (10 contatos frios) e registrar status.
 - [ ] Registrar cada interação em `_DATA/registro-interacoes.MD` com data, canal, script e status.
 - [ ] Anotar ajustes de copy quando taxa de resposta < 10% em qualquer bloco.
-- [ ] Marcar follow-ups necessários (24h e 48h) dentro do registro.
+- [ ] Marcar follow-ups necessários (24h e 48h) usando as variações do template compartilhado dentro do registro.
 
 ### Critério de Aceite
 

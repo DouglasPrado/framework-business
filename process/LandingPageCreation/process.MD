@@ -56,7 +56,7 @@ Passos:
 - Esboçar wireframe textual rápido (blocos com título, subtítulo, copy principal)
 - Identificar espaços para imagens, ícones ou vídeos (opcionais)
 
-Template de apoio: `_DATA/estrutura-secoes.MD`
+Template de apoio: `_DATA/estrutura-secoes.MD` (derivado de [`../_SHARED/templates/estrutura-landing.MD`](../_SHARED/templates/estrutura-landing.MD))
 
 Outputs:
 - Estrutura aprovada (wireframe textual) salva em `_DATA/`
@@ -128,7 +128,7 @@ Passos:
 - Registrar URL final e enviar para stakeholders
 - Documentar próximos passos e backlog de otimizações
 
-Template de apoio: `_DATA/checklist-qa.MD`
+Template de apoio: `_DATA/checklist-qa.MD` (adaptado de [`../_SHARED/templates/checklist-qualidade.MD`](../_SHARED/templates/checklist-qualidade.MD))
 
 Outputs:
 - Checklist de QA completo e salvo em `_DATA/`

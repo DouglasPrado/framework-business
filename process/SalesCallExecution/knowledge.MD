@@ -65,7 +65,7 @@ Confirme quem decide e agende call com decisor ainda durante a conversa. Envie r
 Investigue o que precisa ser avaliado (“Qual parte você quer refletir?”). Identifique bloqueio (confiança, timing, budget). Combine próxima interação com data e hora, enviando resumo que ataque especificamente essa dúvida.
 
 ### Como lidar com silêncio após envio do link?
-Execute sequência padrão: follow-up em 24h, novo toque em 72h, mensagem final confirmando se ainda faz sentido avançar. Se não houver resposta, registre como “perdido por silêncio” e documente hipótese.
+Execute sequência padrão: follow-up em 24h, novo toque em 72h, mensagem final confirmando se ainda faz sentido avançar. Utilize as variações de mensagem em [`../_SHARED/templates/email-followup.MD`](../_SHARED/templates/email-followup.MD). Se não houver resposta, registre como “perdido por silêncio” e documente hipótese.
 
 ## Checkpoints de Qualidade
 

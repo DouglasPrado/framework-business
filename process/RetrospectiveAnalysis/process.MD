@@ -111,9 +111,10 @@ Passos:
 - Publicar atualização no canal oficial (ex: weekly update) com links para `_DATA/` e destacar bloqueios
 - Registrar tarefas ou tickets em andamento nos processos responsáveis (ex: LandingPageCreation, UserInterviewValidation)
 - Agendar follow-up para revisar progresso das ações antes da próxima retrospectiva
+- Preencher o template compartilhado [`../_SHARED/templates/retrospectiva.MD`](../_SHARED/templates/retrospectiva.MD) e salvar a versão final em `_DATA/registro-aprendizados.MD`
 
 Outputs:
-- Relatório da retrospectiva salvo em `_DATA/registro-aprendizados.MD` com data, participantes e próxima revisão
+- Relatório da retrospectiva salvo em `_DATA/registro-aprendizados.MD` (derivado do template compartilhado) com data, participantes e próxima revisão
 - Comunicação enviada com confirmação de leitura dos owners
 - Follow-up registrado com data e responsáveis
 

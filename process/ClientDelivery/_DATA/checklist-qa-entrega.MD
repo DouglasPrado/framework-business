@@ -1,5 +1,7 @@
 # Checklist de QA da Entrega
 
+> Adaptado de `../_SHARED/templates/checklist-qualidade.MD`. Personalize módulos conforme o tipo de entregável antes de executar o QA.
+
 Preencha antes de enviar materiais ao cliente. Qualquer item marcado como "Não" exige correção antes da entrega oficial.
 
 ## Preparação

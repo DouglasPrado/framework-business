@@ -116,7 +116,7 @@ Período estimado:
 
 ### QA final
 
-- [ ] Executar `_DATA/checklist-qa-entrega.MD`
+- [ ] Executar `_DATA/checklist-qa-entrega.MD` (adaptado de `../_SHARED/templates/checklist-qualidade.MD`)
 - [ ] Resolver pendências críticas identificadas no QA
 - [ ] Organizar artes finais na pasta `_DATA/entregas/`
 
@@ -165,7 +165,7 @@ Data do check-in: ___/___/___
 ### Follow-up inicial (24-48h)
 
 - [ ] Agendar check-in conforme combinado
-- [ ] Conduzir conversa usando `_DATA/followup-pos-entrega.MD`
+- [ ] Conduzir conversa usando `_DATA/followup-pos-entrega.MD` (baseado em `../_SHARED/templates/email-followup.MD`)
 - [ ] Registrar percepções em `_DATA/registro-feedback.MD`
 
 ### Depoimento e caso
@@ -220,3 +220,5 @@ _DATA/
 ```
 
 Garanta que cada documento contenha owner, data de última atualização e status (ex: Em andamento, Concluído).
+
+> Os arquivos `checklist-qa-entrega.MD` e `followup-pos-entrega.MD` devem ser atualizados a partir de `../_SHARED/templates/checklist-qualidade.MD` e `../_SHARED/templates/email-followup.MD`, respectivamente.

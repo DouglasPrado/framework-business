@@ -95,7 +95,7 @@ Horário previsto:
 
 ### Tarefas
 - [ ] Completar `_DATA/pos-call-resumo.MD` com dor, proposta, decisão e próximos passos.
-- [ ] Enviar e-mail/mensagem de follow-up com resumo, link de pagamento e prazo acordado.
+- [ ] Enviar e-mail/mensagem de follow-up com resumo, link de pagamento e prazo acordado usando `../_SHARED/templates/email-followup.MD` como base.
 - [ ] Anexar materiais prometidos (deck, gravação, cases).
 - [ ] Atualizar pipeline/CRM com status, ticket e data do próximo contato.
 - [ ] Programar lembrete interno para checar pagamento ou resposta.
@@ -117,7 +117,7 @@ Status:
 - [ ] Enviar resumo ao responsável por ClientDelivery com expectativas e dados do lead.
 - [ ] Atualizar indicadores comerciais (taxa de fechamento, ticket, motivo de perda).
 - [ ] Arquivar comprovação e mensagens de confirmação em `_DATA/`.
-- [ ] Se pagamento não ocorrer, disparar sequência de follow-up D+1 e D+3.
+- [ ] Se pagamento não ocorrer, disparar sequência de follow-up D+1 e D+3 com os snippets do template compartilhado.
 
 ### Output
 - [ ] Comprovante ou registro de pagamento armazenado.
@@ -128,9 +128,9 @@ Status:
 
 ## Sequência de Follow-up Padrão (quando pagamento não confirmado)
 
-- [ ] Follow-up 24h após call (lembrar valor, reforçar urgência, perguntar status).
-- [ ] Follow-up 72h após call (confirmar se ainda faz sentido avançar, oferecer ajuda).
-- [ ] Mensagem final (encerrar ciclo com abertura para futuro, documentar motivo de perda).
+- [ ] Follow-up 24h após call (usar variação 24h do template).
+- [ ] Follow-up 72h após call (usar variação 48-72h do template).
+- [ ] Mensagem final (usar roteiro de reengajamento do template, documentar motivo de perda).
 
 ---
 

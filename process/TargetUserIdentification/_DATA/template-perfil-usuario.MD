@@ -1,5 +1,7 @@
 TEMPLATE: PERFIL DE USUÁRIO-ALVO
 
+> Copiado de `../_SHARED/templates/persona.MD`. Personalize conforme aprendizados desta rodada.
+
 ==========================================
 PERFIL [Número]: [Nome descritivo do perfil]
 ==========================================

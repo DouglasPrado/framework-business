@@ -7,7 +7,7 @@ Esta base consolida princípios, frameworks e materiais de apoio para executar a
 ## Diretrizes de Mensagem
 
 - **Partir das dores reais:** consulte `../UserInterviewValidation/_DATA/biblioteca-linguagem.MD` e selecione citações literais que expressem frustrações, desejos e vocabulário específico do público.
-- **Contexto do perfil-alvo:** revise o perfil correspondente em `../TargetUserIdentification/_DATA/template-perfil-usuario.MD` antes de escrever para ajustar tom (formalidade, desafios do dia a dia, referências culturais).
+- **Contexto do perfil-alvo:** revise o perfil correspondente em [`../_SHARED/templates/persona.MD`](../_SHARED/templates/persona.MD) antes de escrever para ajustar tom (formalidade, desafios do dia a dia, referências culturais).
 - **Alinhamento com a hipótese:** mantenha o núcleo da proposta de valor consistente com `../_SHARED/templates/declaracao-hipotese.md`.
 - **CTA único por semana:** utilize a mesma URL e promessa em todas as peças (post, Stories, comentários) apontando para a landing definida em [LandingPageCreation](../LandingPageCreation/process.MD).
 - **Tom conversacional e direto:** escreva como falaria com um entrevistado; evite jargões ou hype sem substância.

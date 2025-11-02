@@ -143,4 +143,5 @@ Considere ajustes quando:
 - [validator.MD](validator.MD)
 - [_DATA/briefing-landing.MD](\_DATA/briefing-landing.MD)
 - [_DATA/copy-draft.MD](\_DATA/copy-draft.MD)
-- [_DATA/checklist-qa.MD](\_DATA/checklist-qa.MD)
+- [_DATA/checklist-qa.MD](\_DATA/checklist-qa.MD) – adaptado de [`../_SHARED/templates/checklist-qualidade.MD`](../_SHARED/templates/checklist-qualidade.MD)
+- [`../_SHARED/templates/estrutura-landing.MD`](../_SHARED/templates/estrutura-landing.MD) – base para montar `_DATA/estrutura-secoes.MD`
