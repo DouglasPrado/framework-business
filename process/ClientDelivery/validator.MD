@@ -63,7 +63,7 @@ Garantir que toda entrega ao cliente seja concluída com qualidade, documentaç�
 - [ ] Status no cronograma reflete progresso real
 
 **Critério 4.2 – Qualidade garantida**
-- [ ] `_DATA/checklist-qa-entrega.MD` concluído sem itens pendentes críticos
+- [ ] `_DATA/checklist-qa-entrega.MD` concluído sem itens pendentes críticos (baseado em [`../_SHARED/templates/checklist-qualidade.MD`](../_SHARED/templates/checklist-qualidade.MD))
 - [ ] Artefatos finais organizados em `_DATA/entregas/`
 - [ ] Bloqueios resolvidos ou documentados com plano de ação
 
@@ -86,7 +86,7 @@ Garantir que toda entrega ao cliente seja concluída com qualidade, documentaç�
 ## Validação da Etapa 6 – Pós-Entrega
 
 **Critério 6.1 – Feedback e suporte**
-- [ ] Follow-up realizado dentro de 48h e registrado em `_DATA/registro-feedback.MD`
+- [ ] Follow-up realizado dentro de 48h utilizando `_DATA/followup-pos-entrega.MD` (derivado de [`../_SHARED/templates/email-followup.MD`](../_SHARED/templates/email-followup.MD)) e registrado em `_DATA/registro-feedback.MD`
 - [ ] Ações de suporte (se necessárias) definidas com prazo e responsável
 - [ ] NPS ou nota de satisfação coletada (quando aplicável)
 

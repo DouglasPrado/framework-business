@@ -1,5 +1,7 @@
 # Checklist de QA - Landing Page
 
+> Baseado em `../_SHARED/templates/checklist-qualidade.MD`. Ajuste módulos conforme a necessidade da landing atual antes de executar o QA.
+
 ## Informações Gerais
 
 - URL final:

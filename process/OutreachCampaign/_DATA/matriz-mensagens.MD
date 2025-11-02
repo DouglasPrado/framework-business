@@ -2,6 +2,8 @@
 
 Use este arquivo para organizar variações de abordagem por canal. Atualize semanalmente conforme aprendizados. Dê nome às versões (ex: V1-Quente-ProdutoX).
 
+> Baseie as mensagens iniciais e os snippets de follow-up nas variações de [`../_SHARED/templates/email-followup.MD`](../_SHARED/templates/email-followup.MD) antes de personalizar para cada canal.
+
 ## Resumo
 
 Semana:

@@ -64,7 +64,7 @@ Evidências: `estrutura-board.MD`, `checklist-execucao.MD`, ferramenta de gestã
 ## Validação da Etapa 4 – Templates de comunicação
 
 **Critério 4.1 – Consistência e clareza**
-- [ ] Templates (`modelo-email-onboarding.MD`, `modelo-email-entrega.MD`, `modelo-email-follow-up.MD`) incluem campos obrigatórios (CTA, prazos, canais)
+- [ ] Templates (`modelo-email-onboarding.MD`, `modelo-email-entrega.MD`, `modelo-email-follow-up.MD` derivado de [`../_SHARED/templates/email-followup.MD`](../_SHARED/templates/email-followup.MD)) incluem campos obrigatórios (CTA, prazos, canais)
 - [ ] Mensagens usam linguagem validada em entrevistas (menção a dores e benefícios reais)
 - [ ] Versões alternativas estão documentadas quando houver múltiplos segmentos
 

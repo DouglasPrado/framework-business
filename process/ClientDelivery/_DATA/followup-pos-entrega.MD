@@ -1,5 +1,7 @@
 # Roteiro de Follow-up Pós-Entrega (24-48h)
 
+> Baseado nas variações de mensagem documentadas em `../_SHARED/templates/email-followup.MD`. Ajuste tom e CTA conforme contexto do cliente.
+
 ## Preparação
 
 - Revisar `ata-entrega.MD` e pendências combinadas.

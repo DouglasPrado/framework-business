@@ -86,11 +86,13 @@ Publicar e validar um link de checkout com integrações essenciais (página de 
 - Validar e-mails transacionais do gateway (confirmação do cliente e aviso interno); anexar prints.
 - Configurar webhooks/integrações (ex: envio para CRM/Slack) e verificar disparo registrando em `_DATA/notification-checklist.MD`.
 - Confirmar recebimento do valor em painel/relatório e registrar ID da transação.
+- Executar checklist de qualidade compartilhado adaptado para checkout ([`../_SHARED/templates/checklist-qualidade.MD`](../_SHARED/templates/checklist-qualidade.MD)) e documentar pendências.
 - Se houver falhas, repetir testes após ajustes e documentar plano de ação.
 
 **Outputs:**
 - `_DATA/test-log.MD` com transações de teste aprovadas
 - `_DATA/notification-checklist.MD` confirmando notificações e responsáveis
+- Checklist de qualidade compartilhado preenchido com status das verificações
 - Evidências (prints, e-mails, logs) anexadas em `_DATA/`
 
 ### Etapa 5: Integrar checkout à jornada do cliente (30-40 minutos)

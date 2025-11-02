@@ -41,7 +41,7 @@ Evidência: `briefing-entrevistas.MD`
 - [ ] Há pergunta de encerramento para captar objeções e próximos passos
 - [ ] O roteiro foi revisado por outra pessoa ou em voz alta
 
-Evidência: `roteiro-entrevista-base.MD`
+Evidência: `_DATA/roteiro-entrevista-base.MD` (derivado de [`../_SHARED/templates/script-entrevista.MD`](../_SHARED/templates/script-entrevista.MD))
 
 ---
 

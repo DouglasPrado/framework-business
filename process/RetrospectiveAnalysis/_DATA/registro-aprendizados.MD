@@ -1,5 +1,7 @@
 # Registro de Aprendizados - Retrospectiva
 
+> Este arquivo deve ser preenchido a partir de `../_SHARED/templates/retrospectiva.MD`. Atualize data, participantes e ações a cada sessão.
+
 ## Dados da Sessão
 - Data:
 - Ciclo analisado:

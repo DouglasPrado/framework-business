@@ -27,7 +27,7 @@ Pasta de artefatos do processo, incluindo:
 - `checklist-preparacao.MD` – planejamento da sessão
 - `coleta-metricas.MD` – consolidação de métricas quantitativas
 - `analise-feedback.MD` – síntese de feedback qualitativo
-- `registro-aprendizados.MD` – registro oficial de aprendizados e decisões
+- `registro-aprendizados.MD` – registro oficial de aprendizados e decisões (derivado de `../_SHARED/templates/retrospectiva.MD`)
 - `priorizacao-acoes.MD` – matriz de decisão e backlog priorizado
 
 Armazene também os relatórios concluídos, evidências e anexos de cada ciclo.

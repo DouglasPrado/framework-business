@@ -80,11 +80,13 @@ Data do teste:
 - [ ] Validar e-mails transacionais do gateway (cliente e interno) com evidências
 - [ ] Configurar webhooks/integrações e registrar disparos em `_DATA/notification-checklist.MD`
 - [ ] Confirmar recebimento no painel e registrar ID da transação
+- [ ] Executar checklist de qualidade compartilhado (`../_SHARED/templates/checklist-qualidade.MD`) adaptado ao checkout e registrar pendências
 - [ ] Resolver eventuais falhas e repetir testes até aprovação
 
 ### Output
 - [ ] `_DATA/test-log.MD` com transação aprovada
 - [ ] `_DATA/notification-checklist.MD` com notificações validadas
+- [ ] Checklist de qualidade atualizado com status e ações corretivas
 - [ ] Prints/logs anexados em `_DATA/`
 
 ---

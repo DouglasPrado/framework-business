@@ -18,14 +18,14 @@ Tempo total estimado: 2-3 horas por semana.
 **Passos:**
 1. Revisar a declaração de hipótese em `../_SHARED/templates/declaracao-hipotese.md`.
 2. Abrir `../UserInterviewValidation/_DATA/biblioteca-linguagem.MD` e destacar citações pertinentes às dores prioritárias.
-3. Validar perfis-alvo em `../TargetUserIdentification/_DATA/template-perfil-usuario.MD` (verificar canais e desafios recentes).
+3. Validar perfis-alvo em [`../_SHARED/templates/persona.MD`](../_SHARED/templates/persona.MD) (verificar canais e desafios recentes).
 4. Consultar `_DATA/tracker-engajamento.MD` e registrar aprendizados da semana anterior.
 5. Anotar eventos, lançamentos ou datas importantes que precisam aparecer no conteúdo desta semana.
 
 **Ferramentas/Artefatos:**
 - `_DATA/tracker-engajamento.MD`
 - `../UserInterviewValidation/_DATA/biblioteca-linguagem.MD`
-- `../TargetUserIdentification/_DATA/template-perfil-usuario.MD`
+- `../_SHARED/templates/persona.MD`
 
 **Critérios de conclusão:**
 - [ ] Citações-chave selecionadas e anotadas.

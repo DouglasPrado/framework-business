@@ -107,6 +107,7 @@ Data conclusão: ___/___/___
 ### Tarefas
 
 - [ ] Definir gatilhos de envio para onboarding, entrega e follow-up
+- [ ] Copiar `../_SHARED/templates/email-followup.MD` para `_DATA/modelo-email-follow-up.MD` antes de personalizar
 - [ ] Redigir e revisar mensagens usando linguagem validada com clientes
 - [ ] Incluir campos obrigatórios (CTA, SLA, próximos passos, canais de suporte)
 - [ ] Validar tom e clareza com stakeholder (produto/atendimento)

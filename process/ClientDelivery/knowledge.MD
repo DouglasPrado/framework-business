@@ -25,7 +25,7 @@ Conjunto de informações transferidas do processo comercial para a operação. 
 Documento ou e-mail que confirma o que será entregue, o que está fora, prazos e responsabilidades. Serve como referência para recusar solicitações fora do combinado durante a execução.
 
 ### Checklist de Qualidade
-Sequência de verificações obrigatórias antes da entrega oficial. No ClientDelivery é operacionalizada por `_DATA/checklist-qa-entrega.MD` para garantir consistência e reduzir revisões pós-entrega.
+Sequência de verificações obrigatórias antes da entrega oficial. No ClientDelivery é operacionalizada por `_DATA/checklist-qa-entrega.MD` (adaptado de [`../_SHARED/templates/checklist-qualidade.MD`](../_SHARED/templates/checklist-qualidade.MD)) para garantir consistência e reduzir revisões pós-entrega.
 
 ### Período de Garantia
 Janela acordada (ex: 7 dias) para ajustes menores gratuitos. Deve ser reforçada durante a entrega e monitorada via `_DATA/registro-feedback.MD`.
@@ -54,7 +54,7 @@ Envie nova proposta de horário usando `_DATA/mensagem-confirmacao.MD`. Se a ent
 
 1. **Antes do onboarding** – Brief aprovado sem pendências críticas (Etapa 1).
 2. **Após o onboarding** – Cronograma confirmado e ata arquivada em `_DATA/onboarding/`.
-3. **Antes da apresentação** – Checklist de QA 100% concluído em `_DATA/checklist-qa-entrega.MD`.
+3. **Antes da apresentação** – Checklist de QA 100% concluído em `_DATA/checklist-qa-entrega.MD` (base compartilhada).
 4. **Após entrega** – Recebimento confirmado por escrito e materiais arquivados em `_DATA/entregas/`.
 5. **Após follow-up** – Feedback documentado, depoimento solicitado e próximos passos definidos.
 
@@ -79,12 +79,12 @@ Envie nova proposta de horário usando `_DATA/mensagem-confirmacao.MD`. Se a ent
 - `_DATA/tracker-tempo.MD` – controle de esforço utilizado por etapa.
 - `_DATA/checklist-execucao.MD` – lista operacional durante produção.
 - `_DATA/log-revisoes.MD` – histórico de versões e aprovações internas.
-- `_DATA/checklist-qa-entrega.MD` – verificação final antes da entrega.
+- `_DATA/checklist-qa-entrega.MD` – verificação final antes da entrega (derivado de `../_SHARED/templates/checklist-qualidade.MD`).
 - `_DATA/roteiro-apresentacao.MD` – guia da reunião de entrega.
 - `_DATA/ata-entrega.MD` – registro da apresentação e decisões do cliente.
 - `_DATA/pacote-instrucoes.MD` – estrutura para manualizar uso e próximos passos.
 - `_DATA/mensagem-confirmacao.MD` – mensagem para validar recebimento.
-- `_DATA/followup-pos-entrega.MD` – script do check-in 24-48h depois.
+- `_DATA/followup-pos-entrega.MD` – script do check-in 24-48h depois (derivado de `../_SHARED/templates/email-followup.MD`).
 - `_DATA/registro-feedback.MD` – documento para consolidar percepções.
 - `_DATA/template-depoimento.MD` – prompts para coleta de depoimentos.
 - `_DATA/relato-caso.MD` – estrutura do estudo de caso.

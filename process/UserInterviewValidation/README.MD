@@ -142,3 +142,5 @@ UserInterviewValidation/
 ```
 
 Após executar o processo, documentos derivados (notas, transcrições, relatórios) devem permanecer na pasta `_DATA/` organizados por etapa.
+
+> O arquivo `roteiro-entrevista-base.MD` deve ser duplicado a partir de `../_SHARED/templates/script-entrevista.MD` antes de cada rodada.

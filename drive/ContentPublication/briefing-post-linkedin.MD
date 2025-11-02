@@ -11,7 +11,7 @@
 
 ## Contexto e Referências
 
-- Perfil-alvo principal: Proprietários de mercearias e minimercados de bairro com faturamento anual até R$500 mil, consultados no `../TargetUserIdentification/_DATA/template-perfil-usuario.MD`
+- Perfil-alvo principal: Proprietários de mercearias e minimercados de bairro com faturamento anual até R$500 mil, consultados em `../_SHARED/templates/persona.MD`
 - Dores específicas a abordar:
   - Descobrir rombos de caixa apenas na hora de pagar fornecedor ou folha.
   - Perder noites conciliando maquininhas, Pix e caderno sem projeção clara.

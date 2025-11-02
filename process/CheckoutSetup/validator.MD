@@ -68,6 +68,9 @@ Evidências: `_DATA/checkout-config.MD`, prints anexos
 - [ ] Webhook ou integração configurada e validada (quando aplicável).
 - [ ] Painel exibe transação e status correto.
 
+**Critério 4.3 – Checklist de qualidade**
+- [ ] Checklist compartilhado (`../_SHARED/templates/checklist-qualidade.MD`) executado e sem pendências críticas.
+
 Evidências: `_DATA/test-log.MD`, `_DATA/notification-checklist.MD`, prints
 
 ---

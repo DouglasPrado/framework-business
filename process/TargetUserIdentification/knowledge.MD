@@ -397,3 +397,4 @@ Após completar a identificação de usuários-alvo:
 - [tasks.MD](tasks.MD) - Checklist operacional passo a passo
 - [validator.MD](validator.MD) - Critérios de qualidade e validação
 - [_DATA/](\_DATA/) - Templates e exemplos prontos para uso
+- [`../_SHARED/templates/persona.MD`](../_SHARED/templates/persona.MD) - Estrutura padrão para documentar cada perfil

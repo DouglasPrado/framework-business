@@ -47,7 +47,7 @@ Ao final deste processo, você terá:
 
 ### Templates (pasta _DATA)
 
-- `template-perfil-usuario.txt` - Template para documentar cada perfil
+- `template-perfil-usuario.MD` - Template local preenchido a partir de `../_SHARED/templates/persona.MD`
 - `template-tabela-comparativa.txt` - Template para comparar os 5 perfis
 - `template-resumo-executivo.txt` - Template para resumo final
 
@@ -152,10 +152,12 @@ TargetUserIdentification/
 ├── tasks.MD (checklist operacional)
 ├── validator.MD (critérios de qualidade)
 └── _DATA/
-    ├── template-perfil-usuario.txt
+    ├── template-perfil-usuario.MD
     ├── template-tabela-comparativa.txt
     └── template-resumo-executivo.txt
 ```
+
+> Duplicar `../_SHARED/templates/persona.MD` para `_DATA/template-perfil-usuario.MD` antes de iniciar a documentação dos perfis.
 
 Após execução, a pasta _DATA deve conter:
 ```

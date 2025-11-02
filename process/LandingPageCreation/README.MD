@@ -140,3 +140,5 @@ LandingPageCreation/
 ```
 
 Ao executar o processo, adicione versões datadas dos artefatos e evidências na pasta `_DATA/`, mantendo rastreabilidade das iterações.
+
+> Duplique `../_SHARED/templates/estrutura-landing.MD` e `../_SHARED/templates/checklist-qualidade.MD` ao preparar `estrutura-secoes.MD` e `checklist-qa.MD`.

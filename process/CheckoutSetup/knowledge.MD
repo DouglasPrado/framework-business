@@ -121,3 +121,4 @@ Documente justificativa no `_DATA/gateway-selection.MD` e encaminhe solicitaçã
 - `_DATA/notification-checklist.MD`
 - `_DATA/integration-log.MD`
 - `_DATA/payment-tracker-guidelines.MD`
+- [`../_SHARED/templates/checklist-qualidade.MD`](../_SHARED/templates/checklist-qualidade.MD) – base para o QA final antes do go-live

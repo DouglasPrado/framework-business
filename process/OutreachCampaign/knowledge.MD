@@ -134,3 +134,4 @@ Preencha `_DATA/controle-objecoes.MD` com data, segmento, resumo da objeção, r
 - [tasks.MD](tasks.MD)
 - [validator.MD](validator.MD)
 - Templates `_DATA/planejamento-semanal.MD`, `_DATA/matriz-mensagens.MD`, `_DATA/registro-interacoes.MD`, `_DATA/controle-objecoes.MD`, `_DATA/analise-metricas.MD`
+- [`../_SHARED/templates/email-followup.MD`](../_SHARED/templates/email-followup.MD) – variações padrão para follow-ups assíncronos

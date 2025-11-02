@@ -58,7 +58,7 @@ Passos principais:
 - Adicionar checklist de boas práticas (perguntas abertas, evitar viés, ordem lógica)
 - Validar roteiro com alguém do time (revisão rápida de clareza)
 
-Use o template: `_DATA/roteiro-entrevista-base.MD`
+Use o template compartilhado: [`../_SHARED/templates/script-entrevista.MD`](../_SHARED/templates/script-entrevista.MD) e salve a versão personalizada em `_DATA/roteiro-entrevista-base.MD`.
 
 Output esperado:
 - Roteiro completo com perguntas, follow-ups e notas de condução

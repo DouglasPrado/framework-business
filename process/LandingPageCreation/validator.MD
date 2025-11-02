@@ -32,7 +32,7 @@ Evidência: `_DATA/briefing-landing.MD`
 ## Validação da Etapa 2 – Estrutura
 
 **Critério 2.1 – Narrativa completa**
-- [ ] `estrutura-secoes.MD` inclui todas as seções obrigatórias (Hero, Problema, Solução, Benefícios, Prova Social, Oferta, FAQ, CTA).
+- [ ] `estrutura-secoes.MD` (derivado de [`../_SHARED/templates/estrutura-landing.MD`](../_SHARED/templates/estrutura-landing.MD)) inclui todas as seções obrigatórias (Hero, Problema, Solução, Benefícios, Prova Social, Oferta, FAQ, CTA).
 - [ ] A ordem das seções segue fluxo lógico (dor → solução → prova → chamada).
 - [ ] CTA principal definindo próxima ação está destacado.
 
@@ -92,7 +92,7 @@ Evidência: Link de preview, notas de implementação
 ## Validação da Etapa 6 – QA e Publicação
 
 **Critério 6.1 – Qualidade técnica**
-- [ ] `_DATA/checklist-qa.MD` concluído sem pendências críticas.
+- [ ] `_DATA/checklist-qa.MD` (adaptado de [`../_SHARED/templates/checklist-qualidade.MD`](../_SHARED/templates/checklist-qualidade.MD)) concluído sem pendências críticas.
 - [ ] Tempo de carregamento ≤ 3s desktop e ≤ 4s mobile (print ou relatório anexado).
 - [ ] Página responsiva (prints ou evidências em pelo menos duas resoluções).
 

@@ -86,7 +86,7 @@ Definir critérios objetivos para avaliar a qualidade de cada etapa da retrospec
 - [ ] Conflitos ou divergências foram resolvidos ou registrados
 - [ ] Tempo da sessão respeitou a agenda pactuada
 
-**Como validar:** verificar `_DATA/registro-aprendizados.MD` imediatamente após a sessão; se qualquer item carecer de evidência, registrar ação para coletá-la antes da priorização.
+**Como validar:** verificar `_DATA/registro-aprendizados.MD` (preenchido a partir de [`../_SHARED/templates/retrospectiva.MD`](../_SHARED/templates/retrospectiva.MD)) imediatamente após a sessão; se qualquer item carecer de evidência, registrar ação para coletá-la antes da priorização.
 
 ---
 
@@ -128,7 +128,7 @@ Definir critérios objetivos para avaliar a qualidade de cada etapa da retrospec
 - [ ] Bloqueios possuem plano de desbloqueio documentado
 - [ ] Checkpoints intermediários foram agendados
 
-**Como validar:** revisar a mensagem de recap, confirmação dos owners e o registro final em `_DATA/registro-aprendizados.MD`.
+**Como validar:** revisar a mensagem de recap, confirmação dos owners e o registro final em `_DATA/registro-aprendizados.MD` (template compartilhado).
 
 ---
 

@@ -1,5 +1,7 @@
 # Roteiro Base de Entrevista de Validação (5-15 min)
 
+> Copie este documento de `../_SHARED/templates/script-entrevista.MD` antes de cada rodada para manter o padrão atualizado.
+
 ## Contexto da Rodada
 
 - Hipótese principal investigada:
@@ -66,4 +68,3 @@
 - [ ] Consentimento registrado
 - [ ] Tempo respeitado
 - [ ] Indicações solicitadas
-*** End Patch*** End Patch

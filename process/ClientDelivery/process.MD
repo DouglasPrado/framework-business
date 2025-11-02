@@ -85,7 +85,7 @@ Objetivo: executar a entrega mantendo padrão de qualidade e histórico de revis
 Passos principais:
 - Produzir cada deliverable seguindo o checklist `_DATA/checklist-execucao.MD`
 - Registrar checkpoints de revisão interna em `_DATA/log-revisoes.MD`
-- Validar requisitos críticos com checklist de qualidade `_DATA/checklist-qa-entrega.MD`
+- Validar requisitos críticos com checklist de qualidade `_DATA/checklist-qa-entrega.MD` (adaptado de [`../_SHARED/templates/checklist-qualidade.MD`](../_SHARED/templates/checklist-qualidade.MD))
 - Atualizar cliente conforme cadência definida (status, bloqueios, decisões)
 - Organizar artefatos finais na pasta `_DATA/entregas/`
 
@@ -115,7 +115,7 @@ Output esperado:
 Objetivo: monitorar valor percebido, tratar ajustes rápidos e coletar prova social.
 
 Passos principais:
-- Agendar check-in 24-48h após entrega usando `_DATA/followup-pos-entrega.MD`
+- Agendar check-in 24-48h após entrega usando `_DATA/followup-pos-entrega.MD` (baseado em [`../_SHARED/templates/email-followup.MD`](../_SHARED/templates/email-followup.MD))
 - Realizar follow-up registrando feedback em `_DATA/registro-feedback.MD`
 - Formalizar solicitações de ajuste dentro do período de garantia (quando aplicável)
 - Solicitar depoimento usando `_DATA/template-depoimento.MD` (texto/áudio/vídeo)
