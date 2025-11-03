@@ -15,6 +15,7 @@
 - **Consulta jurídica**: contratação ou acionamento do parceiro de marcas para busca formal após shortlist (responsável: Douglas).
 - **Atualização de materiais**: coordenação com Growth para ajustar landing, outreach e checkouts imediatamente após decisão.
 - **Dados de mercado**: coleta de referências complementares em `strategies/Naming/_DATA/templates/matriz-inspiracao.MD` durante Etapa 1 (ResearchInputs) – essencial para orientar campos semânticos.
+- **Disponibilidade digital**: resultados iniciais registrados em `ResearchInputs/08-disponibilidade-digitais.MD`; validar handles logados e atualizar antes da decisão final.
 
 ## Próximas ações de mitigação
 - Preparar checklist de verificação (domínio, handles, INPI) até 05/11.
