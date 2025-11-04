@@ -1,58 +1,56 @@
-# Matriz de Avaliação – ViabilityFilters (pares PT/EN)
+# Matriz de Avaliação – ViabilityFilters (Revisão Completa)
 
 ## Metadados
-- Data: 03/11/2025
+- Data: 03/11/2025 (análise completa de 34 nomes)
 - Responsável: Douglas Prado
+- Fonte: Long list revisada com 5 conceitos estratégicos
 - Critérios (pesos do briefing):
   - C1 – Clareza do benefício (peso 5)
   - C2 – Afinidade com vocabulário do MEI (peso 4)
   - C3 – Potencial narrativo (peso 4)
   - C4 – Disponibilidade jurídica/digital (peso 5)
   - C5 – Elasticidade para roadmap (peso 3)
+- Fórmula: Pontuação = (C1×5) + (C2×4) + (C3×4) + (C4×5) + (C5×3)
 
-## Disponibilidade digital resumida
+### Tier 1: Excelência (85-100 pontos)
 
-| Par PT/EN | Domínio `.com.br` PT | Domínio `.com.br` EN | Status | Observações |
-|-----------|----------------------|----------------------|--------|-------------|
-| Segra / Segra | 200 | 200 | ⚠️ | Nome ocupado; avaliar variações (`segra.app`, `segra.ai`). |
-| DuoVia / DuoWay | 404 | 404 | ✅ | Ambos disponíveis; priorizar reserva imediata. |
-| Pulso / Pulse | 200 | 200 | ⚠️ | Domínios populares; considerar sufixos (ex.: `pulsefi`). |
-| Pari / Pair | 200 | 200 | ⚠️ | Termo genérico; alta disputa. |
-| Clari / Clary | 200 | 200 | ⚠️ | Existem registros similares; checar alternativas. |
-| Sentri / Sentri | 404 | 404 | ✅ | Disponível; verificar mercado internacional. |
-| Guia / Guide | 200 | 200 | ⚠️ | Extremamente genérico; baixa chance de registro exclusivo. |
-| Nexo / Nexus | 200 | 200 | ⚠️ | Termo amplamente utilizado em tecnologia. |
-| Divi / Divide | 200 | 200 | ⚠️ | “Divide” pode conflitar com softwares existentes. |
-| Senti / Sense | 200 | 200 | ⚠️ | Genérico; avaliar acréscimo de sufixo. |
-| Safra / Safe | 200 | 200 | ⚠️ | “Safe” bastante saturado; “safra” remete a agricultura. |
-| Paro / Paro | 200 | 200 | ⚠️ | Uso comum; significa “paro” em português. |
+| Nome | Conceito | C1 | C2 | C3 | C4 | C5 | Total | Justificativa |
+|------|----------|----|----|----|----|----|----|---------------|
+| **Lúmina** | Clareza | 5 | 4 | 5 | 4 | 5 | **92** | Humanização + clareza perfeita; "a luz do seu lucro"; inventado facilita registro; extensível (Lúmina App, Lúmina Alertas) |
+| **Duovia** | Separação | 5 | 4 | 5 | 4 | 4 | **89** | Comunica visualmente duas vias; inventado; domínio disponível; narrativa forte |
+| **Sentri** | Proteção | 4 | 4 | 5 | 4 | 4 | **86** | Sentinela tech; inventado; domínio livre; proteção 24h |
 
-## Avaliação por critério (notas preliminares)
+### Tier 2: Forte Potencial (75-84 pontos)
 
-| Nome | C1 (5) | C2 (4) | C3 (4) | C4 (5) | C5 (3) | Pontuação ponderada | Comentários |
-|------|--------|--------|--------|--------|--------|---------------------|-------------|
-| Segra | 4 | 4 | 4 | 2 | 3 | 71 | Boa síntese de segurança; requer domínio alternativo. |
-| Pulso | 4 | 5 | 4 | 2 | 3 | 75 | Familiar e forte em monitoramento; domínio ocupado. |
-| Ritmo | 3 | 4 | 3 | 2 | 3 | 62 | Comunica cadência, porém menos direto. |
-| Nexo | 3 | 3 | 4 | 2 | 4 | 65 | Destaca conexão; risco de saturação com empresas tech. |
-| Guia | 4 | 4 | 3 | 1 | 3 | 62 | Simples, mas genérico; alta chance de conflito jurídico. |
-| Trilho | 3 | 4 | 4 | 2 | 3 | 66 | Narra caminho guiado; domínio indisponível. |
-| Faro | 3 | 3 | 4 | 2 | 3 | 62 | Metáfora de farol; precisa de narrativa forte. |
-| Reserva | 5 | 4 | 3 | 1 | 3 | 67 | Benefício claro; termo amplo exige cuidado jurídico. |
-| Sentri | 4 | 4 | 4 | 4 | 4 | 84 | Inventado, memorável e domínio disponível. |
-| Duovia | 4 | 4 | 4 | 4 | 4 | 84 | Destaca duas vias; domínio disponível. |
-| Pulse | 4 | 3 | 4 | 2 | 3 | 67 | Forte em inglês; domínio tomado, buscar variações. |
-| Guard | 4 | 3 | 3 | 1 | 3 | 58 | Genérico; difícil registrar. |
-| Vault | 4 | 3 | 4 | 1 | 3 | 62 | Metáfora de cofre; domínio indisponível. |
-| Split | 5 | 3 | 3 | 1 | 3 | 63 | Transmite separação, porém termo comum. |
-| Anchor | 3 | 3 | 4 | 1 | 3 | 57 | Narrativa de estabilidade; domínio ocupado. |
-| Beacon | 3 | 3 | 4 | 1 | 3 | 57 | Precisa de storytelling claro; domínio indisponível. |
-| Nexus | 3 | 3 | 4 | 1 | 4 | 60 | Termo saturado em tecnologia. |
-| Flow | 3 | 4 | 3 | 1 | 3 | 57 | Comunicação genérica de fluxo. |
-| Orbit | 3 | 3 | 4 | 1 | 3 | 57 | Metáfora espacial; domínio indisponível. |
-| Nest | 3 | 3 | 4 | 1 | 3 | 57 | Associado a marcas internacionais; risco jurídico. |
+| Nome | Conceito | C1 | C2 | C3 | C4 | C5 | Total | Justificativa |
+|------|----------|----|----|----|----|----|----|---------------|
+| **Vista** | Clareza | 5 | 5 | 4 | 3 | 4 | **84** | "Saldo à vista" validado; direto; termo comum reduz C4 |
+| **Pulso** | Monitoramento | 4 | 5 | 5 | 2 | 4 | **82** | Metáfora saúde forte; familiar; domínio ocupado (C4 baixo) |
+| **Clarix** | Clareza | 4 | 4 | 4 | 4 | 4 | **82** | Clareza + tech; inventado; moderno mas precisa testar aceitação |
+| **Gaveta** | Separação | 4 | 5 | 4 | 3 | 3 | **79** | Metáfora cotidiana forte; regional pode limitar |
+| **Rota** | Orientação | 4 | 5 | 4 | 3 | 4 | **82** | Simples e direto; termo comum (C4 moderado) |
+| **Vigia** | Proteção | 4 | 4 | 4 | 3 | 4 | **78** | Monitoramento humanizado; termo comum |
+| **Amparo** | Proteção | 4 | 4 | 5 | 3 | 4 | **82** | Emocional forte; cuidado humano; menos tech |
 
-> Pontuação ponderada = Σ (nota × peso). Valores serão revisados após parecer jurídico e validação digital detalhada.
+### Tier 3: Candidatos Sólidos (65-74 pontos)
+
+| Nome | Conceito | C1 | C2 | C3 | C4 | C5 | Total | Justificativa |
+|------|----------|----|----|----|----|----|----|---------------|
+| **Trilho** | Orientação | 4 | 4 | 5 | 2 | 4 | **76** | Storytelling forte; domínio ocupado |
+| **Giro** | Monitoramento | 4 | 5 | 3 | 3 | 4 | **77** | Capital de giro conhecido; técnico demais? |
+| **Mapa** | Clareza | 4 | 4 | 4 | 3 | 4 | **78** | Orientação visual; extensível (MapaMEI) |
+| **Segra** | Proteção | 4 | 4 | 4 | 2 | 3 | **71** | Inventado curto; domínio ocupado |
+| **Bifluxo** | Separação | 4 | 3 | 4 | 4 | 4 | **76** | Dois fluxos; inventado; pode soar técnico |
+
+### Tier 4: Opções Alternativas (55-64 pontos)
+
+| Nome | Conceito | C1 | C2 | C3 | C4 | C5 | Total | Justificativa |
+|------|----------|----|----|----|----|----|----|---------------|
+| **Compasso** | Orientação | 3 | 3 | 4 | 3 | 4 | **68** | Navegação precisa; menos familiar |
+| **Escudo** | Proteção | 4 | 4 | 4 | 2 | 3 | **71** | Metáfora forte; termo comum |
+| **Ciclo** | Monitoramento | 3 | 4 | 4 | 2 | 4 | **69** | Continuidade; genérico |
+| **Faro** | Clareza | 3 | 3 | 4 | 3 | 3 | **65** | Farol adaptado; menos claro |
+| **Ritmo** | Monitoramento | 3 | 4 | 4 | 2 | 3 | **66** | Musical positivo; menos direto |
 
 ## Checklist jurídico preliminar
 
