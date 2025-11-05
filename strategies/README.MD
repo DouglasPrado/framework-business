@@ -430,13 +430,52 @@ Ao finalizar a criacao de uma nova estrategia, valide a coerencia usando esta ch
 - [ ] Templates citados na knowledges.MD sao referenciados no process.MD quando aplicavel
 - [ ] Proximos passos estao documentados tanto na knowledges.MD quanto no process.MD
 
+## Estrategias Disponiveis
+
+### MVPBuilder - Construcao de Minimum Viable Product
+
+**Localizacao**: [strategies/MVPBuilder/](MVPBuilder/)
+
+**Objetivo**: Construir e validar um MVP funcional em ate 8 semanas utilizando stack tecnica padronizada (Next.js, Prisma, PostgreSQL, NextAuth, Stripe).
+
+**Quando usar**:
+- Voce tem hipotese de produto clara para validar
+- Existe documentacao inicial (briefing, pesquisas, personas)
+- Objetivo e validacao rapida antes de investir pesado
+- Solucao pode ser construida como SaaS/aplicacao web
+- Necessidade de testar monetizacao desde cedo
+
+**Entradas principais**:
+- Briefing de produto ou documentacao inicial
+- Hipotese de valor clara
+- Definicao de publico-alvo
+- Budget aprovado ($500-2.000/mes)
+- Time minimo (1 dev full-stack)
+
+**Saidas principais**:
+- MVP funcional em producao
+- Sistema de pagamento integrado (Stripe)
+- Lista completa de issues para desenvolvimento
+- Relatorio de validacao com recomendacao (Pivotar/Perseverar/Expandir)
+
+**Duracao**: 6-8 semanas de desenvolvimento + 2-4 semanas de validacao
+
+**Documentos**:
+- [README.MD](MVPBuilder/README.MD) - Guia rapido
+- [knowledge.MD](MVPBuilder/knowledge.MD) - Base teorica completa
+- [process.MD](MVPBuilder/process.MD) - Processo operacional detalhado
+- [tasks.MD](MVPBuilder/tasks.MD) - Checklist de tarefas
+- [_DATA/](MVPBuilder/_DATA/) - Templates de artefatos
+
+---
+
 ## Referencias de exemplo
 
 Para criar uma nova estrategia, consulte a estrutura ja existente:
 
-- `Estrategias/ZeroUm/knowledges.MD` - exemplo completo de base teorica
-- `Estrategias/ZeroUm/process.MD` - exemplo de processo operacional detalhado
-- `Estrategias/ZeroUm/tasks.MD` - exemplo de checklist operacional
+- [MVPBuilder/knowledge.MD](MVPBuilder/knowledge.MD) - exemplo completo de base teorica
+- [MVPBuilder/process.MD](MVPBuilder/process.MD) - exemplo de processo operacional detalhado
+- [MVPBuilder/tasks.MD](MVPBuilder/tasks.MD) - exemplo de checklist operacional
 
 ## Atualizacao de estrategias existentes
 
