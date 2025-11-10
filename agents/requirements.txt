@@ -1,0 +1,10 @@
+# Dependências usadas pelos agentes descritos em LANGCHAIN.MD
+langchain
+langchain-openai
+langgraph
+python-dotenv
+tavily-python
+pyyaml
+rich
+deepagents
+# deepagents ainda não está disponível no PyPI; usamos deepagents/ como stub local.

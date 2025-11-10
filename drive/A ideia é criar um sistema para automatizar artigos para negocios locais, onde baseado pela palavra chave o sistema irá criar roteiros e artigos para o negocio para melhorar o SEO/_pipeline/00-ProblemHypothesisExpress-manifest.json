@@ -1,0 +1,10 @@
+{
+  "process": "00-ProblemHypothesisExpress",
+  "strategy": "ZeroUm",
+  "context": "A ideia é criar um sistema para automatizar artigos para negocios locais, onde baseado pela palavra chave o sistema irá criar roteiros e artigos para o negocio para melhorar o SEO",
+  "status": "completed",
+  "artifacts": [
+    "/Users/douglasprado/www/framework-business/drive/A ideia é criar um sistema para automatizar artigos para negocios locais, onde baseado pela palavra chave o sistema irá criar roteiros e artigos para o negocio para melhorar o SEO/00-ProblemHypothesisExpress/01-problem-hypothesis-express.MD"
+  ],
+  "notes": ""
+}
