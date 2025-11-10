@@ -2,10 +2,13 @@
 
 from __future__ import annotations
 
+import logging
 from pathlib import Path
 from typing import Any, Dict, List
 
 from .base import ZeroUmProcessAgent
+
+logger = logging.getLogger(__name__)
 
 
 class ProblemHypothesisExpressAgent(ZeroUmProcessAgent):
@@ -29,8 +32,10 @@ class ProblemHypothesisExpressAgent(ZeroUmProcessAgent):
         )
 
     def run(self) -> Dict[str, Any]:
+        logger.info("[%s] Iniciando execução para o contexto %s", self.process_code, self.context_name)
         instructions = self._compose_instructions()
         try:
+            logger.info("[%s] Enviando instruções para o agente de linguagem", self.process_code)
             agent_result = self._execute_with_agent(instructions)
             artifact_path = self.save_artifact(
                 "problem-hypothesis-express",
@@ -38,7 +43,9 @@ class ProblemHypothesisExpressAgent(ZeroUmProcessAgent):
             )
             status = agent_result.get("status", "completed")
             notes = agent_result.get("notes", "")
+            logger.info("[%s] Artefato principal gerado em %s", self.process_code, artifact_path)
         except RuntimeError as exc:
+            logger.warning("[%s] Falha na execução automática: %s", self.process_code, exc)
             artifact_path = self._write_manual_plan(instructions, str(exc))
             status = "blocked_missing_dependency"
             notes = str(exc)
@@ -52,6 +59,7 @@ class ProblemHypothesisExpressAgent(ZeroUmProcessAgent):
             "notes": notes,
         }
         self.publish_manifest(manifest)
+        logger.info("[%s] Execução finalizada com status %s", self.process_code, status)
         return manifest
 
     def _compose_instructions(self) -> str:

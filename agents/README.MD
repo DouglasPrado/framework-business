@@ -30,6 +30,8 @@
 - Passe a descrição completa do projeto pelo parâmetro `-d/--context-description` do CLI. Esse texto alimenta o orquestrador e todos os subagentes, orientando como aplicar o processo.
 - Exemplo: `python agents/scripts/run_strategy_agent.py ZeroUm AutomarticlesAutomacaoBlog -d "Automarticles é uma plataforma que automatiza blogs para PMEs usando IA e integrações com CMS."`
 - O contexto completo será registrado no consolidado da estratégia e embutido em cada prompt enviado aos subagentes.
+- Durante a execução, o CLI exibe logs detalhando cada tarefa (`INFO`). Use `--quiet` caso queira reduzir o ruído e mostrar apenas avisos/erros.
+- O nome da pasta em `drive/` é automaticamente normalizado via IA (quando `OPENAI_API_KEY` estiver configurada). Sem a chave, aplica-se a heurística local. Defina `AGENTS_DISABLE_CONTEXT_AI=1` para forçar a heurística mesmo com IA ativa.
 
 ## Próximos Passos
 - Adicionar os demais subagentes da estratégia ZeroUm seguindo o padrão de `subagents/base.py`
