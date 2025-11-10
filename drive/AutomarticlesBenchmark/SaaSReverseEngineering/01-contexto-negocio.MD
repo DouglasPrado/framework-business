@@ -15,7 +15,7 @@
 ### O que quero alcançar com o produto?
 - Lançar um MVP em 4 meses que gere, publique e distribua artigos SEO em múltiplos canais a partir de prompts ou dados proprietários.
 - Diferenciar via profundidade de dados (Search Console + CRM) ao invés de competir apenas em volume de artigos.
-- Criar base comparável para alimentar processos ZeroUm/ProblemHypothesis posteriormente.
+- Criar base comparável para alimentar processos ZeroUm/01-ProblemHypothesisDefinition posteriormente.
 
 ## Mercado-Alvo
 

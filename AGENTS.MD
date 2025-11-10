@@ -32,8 +32,8 @@ This document provides specific instructions for AI agents (like Claude, ChatGPT
    - Avoid creating redundant tasks - reuse and adapt existing ones when possible
 
 3. **Copy and customize templates**:
-   - Create folder: `process/<ProcessName>/`
-   - Create subfolder: `process/<ProcessName>/_DATA/` for storing all process artifacts
+   - Create folder: `process/NN-<ProcessName>/`, usando o próximo número sequencial disponível dentro de `process/`
+   - Create subfolder: `process/NN-<ProcessName>/_DATA/` for storing all process artifacts
    - Copy models: `process.MD`, `knowledge.MD`, `tasks.MD`, `validator.MD`
    - Customize each file according to the specific process requirements
 
@@ -80,6 +80,7 @@ This document provides specific instructions for AI agents (like Claude, ChatGPT
 
 ### Naming
 - Folders: `CamelCase` (e.g., `ContentProduction`, `LeadQualification`)
+- Dentro de `process/`, prefixe cada pasta de processo com contador sequencial `NN-` (ex.: `06-NewProcess`) e mantenha a numeração atualizada ao adicionar novos processos
 - Files: `lowercase.MD` (e.g., `process.MD`, `knowledge.MD`)
 - Data folder: `_DATA` (uppercase with underscore prefix)
 - No spaces, special characters, or non-ASCII in file names
@@ -203,8 +204,8 @@ Before completing any work, verify:
 3. **Check `process/_SHARED/` first** for existing shared templates and references
 4. **Search existing processes** for reusable artifacts in `process/*/`
 5. Review `_DATA/` folders of related processes for templates, examples, and outputs
-6. Create `process/<ProcessName>/` folder
-7. Create `process/<ProcessName>/_DATA/` folder for artifacts
+6. Create `process/NN-<ProcessName>/` folder (use o próximo número sequencial)
+7. Create `process/NN-<ProcessName>/_DATA/` folder for artifacts
 8. Copy all model files from `models/process/`
 9. Customize each file for the specific process
 10. **Reference shared artifacts from `_SHARED/`** instead of duplicating tasks
@@ -212,16 +213,16 @@ Before completing any work, verify:
 12. Cross-check all files for consistency
 
 ### "Update the [ProcessName] process"
-1. Read current `process/<ProcessName>/process.MD`
+1. Read current `process/NN-<ProcessName>/process.MD`
 2. Identify what needs to change
 3. Check dependencies (tasks.MD, validator.MD, knowledge.MD)
 4. Update all affected files
 5. Verify consistency across the process package
 
 ### "Add tasks for [ProcessName]"
-1. Read `process/<ProcessName>/process.MD`
+1. Read `process/NN-<ProcessName>/process.MD`
 2. Read `models/process/tasks.MD` for template
-3. Read existing `process/<ProcessName>/tasks.MD`
+3. Read existing `process/NN-<ProcessName>/tasks.MD`
 4. Add or update tasks following the model
 5. Ensure alignment with process.MD steps
 6. Verify validator.MD still applies

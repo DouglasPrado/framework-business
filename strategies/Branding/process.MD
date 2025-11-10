@@ -5,12 +5,12 @@ Este documento detalha o fluxo operacional necessário para construir, validar e
 ## Visão geral do fluxo
 
 ```
-ETAPA 0 → ETAPA 1 → ETAPA 2 → ETAPA 3 → ETAPA 4 → ETAPA 6
-                                ↘
-                                 ETAPA 5 (paralela após aprovações verbais/visuais)
+ETAPA 0 → ETAPA 1 → ETAPA 2 → ETAPA 3 → ETAPA 4 → ETAPA 5 → ETAPA 6
 ```
 
-## ContextImmersion: Imersão e contexto
+Etapa 5 pode iniciar em paralelo assim que as aprovações verbais e visuais estiverem concluídas.
+
+## Etapa 0: ContextImmersion - Imersão e contexto
 
 ### Objetivo
 Mapear objetivos do negócio, entendimento de público, proposta de valor pretendida e referências de mercado para orientar a criação da marca do zero.

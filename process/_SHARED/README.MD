@@ -38,7 +38,7 @@ _SHARED/
 ### 1. Declaração de Hipótese
 **Arquivo**: `templates/declaracao-hipotese.md`
 **Usado por**:
-- [ProblemHypothesisDefinition](../ProblemHypothesisDefinition/process.MD)
+- [ProblemHypothesisDefinition](../ZeroUm/01-ProblemHypothesisDefinition/process.MD)
 - [TargetUserIdentification](../TargetUserIdentification/process.MD)
 
 **Descrição**: Template padrão para criar declarações de hipótese no formato "Meu produto ajuda [QUEM] a [RESULTADO] sem [DOR]" com validação rápida e completa.

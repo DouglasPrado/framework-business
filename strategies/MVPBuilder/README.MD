@@ -308,7 +308,7 @@ Sim. Validar disposicao real de pagamento e critico. Mesmo que seja $1, teste mo
 - Stack escolhida tem ampla documentacao e comunidade
 
 **Precisa de ajuda para definir sua hipotese?**
-- Use processo [ProblemHypothesisDefinition](../../process/ProblemHypothesisDefinition/process.MD)
+- Use processo [ProblemHypothesisDefinition](../../process/ZeroUm/01-ProblemHypothesisDefinition/process.MD)
 - Use template [Declaracao de Hipotese](../../process/_SHARED/templates/declaracao-hipotese.md)
 
 ---
@@ -316,7 +316,7 @@ Sim. Validar disposicao real de pagamento e critico. Mesmo que seja $1, teste mo
 ## Integracao com Outros Processos
 
 Esta estrategia pode usar:
-- **Antes**: [ProblemHypothesisDefinition](../../process/ProblemHypothesisDefinition/process.MD) - Para definir hipotese
+- **Antes**: [ProblemHypothesisDefinition](../../process/ZeroUm/01-ProblemHypothesisDefinition/process.MD) - Para definir hipotese
 - **Antes**: [TargetUserIdentification](../../process/TargetUserIdentification/process.MD) - Para definir persona
 - **Depois**: Estrategia de Growth (se validar e expandir)
 - **Depois**: Processo de Roadmap (para planejar proximas features)
