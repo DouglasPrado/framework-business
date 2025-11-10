@@ -643,13 +643,13 @@ Todas as 7 etapas de Branding foram finalizadas em 04/11/2025:
 ## Documentos Relacionados
 
 ### Processo Naming
-- [Long List (34 nomes)](../Naming/GenerationConsolidation/03-longlist-naming.MD)
-- [Shortlist Final](../Naming/ViabilityFilters/07-shortlist-naming-NOVA.MD)
-- [Matriz de Avaliação](../Naming/ViabilityFilters/06-matriz-avaliacao.MD)
+- [Long List (34 nomes)](../Naming/02-GenerationConsolidation/03-longlist-naming.MD)
+- [Shortlist Final](../Naming/03-ViabilityFilters/07-shortlist-naming-NOVA.MD)
+- [Matriz de Avaliação](../Naming/03-ViabilityFilters/06-matriz-avaliacao.MD)
 
 ### Problem Hypothesis
-- [Hipótese validada](../ZeroUm/ProblemHypothesisExpress/06-hipotese-final.MD)
-- [User Interviews](../ZeroUm/UserInterviewValidation/)
+- [Hipótese validada](../ZeroUm/00-ProblemHypothesisExpress/06-hipotese-final.MD)
+- [User Interviews](../ZeroUm/03-UserInterviewValidation/)
 
 ### Branding (este processo) - Documentos Principais
 

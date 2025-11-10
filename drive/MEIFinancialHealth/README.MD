@@ -35,7 +35,7 @@
 - ✅ Proposta de valor refinada: Clareza sobre retirada mensal
 
 **Documentos**:
-- [Hipótese Final Validada](ZeroUm/ProblemHypothesisExpress/06-hipotese-final.MD)
+- [Hipótese Final Validada](ZeroUm/00-ProblemHypothesisExpress/06-hipotese-final.MD)
 - User interviews e análises
 
 **Aprendizado-chave**: MEIs não querem controle financeiro completo. Querem resposta para UMA pergunta: "Quanto posso tirar este mês sem quebrar?"
@@ -69,9 +69,9 @@ Encontrar o nome perfeito que humanize a solução e transmita clareza financeir
 - Disponibilidade confirmada (domínio, INPI, redes sociais)
 
 **Documentos**:
-- [Long List - 34 nomes](Naming/GenerationConsolidation/03-longlist-naming.MD)
-- [Shortlist Final](Naming/ViabilityFilters/07-shortlist-naming-NOVA.MD)
-- [Matriz de Avaliação](Naming/ViabilityFilters/06-matriz-avaliacao.MD)
+- [Long List - 34 nomes](Naming/02-GenerationConsolidation/03-longlist-naming.MD)
+- [Shortlist Final](Naming/03-ViabilityFilters/07-shortlist-naming-NOVA.MD)
+- [Matriz de Avaliação](Naming/03-ViabilityFilters/06-matriz-avaliacao.MD)
 
 **Aprendizado-chave**: Humanização > Técnico. MEIs confiam em pessoas, não em softwares frios.
 
@@ -125,8 +125,8 @@ Criar identidade de marca completa (essência + posicionamento + verbal + visual
 - Tom: Próxima, acolhedora, inteligente mas acessível
 
 **Documentos**:
-- [Plataforma de Marca](Branding/EssenceFoundations/01-plataforma-de-marca.MD)
-- [Manifesto](Branding/EssenceFoundations/02-manifesto-de-marca.MD)
+- [Plataforma de Marca](Branding/01-EssenceFoundations/01-plataforma-de-marca.MD)
+- [Manifesto](Branding/01-EssenceFoundations/02-manifesto-de-marca.MD)
 
 ---
 
@@ -155,7 +155,7 @@ Criar identidade de marca completa (essência + posicionamento + verbal + visual
 **Matriz de Objeções**: 6 principais objeções mapeadas com respostas
 
 **Documentos**:
-- [Posicionamento Completo](Branding/PositioningPromise/01-posicionamento.MD)
+- [Posicionamento Completo](Branding/02-PositioningPromise/01-posicionamento.MD)
 
 ---
 
@@ -197,7 +197,7 @@ Criar identidade de marca completa (essência + posicionamento + verbal + visual
 3. Objeção "Não tenho tempo"
 
 **Documentos**:
-- [Guia de Identidade Verbal](Branding/VerbalIdentity/01-guia-identidade-verbal.MD)
+- [Guia de Identidade Verbal](Branding/03-VerbalIdentity/01-guia-identidade-verbal.MD)
 
 ---
 
@@ -245,14 +245,14 @@ Criar identidade de marca completa (essência + posicionamento + verbal + visual
 - **Customizados**: 3 ícones exclusivos (Duas Caixas, Luz, Retirada Ideal)
 
 **Documentação de Assets**:
-1. [Logos](Branding/VisualIdentity/_DATA/assets/logos/README.MD) - Guia completo de criação
-2. [Paleta](Branding/VisualIdentity/_DATA/assets/paleta/README.MD) - Swatches, CSS, Tailwind
-3. [Tipografia](Branding/VisualIdentity/_DATA/assets/tipografia/README.MD) - Fontes, hierarquia, specs
-4. [Iconografia](Branding/VisualIdentity/_DATA/assets/iconografia/README.MD) - Sistema completo
-5. [Mockups](Branding/VisualIdentity/_DATA/assets/mockups/README.MD) - 8 mockups prioritários
+1. [Logos](Branding/04-VisualIdentity/_DATA/assets/logos/README.MD) - Guia completo de criação
+2. [Paleta](Branding/04-VisualIdentity/_DATA/assets/paleta/README.MD) - Swatches, CSS, Tailwind
+3. [Tipografia](Branding/04-VisualIdentity/_DATA/assets/tipografia/README.MD) - Fontes, hierarquia, specs
+4. [Iconografia](Branding/04-VisualIdentity/_DATA/assets/iconografia/README.MD) - Sistema completo
+5. [Mockups](Branding/04-VisualIdentity/_DATA/assets/mockups/README.MD) - 8 mockups prioritários
 
 **Documentos**:
-- [Brand Book Visual](Branding/VisualIdentity/01-brand-book-visual.MD)
+- [Brand Book Visual](Branding/04-VisualIdentity/01-brand-book-visual.MD)
 
 ---
 
@@ -303,7 +303,7 @@ Criar identidade de marca completa (essência + posicionamento + verbal + visual
 **Matriz Emocional**: Jornada emocional completa (Ansiedade → Alívio → Confiança → Gratidão)
 
 **Documentos**:
-- [Jornada Mapeada](Branding/ExperienceJourney/_DATA/01-jornada-mapeada.MD)
+- [Jornada Mapeada](Branding/05-ExperienceJourney/_DATA/01-jornada-mapeada.MD)
 
 ---
 
@@ -362,7 +362,7 @@ Criar identidade de marca completa (essência + posicionamento + verbal + visual
 **Processo de Aprovação**: Fluxo documentado para materiais críticos vs autonomia do time
 
 **Documentos**:
-- [Brand Guide Lúmina](Branding/RolloutGovernance/_DATA/01-brand-guide-lumina.MD) ← **Documento Master**
+- [Brand Guide Lúmina](Branding/06-RolloutGovernance/_DATA/01-brand-guide-lumina.MD) ← **Documento Master**
 
 ---
 
@@ -402,15 +402,15 @@ MEIFinancialHealth/
 ├── README.MD (este arquivo)
 │
 ├── ZeroUm/
-│   └── ProblemHypothesisExpress/
+│   └── 00-ProblemHypothesisExpress/
 │       ├── 06-hipotese-final.MD
 │       └── User interviews
 │
 ├── Naming/
 │   ├── StrategicFoundations/
-│   ├── GenerationConsolidation/
+│   ├── 02-GenerationConsolidation/
 │   │   └── 03-longlist-naming.MD (34 nomes)
-│   └── ViabilityFilters/
+│   └── 03-ViabilityFilters/
 │       ├── 06-matriz-avaliacao.MD
 │       └── 07-shortlist-naming-NOVA.MD (Lúmina 92pts)
 │
@@ -438,27 +438,27 @@ MEIFinancialHealth/
 ## Documentos-Chave para Consulta Rápida
 
 ### Para Entender o Problema
-- [Hipótese Validada](ZeroUm/ProblemHypothesisExpress/06-hipotese-final.MD)
+- [Hipótese Validada](ZeroUm/00-ProblemHypothesisExpress/06-hipotese-final.MD)
 
 ### Para Entender o Nome
-- [Por que Lúmina?](Naming/ViabilityFilters/07-shortlist-naming-NOVA.MD)
+- [Por que Lúmina?](Naming/03-ViabilityFilters/07-shortlist-naming-NOVA.MD)
 
 ### Para Entender a Marca
-- [Plataforma de Marca](Branding/EssenceFoundations/01-plataforma-de-marca.MD) (essência)
-- [Posicionamento](Branding/PositioningPromise/01-posicionamento.MD) (promessa + diferenciadores)
+- [Plataforma de Marca](Branding/01-EssenceFoundations/01-plataforma-de-marca.MD) (essência)
+- [Posicionamento](Branding/02-PositioningPromise/01-posicionamento.MD) (promessa + diferenciadores)
 
 ### Para Criar Conteúdo
-- [Guia de Identidade Verbal](Branding/VerbalIdentity/01-guia-identidade-verbal.MD) (tom, mensagens, roteiros)
+- [Guia de Identidade Verbal](Branding/03-VerbalIdentity/01-guia-identidade-verbal.MD) (tom, mensagens, roteiros)
 
 ### Para Criar Design
-- [Brand Book Visual](Branding/VisualIdentity/01-brand-book-visual.MD) (logo, cores, tipografia)
-- [Assets - Documentação completa](Branding/VisualIdentity/_DATA/assets/)
+- [Brand Book Visual](Branding/04-VisualIdentity/01-brand-book-visual.MD) (logo, cores, tipografia)
+- [Assets - Documentação completa](Branding/04-VisualIdentity/_DATA/assets/)
 
 ### Para Entender a Jornada
-- [Jornada do Cliente](Branding/ExperienceJourney/_DATA/01-jornada-mapeada.MD) (7 etapas, 25 touchpoints)
+- [Jornada do Cliente](Branding/05-ExperienceJourney/_DATA/01-jornada-mapeada.MD) (7 etapas, 25 touchpoints)
 
 ### Para Consulta Geral
-- [**Brand Guide Lúmina**](Branding/RolloutGovernance/_DATA/01-brand-guide-lumina.MD) ← **Use este para tudo**
+- [**Brand Guide Lúmina**](Branding/06-RolloutGovernance/_DATA/01-brand-guide-lumina.MD) ← **Use este para tudo**
 
 ---
 
@@ -609,25 +609,25 @@ Lúmina: 3 perguntas, primeira análise em 10min
 ## Índice de Documentos por Tipo
 
 ### Estratégia
-- [Hipótese de Problema](ZeroUm/ProblemHypothesisExpress/06-hipotese-final.MD)
-- [Propósito, Visão, Missão](Branding/EssenceFoundations/01-plataforma-de-marca.MD)
-- [Posicionamento](Branding/PositioningPromise/01-posicionamento.MD)
+- [Hipótese de Problema](ZeroUm/00-ProblemHypothesisExpress/06-hipotese-final.MD)
+- [Propósito, Visão, Missão](Branding/01-EssenceFoundations/01-plataforma-de-marca.MD)
+- [Posicionamento](Branding/02-PositioningPromise/01-posicionamento.MD)
 
 ### Identidade
-- [Naming - Por que Lúmina](Naming/ViabilityFilters/07-shortlist-naming-NOVA.MD)
-- [Guia Verbal](Branding/VerbalIdentity/01-guia-identidade-verbal.MD)
-- [Brand Book Visual](Branding/VisualIdentity/01-brand-book-visual.MD)
+- [Naming - Por que Lúmina](Naming/03-ViabilityFilters/07-shortlist-naming-NOVA.MD)
+- [Guia Verbal](Branding/03-VerbalIdentity/01-guia-identidade-verbal.MD)
+- [Brand Book Visual](Branding/04-VisualIdentity/01-brand-book-visual.MD)
 
 ### Operacional
-- [Jornada do Cliente](Branding/ExperienceJourney/_DATA/01-jornada-mapeada.MD)
-- [Governança](Branding/RolloutGovernance/_DATA/01-brand-guide-lumina.MD)
+- [Jornada do Cliente](Branding/05-ExperienceJourney/_DATA/01-jornada-mapeada.MD)
+- [Governança](Branding/06-RolloutGovernance/_DATA/01-brand-guide-lumina.MD)
 
 ### Assets (Documentação)
-- [Logos](Branding/VisualIdentity/_DATA/assets/logos/README.MD)
-- [Paleta](Branding/VisualIdentity/_DATA/assets/paleta/README.MD)
-- [Tipografia](Branding/VisualIdentity/_DATA/assets/tipografia/README.MD)
-- [Iconografia](Branding/VisualIdentity/_DATA/assets/iconografia/README.MD)
-- [Mockups](Branding/VisualIdentity/_DATA/assets/mockups/README.MD)
+- [Logos](Branding/04-VisualIdentity/_DATA/assets/logos/README.MD)
+- [Paleta](Branding/04-VisualIdentity/_DATA/assets/paleta/README.MD)
+- [Tipografia](Branding/04-VisualIdentity/_DATA/assets/tipografia/README.MD)
+- [Iconografia](Branding/04-VisualIdentity/_DATA/assets/iconografia/README.MD)
+- [Mockups](Branding/04-VisualIdentity/_DATA/assets/mockups/README.MD)
 
 ---
 
@@ -636,17 +636,17 @@ Lúmina: 3 perguntas, primeira análise em 10min
 **Quer entender Lúmina em 10 minutos?**
 Leia nesta ordem:
 
-1. [Hipótese Validada](ZeroUm/ProblemHypothesisExpress/06-hipotese-final.MD) (5min) - O problema
-2. [Plataforma de Marca](Branding/EssenceFoundations/01-plataforma-de-marca.MD) (5min) - A solução
+1. [Hipótese Validada](ZeroUm/00-ProblemHypothesisExpress/06-hipotese-final.MD) (5min) - O problema
+2. [Plataforma de Marca](Branding/01-EssenceFoundations/01-plataforma-de-marca.MD) (5min) - A solução
 
 **Quer criar conteúdo?**
-Leia: [Guia de Identidade Verbal](Branding/VerbalIdentity/01-guia-identidade-verbal.MD)
+Leia: [Guia de Identidade Verbal](Branding/03-VerbalIdentity/01-guia-identidade-verbal.MD)
 
 **Quer criar design?**
-Leia: [Brand Book Visual](Branding/VisualIdentity/01-brand-book-visual.MD)
+Leia: [Brand Book Visual](Branding/04-VisualIdentity/01-brand-book-visual.MD)
 
 **Quer consulta rápida de tudo?**
-Leia: [Brand Guide Lúmina](Branding/RolloutGovernance/_DATA/01-brand-guide-lumina.MD) ← **Documento Master**
+Leia: [Brand Guide Lúmina](Branding/06-RolloutGovernance/_DATA/01-brand-guide-lumina.MD) ← **Documento Master**
 
 ---
 

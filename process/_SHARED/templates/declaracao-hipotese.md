@@ -6,7 +6,7 @@ Este template é um artefato compartilhado usado por múltiplos processos para c
 
 ## Processos que utilizam este artefato
 
-- [ProblemHypothesisDefinition](../../ProblemHypothesisDefinition/process.MD) - Processo completo e rigoroso
+- [ProblemHypothesisDefinition](../../ZeroUm/01-ProblemHypothesisDefinition/process.MD) - Processo completo e rigoroso
 - [TargetUserIdentification](../../TargetUserIdentification/process.MD) - Versão rápida para iniciar pesquisa de usuários
 
 ## Formato Padrão
@@ -64,7 +64,7 @@ Use este checklist para validação básica:
 ## Validação Completa (45-60 minutos)
 
 Para validação rigorosa com 5 critérios de qualidade, execute o processo completo:
-[ProblemHypothesisDefinition](../../ProblemHypothesisDefinition/process.MD)
+[ProblemHypothesisDefinition](../../ZeroUm/01-ProblemHypothesisDefinition/process.MD)
 
 ### Critérios de Qualidade (Validação Rigorosa)
 

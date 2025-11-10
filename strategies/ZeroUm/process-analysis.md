@@ -13,7 +13,7 @@
 **Tempo:** 45-60 minutos
 **Cobertura:** Etapa 0 da ZeroUm (parcial)
 **Qualidade:** Alta - processo profundo com 6 etapas e validação rigorosa
-**Localização:** [process/ProblemHypothesisDefinition/](../../process/ProblemHypothesisDefinition/)
+**Localização:** [process/ZeroUm/01-ProblemHypothesisDefinition/](../../process/ZeroUm/01-ProblemHypothesisDefinition/)
 
 **Avaliação:**
 - Processo robusto e completo para definição de hipótese

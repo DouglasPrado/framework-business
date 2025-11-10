@@ -47,7 +47,7 @@ A estrategia **MVPBuilder** e um framework completo para construir e validar Min
 - Mapa de funcionalidades
 - Criterios de validacao
 
-**Link:** [MVPScopeDefinition](../../process/MVPBuilder/MVPScopeDefinition/process.MD)
+**Link:** [MVPScopeDefinition](../../process/MVPBuilder/01-MVPScopeDefinition/process.MD)
 
 ---
 
@@ -73,7 +73,7 @@ A estrategia **MVPBuilder** e um framework completo para construir e validar Min
 - Issues mapeadas
 - Project board
 
-**Link:** [MVPIssuesMapping](../../process/MVPBuilder/MVPIssuesMapping/process.MD)
+**Link:** [MVPIssuesMapping](../../process/MVPBuilder/02-MVPIssuesMapping/process.MD)
 
 ---
 
@@ -101,7 +101,7 @@ A estrategia **MVPBuilder** e um framework completo para construir e validar Min
 - Ambiente de desenvolvimento funcional
 - Deploy continuo ativo
 
-**Link:** [MVPInfrastructureSetup](../../process/MVPBuilder/MVPInfrastructureSetup/process.MD)
+**Link:** [MVPInfrastructureSetup](../../process/MVPBuilder/03-MVPInfrastructureSetup/process.MD)
 
 ---
 
@@ -128,7 +128,7 @@ A estrategia **MVPBuilder** e um framework completo para construir e validar Min
 - Telas e fluxos completos
 - APIs e logica de negocio
 
-**Link:** [MVPCoreDevelopment](../../process/MVPBuilder/MVPCoreDevelopment/process.MD)
+**Link:** [MVPCoreDevelopment](../../process/MVPBuilder/04-MVPCoreDevelopment/process.MD)
 
 ---
 
@@ -156,7 +156,7 @@ A estrategia **MVPBuilder** e um framework completo para construir e validar Min
 - Onboarding flow
 - Documentacao de usuario
 
-**Link:** [MVPSecondaryDevelopment](../../process/MVPBuilder/MVPSecondaryDevelopment/process.MD)
+**Link:** [MVPSecondaryDevelopment](../../process/MVPBuilder/05-MVPSecondaryDevelopment/process.MD)
 
 ---
 
@@ -186,7 +186,7 @@ A estrategia **MVPBuilder** e um framework completo para construir e validar Min
 - Checklist de go-live
 - Documentacao de usuario
 
-**Link:** [MVPTestingPreLaunch](../../process/MVPBuilder/MVPTestingPreLaunch/process.MD)
+**Link:** [MVPTestingPreLaunch](../../process/MVPBuilder/06-MVPTestingPreLaunch/process.MD)
 
 ---
 
@@ -223,7 +223,7 @@ A estrategia **MVPBuilder** e um framework completo para construir e validar Min
 - Relatorio de validacao final
 - Decisao estrategica documentada
 
-**Link:** [MVPLaunchValidation](../../process/MVPBuilder/MVPLaunchValidation/process.MD)
+**Link:** [MVPLaunchValidation](../../process/MVPBuilder/07-MVPLaunchValidation/process.MD)
 
 ---
 
@@ -437,13 +437,13 @@ Semana 8-12:  MVPLaunchValidation (2-4 semanas continuo)
 - [knowledge.MD](knowledge.MD) - Base teorica completa
 
 ### Processos Operacionais
-1. [MVPScopeDefinition](../../process/MVPBuilder/MVPScopeDefinition/process.MD)
-2. [MVPIssuesMapping](../../process/MVPBuilder/MVPIssuesMapping/process.MD)
-3. [MVPInfrastructureSetup](../../process/MVPBuilder/MVPInfrastructureSetup/process.MD)
-4. [MVPCoreDevelopment](../../process/MVPBuilder/MVPCoreDevelopment/process.MD)
-5. [MVPSecondaryDevelopment](../../process/MVPBuilder/MVPSecondaryDevelopment/process.MD)
-6. [MVPTestingPreLaunch](../../process/MVPBuilder/MVPTestingPreLaunch/process.MD)
-7. [MVPLaunchValidation](../../process/MVPBuilder/MVPLaunchValidation/process.MD)
+1. [MVPScopeDefinition](../../process/MVPBuilder/01-MVPScopeDefinition/process.MD)
+2. [MVPIssuesMapping](../../process/MVPBuilder/02-MVPIssuesMapping/process.MD)
+3. [MVPInfrastructureSetup](../../process/MVPBuilder/03-MVPInfrastructureSetup/process.MD)
+4. [MVPCoreDevelopment](../../process/MVPBuilder/04-MVPCoreDevelopment/process.MD)
+5. [MVPSecondaryDevelopment](../../process/MVPBuilder/05-MVPSecondaryDevelopment/process.MD)
+6. [MVPTestingPreLaunch](../../process/MVPBuilder/06-MVPTestingPreLaunch/process.MD)
+7. [MVPLaunchValidation](../../process/MVPBuilder/07-MVPLaunchValidation/process.MD)
 
 ### Templates
 - Template de Briefing de MVP
@@ -516,4 +516,4 @@ Processo 7 tem criterios claros baseados em metricas e feedback. Decisao deve se
 
 ---
 
-**Pronto para comecar? Acesse:** [MVPScopeDefinition - Processo 1](../../process/MVPBuilder/MVPScopeDefinition/process.MD)
+**Pronto para comecar? Acesse:** [MVPScopeDefinition - Processo 1](../../process/MVPBuilder/01-MVPScopeDefinition/process.MD)

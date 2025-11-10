@@ -14,7 +14,7 @@ Documento de acompanhamento para executar a estratégia Brading do diagnóstico 
 
 ---
 
-## ContextImmersion: Imersão e contexto
+## Etapa 0: ContextImmersion - Imersão e contexto
 
 **Owner:** ________________
 **Responsáveis de apoio:** ______________________________

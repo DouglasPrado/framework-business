@@ -444,7 +444,7 @@ Apos ler esta base de conhecimento:
 4. Depois volte e siga opcao A
 
 **C) Se voce precisa de ajuda para definir MVP**:
-1. Consulte o processo [ProblemHypothesisDefinition](../../process/ProblemHypothesisDefinition/process.MD)
+1. Consulte o processo [ProblemHypothesisDefinition](../../process/ZeroUm/01-ProblemHypothesisDefinition/process.MD)
 2. Use o template [Declaracao de Hipotese](../../process/_SHARED/templates/declaracao-hipotese.md)
 3. Depois volte para esta estrategia
 

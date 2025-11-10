@@ -4,7 +4,7 @@ Este diretório centraliza artefatos gerados pela execução dos processos docum
 
 ## Como criar uma nova pasta de resultados
 
-1. Identifique o processo executado e defina um nome em CamelCase que combine estrategia e processo e contexto (ex: `ZeroUm/ProblemHypothesisExpressFinancialHealth`).
+1. Identifique o processo executado e defina um nome em CamelCase que combine estrategia e processo e contexto (ex: `ZeroUm/00-ProblemHypothesisExpressFinancialHealth`).
 2. Crie a pasta correspondente dentro de `drive/` e copie ou referencie os dados coletados no log oficial localizado em `process/<Processo>/_DATA/`.
 3. Gere arquivos numerados (`01-`, `02-`, etc.) seguindo a ordem das tarefas do processo, descrevendo claramente o que foi feito e o resultado obtido.
 4. Mantenha todo o conteúdo em português, sem tabelas e com linguagem alinhada ao restante do repositório.
