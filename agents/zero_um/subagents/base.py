@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import logging
 from pathlib import Path
 from typing import Any, Dict, Optional
 
@@ -9,6 +10,8 @@ from ...base import ProcessAgent
 from ...utils.drive_writer import ensure_process_folder, write_artifact
 from ...utils.manifest import ManifestHandler
 from ...utils.process_loader import ProcessDefinition, load_process
+
+logger = logging.getLogger(__name__)
 
 
 class ZeroUmProcessAgent(ProcessAgent):
@@ -37,8 +40,21 @@ class ZeroUmProcessAgent(ProcessAgent):
 
     def save_artifact(self, slug: str, content: str, extension: str = ".MD") -> Path:
         folder = ensure_process_folder(self.context_name, self.process_code)
-        return write_artifact(folder, slug, content, extension)
+        artifact_path = write_artifact(folder, slug, content, extension)
+        logger.info(
+            "[%s] Artefato salvo em %s",
+            self.process_code,
+            artifact_path,
+        )
+        return artifact_path
 
     def publish_manifest(self, payload: Dict[str, Any]) -> Path:
         manifest_name = f"{self.process_code}-manifest.json"
-        return self.manifest_handler.write(manifest_name, payload)
+        manifest_path = self.manifest_handler.write(manifest_name, payload)
+        logger.info(
+            "[%s] Manifesto publicado em %s com status %s",
+            self.process_code,
+            manifest_path,
+            payload.get("status", "desconhecido"),
+        )
+        return manifest_path

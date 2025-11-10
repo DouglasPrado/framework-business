@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import logging
 from pathlib import Path
 from typing import Any, Dict, List
 
@@ -9,6 +10,8 @@ from ..base import StrategyAgent
 from ..utils.drive_writer import ensure_strategy_folder
 from ..utils.package import package_artifacts
 from .subagents.problem_hypothesis_express import ProblemHypothesisExpressAgent
+
+logger = logging.getLogger(__name__)
 
 
 class ZeroUmOrchestrator(StrategyAgent):
@@ -26,24 +29,34 @@ class ZeroUmOrchestrator(StrategyAgent):
         }
 
     def run(self) -> Dict[str, Any]:
+        logger.info("Preparando diretórios e carregando processos da estratégia %s", self.strategy_name)
         self.bootstrap()
         ensure_strategy_folder(self.context_name, self.strategy_name)
-
         manifests: List[Dict[str, Any]] = []
         for process in self.processes:
             code = process["code"]
             cls = self.subagents.get(code)
             if cls is None:
+                logger.info("Processo %s ainda não possui subagente. Pulando.", code)
                 continue  # Processo ainda não possui subagente dedicado
+            logger.info("Disparando subagente %s para o contexto %s", code, self.context_name)
             agent = cls(
                 context_name=self.context_name,
                 context_description=self.context_description,
                 pipeline_dir=self.pipeline_dir,
             )
-            manifests.append(agent.run())
+            manifest = agent.run()
+            manifests.append(manifest)
+            logger.info(
+                "Subagente %s concluiu execução com status %s",
+                manifest["process"],
+                manifest.get("status", "desconhecido"),
+            )
 
         consolidated = self._write_consolidated(manifests)
         archive = package_artifacts(self.context_name, self.strategy_name)
+        logger.info("Consolidado salvo em %s", consolidated)
+        logger.info("Pacote final gerado em %s", archive)
 
         return {
             "manifests": manifests,
