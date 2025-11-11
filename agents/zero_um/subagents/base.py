@@ -4,12 +4,15 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, TYPE_CHECKING
 
 from ...base import ProcessAgent
 from ...utils.drive_writer import ensure_process_folder, write_artifact
 from ...utils.manifest import ManifestHandler
 from ...utils.process_loader import ProcessDefinition, load_process
+
+if TYPE_CHECKING:  # pragma: no cover - usado apenas para type checking
+    from deepagents import DeepAgent
 
 logger = logging.getLogger(__name__)
 
@@ -17,7 +20,15 @@ logger = logging.getLogger(__name__)
 class ZeroUmProcessAgent(ProcessAgent):
     strategy_name = "ZeroUm"
 
-    def __init__(self, process_code: str, context_name: str, context_description: str, pipeline_dir: Path, prompt: Optional[str] = None) -> None:
+    def __init__(
+        self,
+        process_code: str,
+        context_name: str,
+        context_description: str,
+        pipeline_dir: Path,
+        prompt: Optional[str] = None,
+        agent: Optional["DeepAgent"] = None,
+    ) -> None:
         self.pipeline_dir = pipeline_dir
         super().__init__(
             process_code=process_code,
@@ -25,6 +36,7 @@ class ZeroUmProcessAgent(ProcessAgent):
             context_name=context_name,
             context_description=context_description,
             prompt=prompt,
+            language_agent=agent,
         )
         self.definition: ProcessDefinition = load_process(self.process_dir)
         self.manifest_handler = ManifestHandler(pipeline_dir)
