@@ -5,6 +5,7 @@ Este repositório utiliza a função `agents.llm_factory.build_llm` para criar i
 ## Perfis de execução
 
 ### Produção
+
 - Utilize uma chave válida em `OPENAI_API_KEY` ou defina `api_key` no `llm_config` repassado aos agentes.
 - Ajuste o modelo principal com `AGENTS_LLM_MODEL` ou com o campo `model` do `llm_config`, priorizando versões estáveis (ex.: `gpt-4o`).
 - Habilite observabilidade contínua configurando `observability.langsmith` com `project_name`, `tags` e metadados relevantes; mantenha as credenciais do LangSmith ativas.
@@ -12,6 +13,7 @@ Este repositório utiliza a função `agents.llm_factory.build_llm` para criar i
 - Registre políticas de temperatura e limites de tokens explícitos (`temperature`, `max_tokens`) para reprodutibilidade.
 
 ### Desenvolvimento
+
 - Priorize modelos de menor custo (ex.: `gpt-4o-mini`) definindo `AGENTS_LLM_MODEL` ou sobrescrevendo o campo `model` no `llm_config`.
 - Utilize `AGENTS_LLM_TEMPERATURE` para experimentar diferentes graus de criatividade sem alterar o código.
 - Ative a instrumentação somente quando necessário (`observability.langsmith` ou `observability.langchain_tracer`), evitando ruído em ambientes locais.
@@ -19,11 +21,13 @@ Este repositório utiliza a função `agents.llm_factory.build_llm` para criar i
 - Combine com `AGENTS_DISABLE_CONTEXT_AI=1` para impedir que utilidades auxiliares façam chamadas automáticas durante prototipagem.
 
 ## Callbacks de observabilidade
+
 - `observability.langchain_tracer`: aceita `True`, um nome de projeto (string) ou um dicionário com `project_name`, `session_name` e `client`. Requer suporte ao LangChain Tracing.
 - `observability.langsmith`: aceita `True` ou um dicionário com `project_name`, `tags`, `metadata` e, opcionalmente, um `client` já instanciado. Exige dependência `langsmith` configurada com token válido.
 - O campo `callbacks` continua aceitando handlers adicionais definidos manualmente; todos são combinados com os callbacks automáticos.
 
 ## Variáveis e campos úteis
+
 - `OPENAI_API_KEY`: chave padrão lida pelo LangChain/OpenAI.
 - `AGENTS_LLM_MODEL`: modelo padrão aplicado quando o `llm_config` não define `model`.
 - `AGENTS_LLM_TEMPERATURE`: temperatura global aplicada na ausência de configuração explícita.
