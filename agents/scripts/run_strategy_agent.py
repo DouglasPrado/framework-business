@@ -14,6 +14,7 @@ if str(REPO_ROOT) not in sys.path:
 
 from agents.registry import STRATEGY_REGISTRY  # noqa: E402
 from agents.utils.context import normalize_context_name  # noqa: E402
+from agents.utils.env_validation import validate_sensitive_environment  # noqa: E402
 
 LOGGER_NAME = "agents.cli"
 
@@ -46,6 +47,7 @@ def main() -> None:
     args = parser.parse_args()
 
     configure_logging(verbose=not args.quiet)
+    validate_sensitive_environment()
     logger = logging.getLogger(LOGGER_NAME)
 
     context_name = normalize_context_name(args.context)
