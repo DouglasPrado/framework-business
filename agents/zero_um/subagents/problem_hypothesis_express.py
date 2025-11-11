@@ -14,13 +14,21 @@ logger = logging.getLogger(__name__)
 class ProblemHypothesisExpressAgent(ZeroUmProcessAgent):
     process_code = "00-ProblemHypothesisExpress"
 
-    def __init__(self, context_name: str, context_description: str, pipeline_dir: Path, prompt: str | None = None) -> None:
+    def __init__(
+        self,
+        context_name: str,
+        context_description: str,
+        pipeline_dir: Path,
+        prompt: str | None = None,
+        base_path: Path | None = None,
+    ) -> None:
         super().__init__(
             process_code=self.process_code,
             context_name=context_name,
             context_description=context_description,
             pipeline_dir=pipeline_dir,
             prompt=prompt or self._build_prompt(),
+            base_path=base_path,
         )
 
     def _build_prompt(self) -> str:

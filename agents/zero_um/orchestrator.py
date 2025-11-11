@@ -4,8 +4,9 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
+from .. import BASE_PATH
 from ..base import StrategyAgent
 from ..utils.drive_writer import ensure_strategy_folder
 from ..utils.package import package_artifacts
@@ -17,12 +18,19 @@ logger = logging.getLogger(__name__)
 class ZeroUmOrchestrator(StrategyAgent):
     strategy_name = "ZeroUm"
 
-    def __init__(self, context_name: str, context_description: str = "", orchestrator_prompt: str | None = None) -> None:
+    def __init__(
+        self,
+        context_name: str,
+        context_description: str = "",
+        orchestrator_prompt: str | None = None,
+        base_path: Optional[Path] = None,
+    ) -> None:
         super().__init__(
             strategy_name=self.strategy_name,
             context_name=context_name,
             context_description=context_description,
             orchestrator_prompt=orchestrator_prompt,
+            base_path=base_path or BASE_PATH,
         )
         self.subagents: Dict[str, type[ProblemHypothesisExpressAgent]] = {
             "00-ProblemHypothesisExpress": ProblemHypothesisExpressAgent,
@@ -31,7 +39,11 @@ class ZeroUmOrchestrator(StrategyAgent):
     def run(self) -> Dict[str, Any]:
         logger.info("Preparando diretórios e carregando processos da estratégia %s", self.strategy_name)
         self.bootstrap()
-        ensure_strategy_folder(self.context_name, self.strategy_name)
+        ensure_strategy_folder(
+            self.context_name,
+            self.strategy_name,
+            base_path=self.base_path,
+        )
         manifests: List[Dict[str, Any]] = []
         for process in self.processes:
             code = process["code"]
@@ -44,6 +56,7 @@ class ZeroUmOrchestrator(StrategyAgent):
                 context_name=self.context_name,
                 context_description=self.context_description,
                 pipeline_dir=self.pipeline_dir,
+                base_path=self.base_path,
             )
             manifest = agent.run()
             manifests.append(manifest)
@@ -54,7 +67,11 @@ class ZeroUmOrchestrator(StrategyAgent):
             )
 
         consolidated = self._write_consolidated(manifests)
-        archive = package_artifacts(self.context_name, self.strategy_name)
+        archive = package_artifacts(
+            self.context_name,
+            self.strategy_name,
+            base_path=self.base_path,
+        )
         logger.info("Consolidado salvo em %s", consolidated)
         logger.info("Pacote final gerado em %s", archive)
 
