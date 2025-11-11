@@ -5,7 +5,7 @@ import zipfile
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from agents.utils.package import package_artifacts
+from agents.utils import package_artifacts
 
 
 class PackageArtifactsTests(unittest.TestCase):

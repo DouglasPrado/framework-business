@@ -7,7 +7,7 @@ from tempfile import TemporaryDirectory
 from typing import Any, Dict, List
 
 from agents.generic.orchestrator import GenericStrategyOrchestrator
-from agents.zero_um.orchestrator import ZeroUmOrchestrator
+from agents.ZeroUm.orchestrator import ZeroUmOrchestrator
 
 
 class _StubProblemHypothesisExpressAgent:

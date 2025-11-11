@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import sys
 
-from agents.utils.env_validation import validate_sensitive_environment
+from agents.utils import validate_sensitive_environment
 
 
 def main() -> int:

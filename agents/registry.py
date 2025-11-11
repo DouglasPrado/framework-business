@@ -6,7 +6,7 @@ from typing import Callable, Dict
 
 from .base import StrategyAgent
 from .generic.orchestrator import GenericStrategyOrchestrator
-from .zero_um.orchestrator import ZeroUmOrchestrator
+from .ZeroUm.orchestrator import ZeroUmOrchestrator
 
 StrategyFactory = Callable[[str, str], StrategyAgent]
 

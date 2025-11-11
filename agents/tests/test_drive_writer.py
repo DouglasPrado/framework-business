@@ -4,7 +4,8 @@ import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from agents.utils.drive_writer import next_prefixed_name, write_artifact
+from agents.utils import write_artifact
+from agents.utils.io.drive_writer import next_prefixed_name
 
 
 class DriveWriterTests(unittest.TestCase):

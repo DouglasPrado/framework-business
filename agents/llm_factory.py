@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-import os
 from typing import Any, Dict, Iterable, List, Mapping, MutableMapping, Optional
+
+from agents.config import get_settings
 
 try:  # pragma: no cover - dependência opcional
     from langchain_openai import ChatOpenAI
@@ -24,9 +25,6 @@ try:  # pragma: no cover - observabilidade opcional
     from langsmith.callbacks import LangSmithCallbackHandler
 except ImportError:  # pragma: no cover
     LangSmithCallbackHandler = None  # type: ignore
-
-DEFAULT_MODEL = "gpt-4o-mini"
-DEFAULT_TEMPERATURE = 0.4
 
 
 def build_llm(config: Optional[Mapping[str, Any]] = None) -> Any:
@@ -59,13 +57,13 @@ def build_llm(config: Optional[Mapping[str, Any]] = None) -> Any:
             return cfg["builder"](cfg)
         raise ValueError(f"Provider '{provider}' não suportado pela build_llm().")
 
+    settings = get_settings(validate=False)
     llm_cls = _resolve_chat_openai()
     params: Dict[str, Any] = {}
     params["model"] = (
         cfg.get("model")
         or cfg.get("model_name")
-        or os.getenv("AGENTS_LLM_MODEL")
-        or DEFAULT_MODEL
+        or settings.llm_model
     )
 
     temperature = _resolve_temperature(cfg)
@@ -105,13 +103,8 @@ def _resolve_chat_openai():
 def _resolve_temperature(cfg: Mapping[str, Any]) -> Optional[float]:
     if cfg.get("temperature") is not None:
         return float(cfg["temperature"])
-    env_temperature = os.getenv("AGENTS_LLM_TEMPERATURE")
-    if env_temperature:
-        try:
-            return float(env_temperature)
-        except ValueError:  # pragma: no cover - input inválido será ignorado
-            return None
-    return DEFAULT_TEMPERATURE
+    settings = get_settings(validate=False)
+    return settings.llm_temperature
 
 
 def _build_callbacks(cfg: Mapping[str, Any]) -> List[Any]:

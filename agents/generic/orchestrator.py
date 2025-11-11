@@ -7,8 +7,11 @@ from typing import Any, Dict, List, MutableMapping, Optional
 
 from ..base import StrategyAgent
 from ..orchestrators import OrchestrationGraph, OrchestrationState
-from ..utils.drive_writer import ensure_strategy_folder
-from ..utils.package import package_artifacts
+from ..utils.io import (
+    ensure_strategy_folder,
+    package_artifacts,
+    write_consolidated_report,
+)
 
 
 class GenericStrategyOrchestrator(StrategyAgent):
@@ -81,23 +84,17 @@ class GenericStrategyOrchestrator(StrategyAgent):
         }
 
     def _write_consolidated(self, manifests: List[Dict[str, Any]]) -> Path:
+        """Escreve relatório consolidado usando função compartilhada."""
         consolidated_path = self.drive_dir / "00-consolidado.MD"
-        lines = [
-            f"# Execução da estratégia {self.strategy_name}",
-            "",
-            f"Contexto: {self.context_name}",
-            "",
-            "## Descrição do contexto",
-            self.context_description or "Contexto adicional não informado.",
-            "",
-            "## Processos mapeados",
-        ]
-        for manifest in manifests:
-            lines.append(
-                f"- {manifest['process']}: status {manifest['status']}"
-            )
-        lines.append(
-            "\nNenhum subagente dedicado foi configurado ainda. Utilize este arquivo como checklist provisório."
+        additional_notes = (
+            "Nenhum subagente dedicado foi configurado ainda. "
+            "Utilize este arquivo como checklist provisório."
         )
-        consolidated_path.write_text("\n".join(lines), encoding="utf-8")
-        return consolidated_path
+        return write_consolidated_report(
+            strategy_name=self.strategy_name,
+            context_name=self.context_name,
+            context_description=self.context_description,
+            manifests=manifests,
+            output_path=consolidated_path,
+            additional_notes=additional_notes,
+        )

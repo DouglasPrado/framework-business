@@ -13,8 +13,7 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.append(str(REPO_ROOT))
 
 from agents.registry import STRATEGY_REGISTRY  # noqa: E402
-from agents.utils.context import normalize_context_name  # noqa: E402
-from agents.utils.env_validation import validate_sensitive_environment  # noqa: E402
+from agents.utils import normalize_context_name, validate_sensitive_environment  # noqa: E402
 
 LOGGER_NAME = "agents.cli"
 

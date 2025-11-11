@@ -7,8 +7,8 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from . import BASE_PATH
-from .utils.manifest import ManifestHandler
-from .utils.strategy_loader import StrategyDefinition, load_strategy
+from .tools import get_tools_for_agent
+from .utils import ManifestHandler, StrategyDefinition, load_strategy
 
 try:  # pragma: no cover - dependência externa obrigatória em tempo de execução
     from .deepagents import DeepAgent, create_deep_agent
@@ -37,6 +37,7 @@ class StrategyAgent:
         self.pipeline_dir = self.base_path / "drive" / self.context_name / "_pipeline"
         self.manifest_handler = ManifestHandler(self.pipeline_dir)
         self.definition: Optional[StrategyDefinition] = None
+        self.orchestrator_agent: Optional[DeepAgent] = None
 
     def bootstrap(self) -> None:
         """Prepara diretórios e carrega metadados da estratégia."""
@@ -49,18 +50,15 @@ class StrategyAgent:
         """Instancia o agente de linguagem responsável pela coordenação."""
         if self.orchestrator_agent is not None:
             return self.orchestrator_agent
+
         prompt = self.orchestrator_prompt or (
             self.definition.prompt if self.definition else ""
         )
-        tools = [
-            "ls",
-            "read_file",
-            "write_file",
-            "glob",
-            "edit_file",
-            "grep",
-        ]
-        return create_deep_agent(system_prompt=prompt, tools=tools, llm_config=self.llm_config)
+        tools = get_tools_for_agent("strategy")
+        self.orchestrator_agent = create_deep_agent(
+            system_prompt=prompt, tools=tools, llm_config=self.llm_config
+        )
+        return self.orchestrator_agent
 
     def run(self) -> None:
         """Executa a estratégia completa, chamando cada subagente definido."""
@@ -98,13 +96,12 @@ class ProcessAgent:
     def build_agent(self) -> DeepAgent:
         if self.language_agent is not None:
             return self.language_agent
-        self.language_agent = create_deep_agent(system_prompt=self.prompt or "", tools=[
-            "ls",
-            "read_file",
-            "write_file",
-            "edit_file",
-            "glob",
-        ], llm_config=self.llm_config)
+        tools = get_tools_for_agent("process")
+        self.language_agent = create_deep_agent(
+            system_prompt=self.prompt or "",
+            tools=tools,
+            llm_config=self.llm_config
+        )
         return self.language_agent
 
     def run(self) -> Dict[str, Any]:

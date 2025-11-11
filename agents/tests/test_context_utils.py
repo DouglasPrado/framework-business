@@ -5,7 +5,7 @@ import unittest
 
 os.environ["AGENTS_DISABLE_CONTEXT_AI"] = "1"
 
-from agents.utils.context import normalize_context_name
+from agents.utils import normalize_context_name
 
 
 class NormalizeContextNameTests(unittest.TestCase):

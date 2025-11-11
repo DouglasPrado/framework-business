@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-import os
 from typing import Any, Dict, Optional
+
+from agents.config import get_settings
 
 
 def create_draft_prompt(
@@ -181,8 +182,9 @@ def get_reasoning_config(stage: str) -> Dict[str, Any]:
     Returns:
         Dicionário com configuração de LLM
     """
+    settings = get_settings(validate=False)
     base_config = {
-        "model": os.getenv("AGENTS_REASONING_MODEL", "gpt-4o-mini"),
+        "model": settings.reasoning_model,
     }
 
     if stage == "draft":
@@ -214,8 +216,8 @@ def is_reflection_enabled() -> bool:
     Returns:
         True se reflection estiver habilitado
     """
-    reasoning_mode = os.getenv("AGENTS_REASONING_MODE", "simple").lower()
-    return reasoning_mode in ("reflection", "thinking", "extended")
+    settings = get_settings(validate=False)
+    return settings.reasoning_mode.lower() in ("reflection", "thinking", "extended")
 
 
 def format_thinking_traces(

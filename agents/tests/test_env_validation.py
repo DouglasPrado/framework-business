@@ -4,7 +4,7 @@ import os
 import unittest
 from unittest.mock import patch
 
-from agents.utils.env_validation import (
+from agents.utils.helpers.env_validation import (
     SKIP_FLAG,
     TRACE_DEPENDENCIES,
     TRACE_FLAG,

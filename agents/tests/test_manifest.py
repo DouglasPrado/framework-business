@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from agents.utils.manifest import ManifestHandler
+from agents.utils import ManifestHandler
 
 
 class ManifestHandlerTests(unittest.TestCase):

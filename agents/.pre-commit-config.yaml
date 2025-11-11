@@ -1,0 +1,76 @@
+# Pre-commit hooks configuration
+# See https://pre-commit.com for more information
+
+repos:
+  # Ruff - Fast Python linter and formatter
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.9
+    hooks:
+      # Run the linter
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
+      # Run the formatter
+      - id: ruff-format
+
+  # Python code formatting with Black (alternative to ruff-format)
+  # Uncomment if you prefer Black over ruff-format
+  # - repo: https://github.com/psf/black
+  #   rev: 23.12.1
+  #   hooks:
+  #     - id: black
+  #       language_version: python3.9
+
+  # Type checking with mypy
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.8.0
+    hooks:
+      - id: mypy
+        additional_dependencies:
+          - types-all
+        args: [--config-file=pyproject.toml]
+        # Only run on specific file patterns to avoid checking third-party code
+        files: ^agents/.*\.py$
+
+  # General pre-commit hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      # Prevent large files from being committed
+      - id: check-added-large-files
+        args: [--maxkb=1000]
+      # Check for files that would conflict in case-insensitive filesystems
+      - id: check-case-conflict
+      # Check for merge conflicts
+      - id: check-merge-conflict
+      # Check yaml syntax
+      - id: check-yaml
+      # Check json syntax
+      - id: check-json
+      # Check toml syntax
+      - id: check-toml
+      # Ensure files end with newline
+      - id: end-of-file-fixer
+      # Trim trailing whitespace
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      # Fix mixed line endings
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      # Check for debugger imports
+      - id: debug-statements
+
+  # Security checks with bandit
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.6
+    hooks:
+      - id: bandit
+        args: [-c, pyproject.toml, -r, agents/]
+        additional_dependencies: ["bandit[toml]"]
+
+# Configuration
+default_language_version:
+  python: python3.9
+
+# Skip certain hooks in CI
+ci:
+  skip: [mypy]  # Skip mypy in CI as it requires dependencies
