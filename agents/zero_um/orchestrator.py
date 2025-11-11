@@ -17,12 +17,19 @@ logger = logging.getLogger(__name__)
 class ZeroUmOrchestrator(StrategyAgent):
     strategy_name = "ZeroUm"
 
-    def __init__(self, context_name: str, context_description: str = "", orchestrator_prompt: str | None = None) -> None:
+    def __init__(
+        self,
+        context_name: str,
+        context_description: str = "",
+        orchestrator_prompt: str | None = None,
+        llm_config: Dict[str, Any] | None = None,
+    ) -> None:
         super().__init__(
             strategy_name=self.strategy_name,
             context_name=context_name,
             context_description=context_description,
             orchestrator_prompt=orchestrator_prompt,
+            llm_config=llm_config,
         )
         self.subagents: Dict[str, type[ProblemHypothesisExpressAgent]] = {
             "00-ProblemHypothesisExpress": ProblemHypothesisExpressAgent,
@@ -44,6 +51,7 @@ class ZeroUmOrchestrator(StrategyAgent):
                 context_name=self.context_name,
                 context_description=self.context_description,
                 pipeline_dir=self.pipeline_dir,
+                llm_config=self.llm_config,
             )
             manifest = agent.run()
             manifests.append(manifest)

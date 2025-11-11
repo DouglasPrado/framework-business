@@ -7,12 +7,9 @@ import re
 from dataclasses import dataclass
 from datetime import datetime
 from textwrap import dedent
-from typing import List
+from typing import Any, Dict, List, Optional
 
-try:  # pragma: no cover - dependência opcional
-    from langchain_openai import ChatOpenAI
-except ImportError:  # pragma: no cover
-    ChatOpenAI = None
+from ..llm_factory import build_llm
 
 
 def _clean(text: str, limit: int = 280) -> str:
@@ -67,11 +64,25 @@ class _LangChainAgent:
     tools: List[str]
     model_name: str = "gpt-4o-mini"
     temperature: float = 0.4
+    llm_config: Optional[Dict[str, Any]] = None
+    llm_instance: Any = None
 
     def __post_init__(self) -> None:
+        self._llm_error: Optional[Exception] = None
         self._llm = None
-        if ChatOpenAI is not None and os.getenv("OPENAI_API_KEY"):
-            self._llm = ChatOpenAI(model=self.model_name, temperature=self.temperature)
+        if self.llm_instance is not None:
+            self._llm = self.llm_instance
+            return
+        config = dict(self.llm_config or {})
+        config.setdefault("model", self.model_name)
+        config.setdefault("temperature", self.temperature)
+        should_try = bool(config) or bool(os.getenv("OPENAI_API_KEY"))
+        if not should_try:
+            return
+        try:
+            self._llm = build_llm(config)
+        except Exception as exc:  # pragma: no cover - falha deve permitir fallback
+            self._llm_error = exc
 
     def run(self, instructions: str) -> str:
         if self._llm is None:
@@ -99,5 +110,15 @@ class _LangChainAgent:
         return str(response)
 
 
-def create_deep_agent(system_prompt: str, tools: List[str] | None = None):
-    return _LangChainAgent(system_prompt=system_prompt, tools=tools or [])
+def create_deep_agent(
+    system_prompt: str,
+    tools: List[str] | None = None,
+    llm_config: Optional[Dict[str, Any]] = None,
+    llm_instance: Any = None,
+):
+    return _LangChainAgent(
+        system_prompt=system_prompt,
+        tools=tools or [],
+        llm_config=llm_config,
+        llm_instance=llm_instance,
+    )
