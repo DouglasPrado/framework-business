@@ -4,13 +4,16 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, TYPE_CHECKING
 
 from ... import BASE_PATH
 from ...base import ProcessAgent
 from ...utils.drive_writer import ensure_process_folder, write_artifact
 from ...utils.manifest import ManifestHandler
 from ...utils.process_loader import ProcessDefinition, load_process
+
+if TYPE_CHECKING:  # pragma: no cover - usado apenas para type checking
+    from deepagents import DeepAgent
 
 logger = logging.getLogger(__name__)
 

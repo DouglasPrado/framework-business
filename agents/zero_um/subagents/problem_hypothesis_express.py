@@ -4,11 +4,14 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional, TYPE_CHECKING
 
 from .base import ZeroUmProcessAgent
 
 logger = logging.getLogger(__name__)
+
+if TYPE_CHECKING:  # pragma: no cover - apenas para type checking
+    from deepagents import DeepAgent
 
 
 class ProblemHypothesisExpressAgent(ZeroUmProcessAgent):

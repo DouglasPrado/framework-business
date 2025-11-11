@@ -8,6 +8,7 @@ from typing import Any, Dict, List, Optional
 
 from .. import BASE_PATH
 from ..base import StrategyAgent
+from ..orchestrators import OrchestrationGraph, OrchestrationState
 from ..utils.drive_writer import ensure_strategy_folder
 from ..utils.package import package_artifacts
 from .subagents.problem_hypothesis_express import ProblemHypothesisExpressAgent
@@ -37,7 +38,25 @@ class ZeroUmOrchestrator(StrategyAgent):
         }
 
     def run(self) -> Dict[str, Any]:
-        logger.info("Preparando diretórios e carregando processos da estratégia %s", self.strategy_name)
+        graph = OrchestrationGraph(
+            {
+                "coletar_contexto": self.coletar_contexto,
+                "gerar_hipotese": self.gerar_hipotese,
+                "validar_resultado": self.validar_resultado,
+            }
+        )
+        final_state = graph.run()
+        return {
+            "manifests": final_state.get("manifests", []),
+            "consolidated": final_state.get("consolidated", ""),
+            "archive": final_state.get("archive", ""),
+        }
+
+    def coletar_contexto(self, state: MutableMapping[str, Any]) -> OrchestrationState:
+        logger.info(
+            "Preparando diretórios e carregando processos da estratégia %s",
+            self.strategy_name,
+        )
         self.bootstrap()
         ensure_strategy_folder(
             self.context_name,
@@ -50,8 +69,12 @@ class ZeroUmOrchestrator(StrategyAgent):
             cls = self.subagents.get(code)
             if cls is None:
                 logger.info("Processo %s ainda não possui subagente. Pulando.", code)
-                continue  # Processo ainda não possui subagente dedicado
-            logger.info("Disparando subagente %s para o contexto %s", code, self.context_name)
+                continue
+            logger.info(
+                "Disparando subagente %s para o contexto %s",
+                code,
+                self.context_name,
+            )
             agent = cls(
                 context_name=self.context_name,
                 context_description=self.context_description,
@@ -65,7 +88,10 @@ class ZeroUmOrchestrator(StrategyAgent):
                 manifest["process"],
                 manifest.get("status", "desconhecido"),
             )
+        return {"manifests": manifests}
 
+    def validar_resultado(self, state: MutableMapping[str, Any]) -> OrchestrationState:
+        manifests: List[Dict[str, Any]] = list(state.get("manifests", []))
         consolidated = self._write_consolidated(manifests)
         archive = package_artifacts(
             self.context_name,
@@ -74,7 +100,6 @@ class ZeroUmOrchestrator(StrategyAgent):
         )
         logger.info("Consolidado salvo em %s", consolidated)
         logger.info("Pacote final gerado em %s", archive)
-
         return {
             "manifests": manifests,
             "consolidated": str(consolidated),
