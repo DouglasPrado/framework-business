@@ -1,0 +1,5 @@
+# Conjunto mínimo de dependências para agentes LLM.
+# Mantemos versões mínimas explícitas para garantir compatibilidade com os utilitários do repositório.
+langchain-openai>=0.1.6
+langgraph>=0.0.40
+deepagents>=0.1.0
