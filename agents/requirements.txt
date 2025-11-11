@@ -1,10 +1,9 @@
 # Dependências usadas pelos agentes descritos em LANGCHAIN.MD
+-r ../requirements/llm.txt
 langchain
-langchain-openai
-langgraph
 python-dotenv
 tavily-python
 pyyaml
 rich
-deepagents
 # deepagents ainda não está disponível no PyPI; usamos deepagents/ como stub local.
+# Para quem optar pelo pacote oficial, este repositório suporta deepagents>=0.1.0.
