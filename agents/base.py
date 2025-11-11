@@ -29,7 +29,7 @@ class StrategyAgent:
     orchestrator_prompt: Optional[str] = None
     base_path: Path = BASE_PATH
     processes: List[Dict[str, Any]] = field(default_factory=list)
-    orchestrator_agent: Optional[DeepAgent] = None
+    llm_config: Optional[Dict[str, Any]] = None
 
     def __post_init__(self) -> None:
         self.strategy_dir = self.base_path / "strategies" / self.strategy_name
@@ -60,8 +60,7 @@ class StrategyAgent:
             "edit_file",
             "grep",
         ]
-        self.orchestrator_agent = create_deep_agent(system_prompt=prompt, tools=tools)
-        return self.orchestrator_agent
+        return create_deep_agent(system_prompt=prompt, tools=tools, llm_config=self.llm_config)
 
     def run(self) -> None:
         """Executa a estratégia completa, chamando cada subagente definido."""
@@ -78,7 +77,7 @@ class ProcessAgent:
     context_description: str = ""
     base_path: Path = BASE_PATH
     prompt: Optional[str] = None
-    language_agent: Optional[DeepAgent] = None
+    llm_config: Optional[Dict[str, Any]] = None
 
     def __post_init__(self) -> None:
         self.process_dir = (
@@ -104,8 +103,7 @@ class ProcessAgent:
             "write_file",
             "edit_file",
             "glob",
-        ])
-        return self.language_agent
+        ], llm_config=self.llm_config)
 
     def run(self) -> Dict[str, Any]:
         """Executa o processo e devolve um manifesto com os principais artefatos."""

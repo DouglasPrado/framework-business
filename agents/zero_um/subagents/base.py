@@ -27,7 +27,7 @@ class ZeroUmProcessAgent(ProcessAgent):
         context_description: str,
         pipeline_dir: Path,
         prompt: Optional[str] = None,
-        agent: Optional["DeepAgent"] = None,
+        llm_config: Optional[Dict[str, Any]] = None,
     ) -> None:
         self.pipeline_dir = pipeline_dir
         super().__init__(
@@ -36,7 +36,7 @@ class ZeroUmProcessAgent(ProcessAgent):
             context_name=context_name,
             context_description=context_description,
             prompt=prompt,
-            language_agent=agent,
+            llm_config=llm_config,
         )
         self.definition: ProcessDefinition = load_process(self.process_dir)
         self.manifest_handler = ManifestHandler(pipeline_dir)

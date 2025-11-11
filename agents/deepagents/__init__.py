@@ -7,24 +7,9 @@ import re
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from textwrap import dedent
-from typing import Any, Iterable, List, Sequence, Tuple
+from typing import Any, Dict, List, Optional
 
-try:  # pragma: no cover - dependência opcional
-    from langchain_openai import ChatOpenAI
-except ImportError:  # pragma: no cover
-    ChatOpenAI = None  # type: ignore
-
-try:  # pragma: no cover - utilizado apenas quando LangChain está instalado
-    from langchain.agents import AgentExecutor, create_tool_calling_agent  # type: ignore
-    from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder  # type: ignore
-except ImportError:  # pragma: no cover
-    AgentExecutor = None  # type: ignore
-    create_tool_calling_agent = None  # type: ignore
-    ChatPromptTemplate = None  # type: ignore
-    MessagesPlaceholder = None  # type: ignore
-
-from .state import AgentStateStore
-from .tools import ToolLike, get_default_tools
+from ..llm_factory import build_llm
 
 
 def _clean(text: str, limit: int = 280) -> str:
@@ -105,55 +90,25 @@ class _LangChainAgent:
     tools: Iterable[Any] | None = None
     model_name: str = "gpt-4o-mini"
     temperature: float = 0.4
-    state_store: AgentStateStore | None = None
+    llm_config: Optional[Dict[str, Any]] = None
+    llm_instance: Any = None
 
     def __post_init__(self) -> None:
-        provided_tools = self.tools or []
-        self.state_store = self.state_store or AgentStateStore()
-        self.tools, self._tool_display_names = _normalize_tools(provided_tools)
-        if not self.tools:
-            default_tools = get_default_tools()
-            defaults, default_names = _normalize_tools(default_tools)
-            self.tools.extend(defaults)
-            self._tool_display_names.extend(default_names)
+        self._llm_error: Optional[Exception] = None
         self._llm = None
-        self._executor = None
-        if ChatOpenAI is not None and os.getenv("OPENAI_API_KEY"):
-            self._llm = ChatOpenAI(model=self.model_name, temperature=self.temperature)
-            self._setup_executor()
-
-    def _setup_executor(self) -> None:
-        if self._llm is None:
+        if self.llm_instance is not None:
+            self._llm = self.llm_instance
             return
-        if create_tool_calling_agent is None or ChatPromptTemplate is None:
+        config = dict(self.llm_config or {})
+        config.setdefault("model", self.model_name)
+        config.setdefault("temperature", self.temperature)
+        should_try = bool(config) or bool(os.getenv("OPENAI_API_KEY"))
+        if not should_try:
             return
-        memory = self.state_store.memory if self.state_store else None
-        messages = [("system", dedent(
-            f"""
-            {self.system_prompt.strip()}
-
-            Ferramentas virtuais disponíveis: {', '.join(self._tool_display_names) or 'ls/read/write'}.
-            Regras: respeite AGENTS.MD, escreva em português, sem tabelas e sem emojis.
-            """
-        ).strip())]
-        if memory is not None and hasattr(memory, "memory_key") and MessagesPlaceholder is not None:
-            messages.append(MessagesPlaceholder(variable_name=getattr(memory, "memory_key", "chat_history")))
-        messages.append(("human", "{input}"))
-        prompt = ChatPromptTemplate.from_messages(messages)
-        agent = create_tool_calling_agent(self._llm, list(self.tools), prompt)
-        kwargs: dict[str, Any] = {"agent": agent, "tools": list(self.tools), "verbose": False}
-        if memory is not None and hasattr(memory, "load_memory_variables"):
-            kwargs["memory"] = memory
-        kwargs["handle_parsing_errors"] = True
-        self._executor = AgentExecutor(**kwargs)
-
-    def _record_user_message(self, instructions: str) -> None:
-        if self.state_store is not None:
-            self.state_store.add_user_message(instructions)
-
-    def _record_ai_message(self, response: str) -> None:
-        if self.state_store is not None:
-            self.state_store.add_ai_message(response)
+        try:
+            self._llm = build_llm(config)
+        except Exception as exc:  # pragma: no cover - falha deve permitir fallback
+            self._llm_error = exc
 
     def run(self, instructions: str) -> str:
         self._record_user_message(instructions)
@@ -197,16 +152,13 @@ class _LangChainAgent:
 
 def create_deep_agent(
     system_prompt: str,
-    tools: Iterable[Any] | None = None,
-    state_store: AgentStateStore | None = None,
-    *,
-    model_name: str = "gpt-4o-mini",
-    temperature: float = 0.4,
+    tools: List[str] | None = None,
+    llm_config: Optional[Dict[str, Any]] = None,
+    llm_instance: Any = None,
 ):
     return _LangChainAgent(
         system_prompt=system_prompt,
-        tools=tools,
-        model_name=model_name,
-        temperature=temperature,
-        state_store=state_store,
+        tools=tools or [],
+        llm_config=llm_config,
+        llm_instance=llm_instance,
     )

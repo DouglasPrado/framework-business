@@ -23,17 +23,14 @@ class ZeroUmOrchestrator(StrategyAgent):
         context_name: str,
         context_description: str = "",
         orchestrator_prompt: str | None = None,
-        base_path: Optional[Path] = None,
+        llm_config: Dict[str, Any] | None = None,
     ) -> None:
-        init_kwargs: Dict[str, Any] = {}
-        if base_path is not None:
-            init_kwargs["base_path"] = base_path
         super().__init__(
             strategy_name=self.strategy_name,
             context_name=context_name,
             context_description=context_description,
             orchestrator_prompt=orchestrator_prompt,
-            **init_kwargs,
+            llm_config=llm_config,
         )
         self.subagents: Dict[str, type[ProblemHypothesisExpressAgent]] = {
             "00-ProblemHypothesisExpress": ProblemHypothesisExpressAgent,
@@ -83,6 +80,7 @@ class ZeroUmOrchestrator(StrategyAgent):
                 context_name=self.context_name,
                 context_description=self.context_description,
                 pipeline_dir=self.pipeline_dir,
+                llm_config=self.llm_config,
             )
             manifest = agent.run()
             manifests.append(manifest)
