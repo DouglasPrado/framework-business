@@ -6,6 +6,7 @@ import logging
 from pathlib import Path
 from typing import Any, Dict, Optional, TYPE_CHECKING
 
+from ... import BASE_PATH
 from ...base import ProcessAgent
 from ...utils.drive_writer import ensure_process_folder, write_artifact
 from ...utils.manifest import ManifestHandler
@@ -27,7 +28,7 @@ class ZeroUmProcessAgent(ProcessAgent):
         context_description: str,
         pipeline_dir: Path,
         prompt: Optional[str] = None,
-        llm_config: Optional[Dict[str, Any]] = None,
+        base_path: Optional[Path] = None,
     ) -> None:
         self.pipeline_dir = pipeline_dir
         super().__init__(
@@ -36,7 +37,7 @@ class ZeroUmProcessAgent(ProcessAgent):
             context_name=context_name,
             context_description=context_description,
             prompt=prompt,
-            llm_config=llm_config,
+            base_path=base_path or BASE_PATH,
         )
         self.definition: ProcessDefinition = load_process(self.process_dir)
         self.manifest_handler = ManifestHandler(pipeline_dir)
@@ -51,7 +52,11 @@ class ZeroUmProcessAgent(ProcessAgent):
         raise NotImplementedError
 
     def save_artifact(self, slug: str, content: str, extension: str = ".MD") -> Path:
-        folder = ensure_process_folder(self.context_name, self.process_code)
+        folder = ensure_process_folder(
+            self.context_name,
+            self.process_code,
+            base_path=self.base_path,
+        )
         artifact_path = write_artifact(folder, slug, content, extension)
         logger.info(
             "[%s] Artefato salvo em %s",
