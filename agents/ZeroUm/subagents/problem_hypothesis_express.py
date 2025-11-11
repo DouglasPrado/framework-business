@@ -4,14 +4,10 @@ from __future__ import annotations
 
 import logging
 import os
+import time
 from pathlib import Path
 from typing import Any, Dict, List, Optional, TYPE_CHECKING
 
-from ...utils import (
-    GraphCallbackHandler,
-    MetricsCollector,
-    ProcessGraphRunner,
-)
 from .base import ZeroUmProcessAgent
 
 logger = logging.getLogger(__name__)
@@ -60,51 +56,38 @@ class ProblemHypothesisExpressAgent(ZeroUmProcessAgent):
             {"task": "Publicar manifesto final", "status": "pending", "id": "manifest-001"},
         ])
 
-        metrics = MetricsCollector(
-            process=self.process_code,
-            context=self.context_name,
-            logger=logger,
-            cost_calculator=self.cost_calculator,
-        )
-        callbacks = [
-            GraphCallbackHandler(
-                process=self.process_code,
-                context=self.context_name,
-                logger=logger,
-            )
-        ]
-        runner = ProcessGraphRunner(
-            process=self.process_code,
-            context=self.context_name,
-            metrics_collector=metrics,
-            callback_handlers=callbacks,
+        instructions = self._compose_instructions()
+        use_reflection = os.getenv("AGENTS_REASONING_MODE", "simple").lower() in (
+            "reflection",
+            "thinking",
+            "extended",
         )
 
-        execution = runner.run(
-            prepare=self._node_prepare,
-            llm_call=self._node_llm_call,
-            fallback=self._node_fallback,
-            finalize=self._node_finalize,
-            route_after_llm=self._route_after_llm,
-            initial_state={"contexto": self.context_description},
-        )
+        self.todo_manager.update_status("prep-001", "in_progress")
+        self.todo_manager.mark_completed("prep-001")
+        self.todo_manager.mark_completed("prep-002")
 
-        final_state = execution.state
-        content = final_state.get("result_content", "")
+        self.todo_manager.update_status("exec-001", "in_progress")
+        start_time = time.perf_counter()
+        try:
+            llm_result = self._execute_llm(instructions, use_reflection)
+            self.todo_manager.mark_completed("exec-001")
+        except Exception as exc:  # pragma: no cover - proteção extra
+            self.todo_manager.mark_failed("exec-001", str(exc))
+            llm_result = self._build_failure_result(instructions, str(exc))
+        duration = time.perf_counter() - start_time
+
+        content = llm_result.get("content", "")
         if not content.strip():
-            content = self._build_empty_result_notice(final_state)
+            content = self._build_empty_result_notice(llm_result)
 
         # Marcar TODO de salvar artefato
         self.todo_manager.update_status("save-001", "in_progress")
         artifact_path = self.save_artifact("problem-hypothesis-express", content)
         self.todo_manager.mark_completed("save-001")
 
-        status = (
-            final_state.get("result_status")
-            or final_state.get("status", "inconclusivo")
-            or "inconclusivo"
-        )
-        notes = final_state.get("notes", final_state.get("error", "")) or ""
+        status = llm_result.get("status", "inconclusivo")
+        notes = llm_result.get("notes", llm_result.get("error", "")) or ""
 
         manifest: Dict[str, Any] = {
             "process": self.process_code,
@@ -113,7 +96,7 @@ class ProblemHypothesisExpressAgent(ZeroUmProcessAgent):
             "status": status,
             "artifacts": [str(artifact_path)],
             "notes": notes,
-            "metrics": execution.metrics.as_dict(),
+            "metrics": self._build_metrics_summary(llm_result, duration),
         }
 
         # Marcar TODO de publicar manifesto
@@ -143,92 +126,53 @@ class ProblemHypothesisExpressAgent(ZeroUmProcessAgent):
             sections.append(f"## {title}\n{content.strip()}")
         return "\n\n".join(sections)
 
-    def _node_prepare(self, state: Dict[str, Any]) -> Dict[str, Any]:
-        self.todo_manager.update_status("prep-001", "in_progress")
-        instructions = self._compose_instructions()
-        self.todo_manager.mark_completed("prep-001")
-        self.todo_manager.mark_completed("prep-002")  # validator.MD é carregado em _compose_instructions
-        return {
-            "status": "preparado",
-            "instructions": instructions,
-            "node_tokens": 0,
-        }
-
-    def _node_llm_call(self, state: Dict[str, Any]) -> Dict[str, Any]:
-        instructions = state.get("instructions", "")
-
-        # Verificar se modo reflexão está habilitado
-        reasoning_mode = os.getenv("AGENTS_REASONING_MODE", "simple").lower()
-        use_reflection = reasoning_mode in ("reflection", "thinking", "extended")
-
-        self.todo_manager.update_status("exec-001", "in_progress")
-
+    def _execute_llm(self, instructions: str, use_reflection: bool) -> Dict[str, Any]:
+        """Executa o LLM (com ou sem reflexão) e normaliza o resultado."""
         try:
             if use_reflection:
                 result = self._invoke_agent_with_reflection(instructions)
+                status = "completed"
             else:
                 result = self._invoke_agent(instructions)
-            self.todo_manager.mark_completed("exec-001")
+                status = "completed"
         except RuntimeError as exc:
             logger.warning("[%s] Falha na chamada ao LLM: %s", self.process_code, exc)
-            self.todo_manager.mark_failed("exec-001", str(exc))
+            fallback_payload = self._build_fallback_payload(instructions, str(exc))
             return {
-                "status": "erro",
+                "status": "fallback",
+                "content": fallback_payload["content"],
+                "notes": fallback_payload["notes"],
+                "tokens": self._estimate_tokens(fallback_payload["content"]),
                 "error": str(exc),
-                "notes": str(exc),
-                "result_status": "erro",
-                "node_tokens": 0,
             }
 
         content = result.get("content", "")
         tokens = result.get("token_usage") or self._estimate_tokens(content)
         payload: Dict[str, Any] = {
-            "status": "sucesso",
-            "result_status": "completed",
-            "result_content": content,
+            "status": status,
+            "content": content,
             "notes": result.get("notes", ""),
-            "node_tokens": tokens,
+            "tokens": tokens,
         }
-        if "raw_response" in result:
-            payload["raw_response"] = result["raw_response"]
         if "thinking_traces" in result:
             payload["thinking_traces"] = result["thinking_traces"]
+        if "raw_response" in result:
+            payload["raw_response"] = result["raw_response"]
         if "draft" in result:
             payload["draft"] = result["draft"]
         if "critique" in result:
             payload["critique"] = result["critique"]
         return payload
 
-    def _node_fallback(self, state: Dict[str, Any]) -> Dict[str, Any]:
-        error = state.get("error") or state.get("notes") or "Falha desconhecida ao invocar o LLM."
-        instructions = state.get("instructions", "")
-        fallback_payload = self._build_fallback_payload(instructions, str(error))
-        tokens = self._estimate_tokens(fallback_payload["content"])
+    def _build_failure_result(self, instructions: str, reason: str) -> Dict[str, Any]:
+        fallback_payload = self._build_fallback_payload(instructions, reason)
         return {
             "status": "fallback",
-            "result_status": "fallback",
-            "result_content": fallback_payload["content"],
+            "content": fallback_payload["content"],
             "notes": fallback_payload["notes"],
-            "node_tokens": tokens,
+            "tokens": self._estimate_tokens(fallback_payload["content"]),
+            "error": reason,
         }
-
-    def _node_finalize(self, state: Dict[str, Any]) -> Dict[str, Any]:
-        status = state.get("result_status") or state.get("status") or "finalizado"
-        notes = state.get("notes", "")
-        result_content = state.get("result_content", "")
-        return {
-            "status": status,
-            "result_status": status,
-            "result_content": result_content,
-            "notes": notes,
-            "node_tokens": 0,
-        }
-
-    def _route_after_llm(self, state: Dict[str, Any]) -> str:
-        status = str(state.get("status", "")).lower()
-        if status in {"erro", "error", "blocked"}:
-            return "fallback"
-        return "sucesso"
 
     def _invoke_agent_with_reflection(self, instructions: str) -> Dict[str, Any]:
         """
@@ -320,6 +264,8 @@ class ProblemHypothesisExpressAgent(ZeroUmProcessAgent):
                         break
                 if token_value is not None:
                     payload["token_usage"] = token_value
+            elif isinstance(usage, (int, float)):
+                payload["token_usage"] = int(usage)
             payload["raw_response"] = response
         return payload
 
@@ -397,3 +343,12 @@ class ProblemHypothesisExpressAgent(ZeroUmProcessAgent):
             "Revise os logs em drive/_pipeline para retomar a execução manualmente.",
         ]
         return "\n".join(lines)
+
+    def _build_metrics_summary(self, llm_result: Dict[str, Any], duration: float) -> Dict[str, Any]:
+        tokens = int(llm_result.get("tokens", 0) or 0)
+        cost = self.cost_calculator(tokens) if (self.cost_calculator and tokens) else 0.0
+        return {
+            "duracao_total_segundos": duration,
+            "total_tokens": tokens,
+            "custo_total": cost,
+        }

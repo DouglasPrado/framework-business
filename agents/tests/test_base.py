@@ -76,12 +76,10 @@ def test_strategy_agent_reuses_injected_deep_agent(monkeypatch: pytest.MonkeyPat
     monkeypatch.delitem(sys.modules, "agents.base", raising=False)
 
 
-def test_import_error_when_deepagents_missing(monkeypatch: pytest.MonkeyPatch) -> None:
+def test_base_import_uses_fallback_when_deepagents_missing(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.delitem(sys.modules, "agents.base", raising=False)
     monkeypatch.delitem(sys.modules, "deepagents", raising=False)
 
-    with pytest.raises(ImportError) as excinfo:
-        importlib.import_module("agents.base")
+    module = importlib.import_module("agents.base")
 
-    assert "deepagents" in str(excinfo.value)
-    assert "pip install deepagents" in str(excinfo.value)
+    assert hasattr(module, "create_deep_agent")

@@ -45,6 +45,15 @@
    ```
    - O contexto informado é normalizado automaticamente; use `AGENTS_DISABLE_CONTEXT_AI=1` para forçar o nome fornecido.
    - Para testar sem API real, defina `AGENTS_SKIP_SECRET_CHECK=1` (modo desenvolvimento com fallback local).
+4. **(Opcional) Usar o runtime oficial do DeepAgents**
+   - O adaptador tenta usar `langchain-ai/deepagents` sempre que o pacote estiver instalado (Python ≥ 3.11 + `langchain-anthropic`).
+   - Caso deseje habilitar, instale em um ambiente compatível:
+     ```bash
+     # Requer Python 3.11+
+     python3.11 -m pip install "deepagents @ git+https://github.com/langchain-ai/deepagents.git"
+     python3.11 -m pip install langchain-anthropic
+     ```
+   - Se o pacote não estiver presente ou a importação falhar, o fallback local continuará sendo utilizado automaticamente.
 
 ## Execução por Estratégia
 - **ZeroUm**: foco em validação de problema/hipótese (`00-ProblemHypothesisExpress`).
@@ -89,8 +98,8 @@
 - **Modo desenvolvimento**: `AGENTS_SKIP_SECRET_CHECK=1` ignora a validação de secrets (útil para ambientes offline).
 
 ## Observabilidade, Artefatos e Estrutura de Saída
-- Cada nó do LangGraph usa `GraphCallbackHandler`, emitindo eventos `node_start`, `node_end` e `node_error` em JSON via `logging`.
-- `MetricsCollector` registra duração, tokens e custo estimado (`ZEROUM_COST_PER_1K_TOKENS` ou `LLM_COST_PER_1K_TOKENS`).
+- Quando `LANGCHAIN_TRACING_V2=true` e as variáveis do LangSmith estão configuradas, o DeepAgent reporta automaticamente cada chamada ao LLM e cada ferramenta para o painel do LangSmith (sem callbacks customizados).
+- O manifesto do processo continua com um resumo local – duração total, tokens estimados e custo heurístico (`ZEROUM_COST_PER_1K_TOKENS` ou `LLM_COST_PER_1K_TOKENS`).
 - Manifestos ficam em `drive/<Contexto>/_pipeline/<Processo>-manifest.json` com status (`completed`, `fallback`, `erro`), notas e resumo de TODOs.
 - `write_consolidated_report()` gera `00-consolidado.MD` com resumo da estratégia; `package_artifacts()` cria `<Estratégia>-archive.zip` no `_pipeline`.
 
@@ -180,4 +189,4 @@
 - Expandir subagentes da estratégia ZeroUm seguindo o padrão de `subagents/base.py`.
 - Criar orquestradores específicos para Branding, Naming e MVPBuilder para substituir o modo genérico.
 - Estender o modo de reflexão e o sistema de TODOs para todos os novos processos.
-- Integrar métricas (`MetricsCollector`) a dashboards externos e acompanhar custos por contexto.
+- Manter LangSmith/Tracing habilitado para acompanhar tokens/custos diretamente no runtime oficial.

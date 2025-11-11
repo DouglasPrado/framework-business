@@ -5,6 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, Dict, List, MutableMapping, Optional
 
+from .. import BASE_PATH
 from ..base import StrategyAgent
 from ..orchestrators import OrchestrationGraph, OrchestrationState
 from ..utils.io import (
@@ -23,6 +24,7 @@ class GenericStrategyOrchestrator(StrategyAgent):
         context_name: str,
         context_description: str = "",
         orchestrator_prompt: str | None = None,
+        base_path: Path | None = None,
         llm_config: Dict[str, Any] | None = None,
     ) -> None:
         super().__init__(
@@ -30,6 +32,7 @@ class GenericStrategyOrchestrator(StrategyAgent):
             context_name=context_name,
             context_description=context_description,
             orchestrator_prompt=orchestrator_prompt,
+            base_path=base_path or BASE_PATH,
             llm_config=llm_config,
         )
 

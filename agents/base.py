@@ -7,7 +7,25 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from . import BASE_PATH
+from .config import get_settings
 from .tools import get_tools_for_agent
+
+
+def _compose_llm_config(base_config: Optional[Dict[str, Any]], project_hint: str) -> Dict[str, Any]:
+    settings = get_settings(validate=False)
+    config = dict(base_config or {})
+    observability = dict(config.get("observability") or {})
+    if settings.langchain_tracing and "langchain_tracer" not in observability:
+        observability["langchain_tracer"] = {
+            "project_name": settings.langchain_project or project_hint,
+        }
+    if settings.langchain_api_key and "langsmith" not in observability:
+        observability["langsmith"] = {
+            "project_name": settings.langchain_project or project_hint,
+        }
+    if observability:
+        config["observability"] = observability
+    return config
 from .utils import ManifestHandler, StrategyDefinition, load_strategy
 
 try:  # pragma: no cover - dependência externa obrigatória em tempo de execução
@@ -30,6 +48,7 @@ class StrategyAgent:
     base_path: Path = BASE_PATH
     processes: List[Dict[str, Any]] = field(default_factory=list)
     llm_config: Optional[Dict[str, Any]] = None
+    orchestrator_agent: Optional[DeepAgent] = None
 
     def __post_init__(self) -> None:
         self.strategy_dir = self.base_path / "strategies" / self.strategy_name
@@ -37,7 +56,6 @@ class StrategyAgent:
         self.pipeline_dir = self.base_path / "drive" / self.context_name / "_pipeline"
         self.manifest_handler = ManifestHandler(self.pipeline_dir)
         self.definition: Optional[StrategyDefinition] = None
-        self.orchestrator_agent: Optional[DeepAgent] = None
 
     def bootstrap(self) -> None:
         """Prepara diretórios e carrega metadados da estratégia."""
@@ -56,7 +74,9 @@ class StrategyAgent:
         )
         tools = get_tools_for_agent("strategy")
         self.orchestrator_agent = create_deep_agent(
-            system_prompt=prompt, tools=tools, llm_config=self.llm_config
+            system_prompt=prompt,
+            tools=tools,
+            llm_config=_compose_llm_config(self.llm_config, self.strategy_name),
         )
         return self.orchestrator_agent
 
@@ -76,7 +96,7 @@ class ProcessAgent:
     base_path: Path = BASE_PATH
     prompt: Optional[str] = None
     llm_config: Optional[Dict[str, Any]] = None
-    language_agent: Optional[DeepAgent] = field(default=None, init=False)
+    language_agent: Optional[DeepAgent] = None
 
     def __post_init__(self) -> None:
         self.process_dir = (
@@ -100,7 +120,7 @@ class ProcessAgent:
         self.language_agent = create_deep_agent(
             system_prompt=self.prompt or "",
             tools=tools,
-            llm_config=self.llm_config
+            llm_config=_compose_llm_config(self.llm_config, f"{self.strategy_name}-{self.process_code}"),
         )
         return self.language_agent
 

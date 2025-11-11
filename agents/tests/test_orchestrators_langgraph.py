@@ -11,7 +11,7 @@ from agents.ZeroUm.orchestrator import ZeroUmOrchestrator
 
 
 class _StubProblemHypothesisExpressAgent:
-    def __init__(self, context_name: str, context_description: str, pipeline_dir: Path) -> None:
+    def __init__(self, context_name: str, context_description: str, pipeline_dir: Path, **_: Any) -> None:
         self.context_name = context_name
         self.context_description = context_description
         self.pipeline_dir = pipeline_dir

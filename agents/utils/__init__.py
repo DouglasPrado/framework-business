@@ -4,7 +4,7 @@ Utilitários compartilhados pelos agentes.
 Este módulo está organizado em subpacotes:
 - io: Operações de entrada/saída (drive_writer, manifest, package)
 - loaders: Carregamento de definições (process_loader, strategy_loader)
-- observability: Instrumentação e métricas (instrumentation, todos)
+- observability: Utilidades leves (todos)
 - helpers: Utilitários auxiliares (context, env_validation)
 
 Para retrocompatibilidade, os principais exports ainda estão disponíveis
@@ -28,23 +28,7 @@ from .loaders import (
     load_process,
     load_strategy,
 )
-from .observability import (
-    MetricsCollector,
-    TodoManager,
-    create_metrics_callbacks,
-    run_graph_with_logging,
-)
-
-# Imports legados do instrumentation (para compatibilidade com código existente)
-try:
-    from .observability.instrumentation import (
-        GraphCallbackHandler,
-        ProcessGraphRunner,
-    )
-except ImportError:
-    # Fallback caso os nomes não existam mais
-    GraphCallbackHandler = None  # type: ignore
-    ProcessGraphRunner = None  # type: ignore
+from .observability import TodoManager
 
 __all__ = [
     # IO
@@ -61,12 +45,7 @@ __all__ = [
     "load_process",
     "load_strategy",
     # Observability
-    "MetricsCollector",
     "TodoManager",
-    "create_metrics_callbacks",
-    "run_graph_with_logging",
-    "GraphCallbackHandler",
-    "ProcessGraphRunner",
     # Helpers
     "normalize_context_name",
     "validate_sensitive_environment",
