@@ -1,53 +1,35 @@
-# Configuração de Variáveis para Execução de Agentes LLM
+# Configuração de LLMs
 
-Este guia consolida como preparar o ambiente local para executar os agentes descritos em `LANGCHAIN.MD`. Ele complementa as instruções existentes no repositório e foca apenas em variáveis de ambiente e política de segredos.
+Este repositório utiliza a função `agents.llm_factory.build_llm` para criar instâncias de modelos conversacionais compatíveis com LangChain. A fábrica centraliza ajustes de credenciais, parâmetros de geração e callbacks de observabilidade, garantindo comportamento consistente entre orquestradores e subagentes.
 
-## Variáveis sensíveis obrigatórias
+## Perfis de execução
 
-Configure as variáveis abaixo antes de rodar qualquer agente LLM:
+### Produção
 
-- `OPENAI_API_KEY`
-- `LANGCHAIN_TRACING_V2` (use `true` ou `false` explicitamente)
-- `LANGCHAIN_ENDPOINT`
-- `LANGCHAIN_API_KEY`
-- `LANGCHAIN_PROJECT`
+- Utilize uma chave válida em `OPENAI_API_KEY` ou defina `api_key` no `llm_config` repassado aos agentes.
+- Ajuste o modelo principal com `AGENTS_LLM_MODEL` ou com o campo `model` do `llm_config`, priorizando versões estáveis (ex.: `gpt-4o`).
+- Habilite observabilidade contínua configurando `observability.langsmith` com `project_name`, `tags` e metadados relevantes; mantenha as credenciais do LangSmith ativas.
+- Para auditoria adicional, ative o `LangChainTracer` informando `observability.langchain_tracer` (por exemplo, `{"project_name": "framework-business-prod"}`).
+- Registre políticas de temperatura e limites de tokens explícitos (`temperature`, `max_tokens`) para reprodutibilidade.
 
-Quando estiver sem as credenciais de LangSmith, defina `LANGCHAIN_TRACING_V2=false` para desativar o envio de traces, mantendo o checklist automático satisfeito.
+### Desenvolvimento
 
-## Export no Linux ou macOS
+- Priorize modelos de menor custo (ex.: `gpt-4o-mini`) definindo `AGENTS_LLM_MODEL` ou sobrescrevendo o campo `model` no `llm_config`.
+- Utilize `AGENTS_LLM_TEMPERATURE` para experimentar diferentes graus de criatividade sem alterar o código.
+- Ative a instrumentação somente quando necessário (`observability.langsmith` ou `observability.langchain_tracer`), evitando ruído em ambientes locais.
+- Quando não houver credenciais disponíveis, o `create_deep_agent` mantém o fallback manual, permitindo testar fluxos sem chamadas externas.
+- Combine com `AGENTS_DISABLE_CONTEXT_AI=1` para impedir que utilidades auxiliares façam chamadas automáticas durante prototipagem.
 
-Execute os comandos no terminal antes de iniciar o agente:
+## Callbacks de observabilidade
 
-- `export OPENAI_API_KEY="sk-..."`
-- `export LANGCHAIN_TRACING_V2=true`
-- `export LANGCHAIN_ENDPOINT="https://api.smith.langchain.com"`
-- `export LANGCHAIN_API_KEY="lsm-..."`
-- `export LANGCHAIN_PROJECT="framework-business"`
+- `observability.langchain_tracer`: aceita `True`, um nome de projeto (string) ou um dicionário com `project_name`, `session_name` e `client`. Requer suporte ao LangChain Tracing.
+- `observability.langsmith`: aceita `True` ou um dicionário com `project_name`, `tags`, `metadata` e, opcionalmente, um `client` já instanciado. Exige dependência `langsmith` configurada com token válido.
+- O campo `callbacks` continua aceitando handlers adicionais definidos manualmente; todos são combinados com os callbacks automáticos.
 
-Grave esses valores no `~/.bash_profile`, `~/.zshenv` ou arquivo equivalente caso queira carregá-los automaticamente nas sessões futuras.
+## Variáveis e campos úteis
 
-## Configuração no Windows (PowerShell)
-
-Defina as variáveis dentro da janela do PowerShell antes de rodar scripts Python:
-
-- `$Env:OPENAI_API_KEY = "sk-..."`
-- `$Env:LANGCHAIN_TRACING_V2 = "true"`
-- `$Env:LANGCHAIN_ENDPOINT = "https://api.smith.langchain.com"`
-- `$Env:LANGCHAIN_API_KEY = "lsm-..."`
-- `$Env:LANGCHAIN_PROJECT = "framework-business"`
-
-Para persistir os valores, adicione-os ao perfil com `notepad $PROFILE` e insira os mesmos comandos.
-
-## Política de segredos
-
-- Nunca versione chaves reais em arquivos `.env`, commits ou pull requests.
-- Use somente `dotenv` locais (por exemplo, `.env.local`) que estejam no `.gitignore`.
-- Compartilhe credenciais via cofre corporativo ou gerenciador aprovado; não envie por e-mail ou chat aberto.
-- Revogue imediatamente qualquer chave exposta publicamente e gere uma nova.
-- Utilize o flag `AGENTS_SKIP_SECRET_CHECK=1` apenas em ambientes de desenvolvimento isolados e sem acesso a dados reais.
-
-## Verificação automática
-
-- Antes de iniciar, execute `python -m agents.scripts.check_env` para verificar se todas as variáveis estão definidas.
-- O script `agents/scripts/run_strategy_agent.py` chama essa verificação automaticamente; a execução é interrompida quando algum segredo estiver ausente.
-- Pipelines de CI devem incluir o comando de verificação no estágio de preparação para garantir conformidade antes de acionar agentes LLM.
+- `OPENAI_API_KEY`: chave padrão lida pelo LangChain/OpenAI.
+- `AGENTS_LLM_MODEL`: modelo padrão aplicado quando o `llm_config` não define `model`.
+- `AGENTS_LLM_TEMPERATURE`: temperatura global aplicada na ausência de configuração explícita.
+- `AGENTS_DISABLE_CONTEXT_AI`: impede que a normalização de contexto utilize IA quando definido como `1`, `true` ou `yes`.
+- Campos de `llm_config`: `model`, `temperature`, `max_tokens`, `timeout`, `api_key`, `base_url`, `default_headers`, `observability`, `callbacks`.

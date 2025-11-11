@@ -23,7 +23,7 @@ class ProblemHypothesisExpressAgent(ZeroUmProcessAgent):
         context_description: str,
         pipeline_dir: Path,
         prompt: str | None = None,
-        agent: Optional["DeepAgent"] = None,
+        llm_config: Dict[str, Any] | None = None,
     ) -> None:
         super().__init__(
             process_code=self.process_code,
@@ -31,7 +31,7 @@ class ProblemHypothesisExpressAgent(ZeroUmProcessAgent):
             context_description=context_description,
             pipeline_dir=pipeline_dir,
             prompt=prompt or self._build_prompt(),
-            agent=agent,
+            llm_config=llm_config,
         )
 
     def _build_prompt(self) -> str:
