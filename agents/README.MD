@@ -34,7 +34,7 @@
    ```bash
    cd agents
    cp .env.example .env
-   nano .env  # adicione OPENAI_API_KEY=sk-proj-sua-chave
+   nano .env  # adicione OPENAI_API_KEY=SUA_OPENAI_API_KEY
    ```
 3. **Executar uma estratégia (sempre de dentro de `agents/`)**
    ```bash
