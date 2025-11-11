@@ -1,0 +1,44 @@
+{
+  "process": "00-ProblemHypothesisExpress",
+  "strategy": "ZeroUm",
+  "context": "Automarticles",
+  "status": "completed",
+  "artifacts": [
+    "/Users/douglasprado/www/framework-business/drive/Automarticles/00-ProblemHypothesisExpress/01-problem-hypothesis-express.MD"
+  ],
+  "notes": "",
+  "metrics": {
+    "registros": [
+      {
+        "node": "preparar",
+        "status": "preparado",
+        "duration_seconds": 5.3791009122505784e-05,
+        "tokens": 0,
+        "error": null,
+        "timestamp": "2025-11-11T17:40:50.460508+00:00",
+        "cost": null
+      },
+      {
+        "node": "executar_llm",
+        "status": "sucesso",
+        "duration_seconds": 38.65207604200987,
+        "tokens": 867,
+        "error": null,
+        "timestamp": "2025-11-11T17:41:29.113163+00:00",
+        "cost": null
+      },
+      {
+        "node": "finalizar",
+        "status": "completed",
+        "duration_seconds": 6.820799899287522e-05,
+        "tokens": 0,
+        "error": null,
+        "timestamp": "2025-11-11T17:41:29.114601+00:00",
+        "cost": null
+      }
+    ],
+    "duracao_total_segundos": 38.65219804101798,
+    "total_tokens": 867,
+    "custo_total": 0.0
+  }
+}
