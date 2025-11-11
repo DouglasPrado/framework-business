@@ -7,9 +7,29 @@ import re
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from textwrap import dedent
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
 from ..llm_factory import build_llm
+from .reasoning import (
+    create_draft_prompt,
+    create_reflection_prompt,
+    create_refinement_prompt,
+    format_thinking_traces,
+    get_reasoning_config,
+)
+
+
+# Stub types para compatibilidade
+class ToolLike:
+    """Tipo stub para ferramentas."""
+    def __init__(self, name: str, description: str, func: Any):
+        self.name = name
+        self.description = description
+        self.func = func
+
+
+# Alias para DeepAgent
+DeepAgent = Any
 
 
 def _clean(text: str, limit: int = 280) -> str:
@@ -96,6 +116,14 @@ class _LangChainAgent:
     def __post_init__(self) -> None:
         self._llm_error: Optional[Exception] = None
         self._llm = None
+        self._executor = None
+        self._tool_display_names: List[str] = []
+        self._messages: List[Dict[str, str]] = []
+
+        # Normalizar ferramentas se fornecidas
+        if self.tools:
+            _, self._tool_display_names = _normalize_tools(self.tools)
+
         if self.llm_instance is not None:
             self._llm = self.llm_instance
             return
@@ -109,6 +137,14 @@ class _LangChainAgent:
             self._llm = build_llm(config)
         except Exception as exc:  # pragma: no cover - falha deve permitir fallback
             self._llm_error = exc
+
+    def _record_user_message(self, content: str) -> None:
+        """Registra mensagem do usuário no histórico."""
+        self._messages.append({"role": "user", "content": content})
+
+    def _record_ai_message(self, content: str) -> None:
+        """Registra mensagem da IA no histórico."""
+        self._messages.append({"role": "assistant", "content": content})
 
     def run(self, instructions: str) -> str:
         self._record_user_message(instructions)
@@ -148,6 +184,113 @@ class _LangChainAgent:
             text = str(response)
         self._record_ai_message(text)
         return text
+
+    def run_with_reflection(
+        self,
+        instructions: str,
+        validator_content: str = "",
+        process_code: str = "Process",
+    ) -> Dict[str, Any]:
+        """
+        Executa raciocínio estendido com padrão de reflexão (draft → critique → refine).
+
+        Args:
+            instructions: Instruções completas do processo
+            validator_content: Conteúdo do validator.MD para referência na crítica
+            process_code: Código do processo para contexto
+
+        Returns:
+            Dicionário com:
+                - content: Conteúdo final refinado
+                - draft: Rascunho inicial
+                - critique: Crítica gerada
+                - thinking_traces: Métricas de cada estágio
+        """
+        self._record_user_message(instructions)
+
+        if self._llm is None:
+            # Fallback: modo simples sem reflexão
+            response = _fallback_summary(self.system_prompt, instructions, self._tool_display_names)
+            self._record_ai_message(response)
+            return {
+                "content": response,
+                "draft": "",
+                "critique": "",
+                "thinking_traces": {"mode": "fallback"},
+            }
+
+        # Estágio 1: Gerar rascunho
+        draft_prompt = create_draft_prompt(
+            self.system_prompt,
+            instructions,
+            self._tool_display_names,
+        )
+        draft_config = get_reasoning_config("draft")
+        draft_llm = build_llm(draft_config)
+        draft_response = draft_llm.invoke(draft_prompt)
+        draft = self._extract_content(draft_response)
+        draft_tokens = self._estimate_tokens(draft)
+
+        # Estágio 2: Refletir sobre o rascunho
+        reflection_prompt = create_reflection_prompt(
+            draft,
+            validator_content,
+            instructions,
+            process_code,
+        )
+        critique_config = get_reasoning_config("reflection")
+        critique_llm = build_llm(critique_config)
+        critique_response = critique_llm.invoke(reflection_prompt)
+        critique = self._extract_content(critique_response)
+        critique_tokens = self._estimate_tokens(critique)
+
+        # Estágio 3: Refinar com base na crítica
+        refinement_prompt = create_refinement_prompt(
+            draft,
+            critique,
+            instructions,
+        )
+        refined_config = get_reasoning_config("refinement")
+        refined_llm = build_llm(refined_config)
+        refined_response = refined_llm.invoke(refinement_prompt)
+        refined = self._extract_content(refined_response)
+        refined_tokens = self._estimate_tokens(refined)
+
+        # Registrar resultado final
+        self._record_ai_message(refined)
+
+        # Preparar thinking traces
+        traces = format_thinking_traces(
+            draft_tokens=draft_tokens,
+            critique_tokens=critique_tokens,
+            refined_tokens=refined_tokens,
+            draft_length=len(draft),
+            critique_length=len(critique),
+            refined_length=len(refined),
+        )
+
+        return {
+            "content": refined,
+            "draft": draft,
+            "critique": critique,
+            "thinking_traces": traces,
+        }
+
+    def _extract_content(self, response: Any) -> str:
+        """Extrai conteúdo textual de resposta do LLM."""
+        content = getattr(response, "content", None)
+        if isinstance(content, list):
+            return "\n".join(part.get("text", "") for part in content if isinstance(part, dict))
+        elif isinstance(content, str):
+            return content
+        return str(response)
+
+    def _estimate_tokens(self, text: str) -> int:
+        """Estima número de tokens em um texto (aproximação simples)."""
+        if not text:
+            return 0
+        # Aproximação: ~4 caracteres por token em inglês, ~5 em português
+        return max(1, len(text) // 5)
 
 
 def create_deep_agent(

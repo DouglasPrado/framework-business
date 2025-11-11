@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import os
 from pathlib import Path
 from typing import Any, Dict, List, Optional, TYPE_CHECKING
 
@@ -50,6 +51,15 @@ class ProblemHypothesisExpressAgent(ZeroUmProcessAgent):
     def run(self) -> Dict[str, Any]:
         logger.info("[%s] Iniciando execução para o contexto %s", self.process_code, self.context_name)
 
+        # Criar TODOs para o processo
+        self.write_todos([
+            {"task": "Preparar instruções do processo", "status": "pending", "id": "prep-001"},
+            {"task": "Carregar validator.MD para reflexão", "status": "pending", "id": "prep-002"},
+            {"task": "Executar LLM (modo simples ou reflexão)", "status": "pending", "id": "exec-001"},
+            {"task": "Salvar artefato gerado", "status": "pending", "id": "save-001"},
+            {"task": "Publicar manifesto final", "status": "pending", "id": "manifest-001"},
+        ])
+
         metrics = MetricsCollector(
             process=self.process_code,
             context=self.context_name,
@@ -83,7 +93,12 @@ class ProblemHypothesisExpressAgent(ZeroUmProcessAgent):
         content = final_state.get("result_content", "")
         if not content.strip():
             content = self._build_empty_result_notice(final_state)
+
+        # Marcar TODO de salvar artefato
+        self.todo_manager.update_status("save-001", "in_progress")
         artifact_path = self.save_artifact("problem-hypothesis-express", content)
+        self.todo_manager.mark_completed("save-001")
+
         status = (
             final_state.get("result_status")
             or final_state.get("status", "inconclusivo")
@@ -100,7 +115,12 @@ class ProblemHypothesisExpressAgent(ZeroUmProcessAgent):
             "notes": notes,
             "metrics": execution.metrics.as_dict(),
         }
+
+        # Marcar TODO de publicar manifesto
+        self.todo_manager.update_status("manifest-001", "in_progress")
         self.publish_manifest(manifest)
+        self.todo_manager.mark_completed("manifest-001")
+
         logger.info("[%s] Execução finalizada com status %s", self.process_code, status)
         return manifest
 
@@ -124,7 +144,10 @@ class ProblemHypothesisExpressAgent(ZeroUmProcessAgent):
         return "\n\n".join(sections)
 
     def _node_prepare(self, state: Dict[str, Any]) -> Dict[str, Any]:
+        self.todo_manager.update_status("prep-001", "in_progress")
         instructions = self._compose_instructions()
+        self.todo_manager.mark_completed("prep-001")
+        self.todo_manager.mark_completed("prep-002")  # validator.MD é carregado em _compose_instructions
         return {
             "status": "preparado",
             "instructions": instructions,
@@ -133,10 +156,22 @@ class ProblemHypothesisExpressAgent(ZeroUmProcessAgent):
 
     def _node_llm_call(self, state: Dict[str, Any]) -> Dict[str, Any]:
         instructions = state.get("instructions", "")
+
+        # Verificar se modo reflexão está habilitado
+        reasoning_mode = os.getenv("AGENTS_REASONING_MODE", "simple").lower()
+        use_reflection = reasoning_mode in ("reflection", "thinking", "extended")
+
+        self.todo_manager.update_status("exec-001", "in_progress")
+
         try:
-            result = self._invoke_agent(instructions)
+            if use_reflection:
+                result = self._invoke_agent_with_reflection(instructions)
+            else:
+                result = self._invoke_agent(instructions)
+            self.todo_manager.mark_completed("exec-001")
         except RuntimeError as exc:
             logger.warning("[%s] Falha na chamada ao LLM: %s", self.process_code, exc)
+            self.todo_manager.mark_failed("exec-001", str(exc))
             return {
                 "status": "erro",
                 "error": str(exc),
@@ -156,6 +191,12 @@ class ProblemHypothesisExpressAgent(ZeroUmProcessAgent):
         }
         if "raw_response" in result:
             payload["raw_response"] = result["raw_response"]
+        if "thinking_traces" in result:
+            payload["thinking_traces"] = result["thinking_traces"]
+        if "draft" in result:
+            payload["draft"] = result["draft"]
+        if "critique" in result:
+            payload["critique"] = result["critique"]
         return payload
 
     def _node_fallback(self, state: Dict[str, Any]) -> Dict[str, Any]:
@@ -174,9 +215,11 @@ class ProblemHypothesisExpressAgent(ZeroUmProcessAgent):
     def _node_finalize(self, state: Dict[str, Any]) -> Dict[str, Any]:
         status = state.get("result_status") or state.get("status") or "finalizado"
         notes = state.get("notes", "")
+        result_content = state.get("result_content", "")
         return {
             "status": status,
             "result_status": status,
+            "result_content": result_content,
             "notes": notes,
             "node_tokens": 0,
         }
@@ -186,6 +229,66 @@ class ProblemHypothesisExpressAgent(ZeroUmProcessAgent):
         if status in {"erro", "error", "blocked"}:
             return "fallback"
         return "sucesso"
+
+    def _invoke_agent_with_reflection(self, instructions: str) -> Dict[str, Any]:
+        """
+        Invoca agente com modo de reflexão (draft → critique → refine).
+        """
+        agent = self.build_agent()
+
+        # Carregar conteúdo do validator.MD para uso na reflexão
+        validator_content = self.definition.files.get("validator.MD", "")
+
+        # Verificar se agente suporta reflexão
+        if not hasattr(agent, "run_with_reflection"):
+            logger.warning(
+                "[%s] Agente não suporta reflexão, usando modo simples",
+                self.process_code,
+            )
+            return self._invoke_agent(instructions)
+
+        try:
+            # Executar reflexão em 3 estágios
+            reflection_result = agent.run_with_reflection(
+                instructions=instructions,
+                validator_content=validator_content,
+                process_code=self.process_code,
+            )
+
+            # Extrair conteúdo refinado
+            content = reflection_result.get("content", "")
+            if not content.strip():
+                raise RuntimeError("Reflexão retornou conteúdo vazio.")
+
+            # Preparar payload com traces de thinking
+            payload: Dict[str, Any] = {
+                "content": content,
+                "thinking_traces": reflection_result.get("thinking_traces", {}),
+                "draft": reflection_result.get("draft", ""),
+                "critique": reflection_result.get("critique", ""),
+            }
+
+            # Estimar tokens totais do processo de reflexão
+            traces = reflection_result.get("thinking_traces", {})
+            if "total_reasoning_tokens" in traces:
+                payload["token_usage"] = traces["total_reasoning_tokens"]
+            else:
+                payload["token_usage"] = self._estimate_tokens(content)
+
+            logger.info(
+                "[%s] Reflexão completa: %d tokens totais, improvement ratio: %.2fx",
+                self.process_code,
+                payload.get("token_usage", 0),
+                traces.get("improvement_ratio", 1.0),
+            )
+
+            return payload
+
+        except Exception as exc:
+            logger.error("[%s] Erro durante reflexão: %s", self.process_code, exc)
+            # Fallback para modo simples em caso de erro
+            logger.warning("[%s] Fallback para modo simples após erro na reflexão", self.process_code)
+            return self._invoke_agent(instructions)
 
     def _invoke_agent(self, instructions: str) -> Dict[str, Any]:
         agent = self.build_agent()

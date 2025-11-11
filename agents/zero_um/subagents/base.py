@@ -5,13 +5,14 @@ from __future__ import annotations
 import logging
 import os
 from pathlib import Path
-from typing import Any, Callable, Dict, Optional
+from typing import TYPE_CHECKING, Any, Callable, Dict, Optional
 
 from ... import BASE_PATH
 from ...base import ProcessAgent
 from ...utils.drive_writer import ensure_process_folder, write_artifact
 from ...utils.manifest import ManifestHandler
 from ...utils.process_loader import ProcessDefinition, load_process
+from ...utils.todos import TodoManager
 
 if TYPE_CHECKING:  # pragma: no cover - usado apenas para type checking
     from deepagents import DeepAgent
@@ -42,6 +43,11 @@ class ZeroUmProcessAgent(ProcessAgent):
         )
         self.definition: ProcessDefinition = load_process(self.process_dir)
         self.manifest_handler = ManifestHandler(pipeline_dir)
+        self.todo_manager = TodoManager(
+            process_code=process_code,
+            context_name=context_name,
+            pipeline_dir=pipeline_dir,
+        )
         self.cost_calculator = self._load_cost_calculator()
 
     def default_prompt(self) -> str:
@@ -91,6 +97,10 @@ class ZeroUmProcessAgent(ProcessAgent):
         return artifact_path
 
     def publish_manifest(self, payload: Dict[str, Any]) -> Path:
+        # Incluir resumo de TODOs no manifesto
+        if self.todo_manager.enabled:
+            payload["todos_summary"] = self.todo_manager.get_summary()
+
         manifest_name = f"{self.process_code}-manifest.json"
         manifest_path = self.manifest_handler.write(manifest_name, payload)
         logger.info(
@@ -100,3 +110,18 @@ class ZeroUmProcessAgent(ProcessAgent):
             payload.get("status", "desconhecido"),
         )
         return manifest_path
+
+    def write_todos(self, todos: List[Dict[str, str]]) -> None:
+        """
+        Método auxiliar para criar múltiplos TODOs de uma vez.
+
+        Args:
+            todos: Lista de dicionários com 'task' e opcionalmente 'status', 'id'
+
+        Exemplo:
+            self.write_todos([
+                {"task": "Carregar validator.MD", "status": "pending"},
+                {"task": "Gerar rascunho inicial", "status": "pending"},
+            ])
+        """
+        self.todo_manager.write_todos(todos)

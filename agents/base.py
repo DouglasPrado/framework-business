@@ -11,7 +11,7 @@ from .utils.manifest import ManifestHandler
 from .utils.strategy_loader import StrategyDefinition, load_strategy
 
 try:  # pragma: no cover - dependência externa obrigatória em tempo de execução
-    from deepagents import DeepAgent, create_deep_agent
+    from .deepagents import DeepAgent, create_deep_agent
 except ImportError as exc:  # pragma: no cover - falha explícita quando ausente
     raise ImportError(
         "O pacote 'deepagents' é obrigatório para executar os agentes. "
@@ -78,6 +78,7 @@ class ProcessAgent:
     base_path: Path = BASE_PATH
     prompt: Optional[str] = None
     llm_config: Optional[Dict[str, Any]] = None
+    language_agent: Optional[DeepAgent] = field(default=None, init=False)
 
     def __post_init__(self) -> None:
         self.process_dir = (
@@ -104,6 +105,7 @@ class ProcessAgent:
             "edit_file",
             "glob",
         ], llm_config=self.llm_config)
+        return self.language_agent
 
     def run(self) -> Dict[str, Any]:
         """Executa o processo e devolve um manifesto com os principais artefatos."""

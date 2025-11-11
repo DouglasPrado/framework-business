@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, MutableMapping, Optional
 
 from .. import BASE_PATH
 from ..base import StrategyAgent
@@ -89,6 +89,17 @@ class ZeroUmOrchestrator(StrategyAgent):
                 manifest.get("status", "desconhecido"),
             )
         return {"manifests": manifests}
+
+    def gerar_hipotese(self, state: MutableMapping[str, Any]) -> OrchestrationState:
+        """
+        Etapa intermediária de geração de hipóteses.
+        Neste momento, os manifestos já foram coletados na etapa anterior.
+        Esta etapa pode ser usada para processamento adicional ou validação intermediária.
+        """
+        logger.info("Processando hipóteses geradas pelos subagentes")
+        # Por enquanto, apenas propaga o estado sem modificações
+        # Futuramente, pode incluir validações ou processamentos intermediários
+        return state
 
     def validar_resultado(self, state: MutableMapping[str, Any]) -> OrchestrationState:
         manifests: List[Dict[str, Any]] = list(state.get("manifests", []))
