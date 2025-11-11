@@ -17,7 +17,15 @@ logger = logging.getLogger(__name__)
 class ZeroUmProcessAgent(ProcessAgent):
     strategy_name = "ZeroUm"
 
-    def __init__(self, process_code: str, context_name: str, context_description: str, pipeline_dir: Path, prompt: Optional[str] = None) -> None:
+    def __init__(
+        self,
+        process_code: str,
+        context_name: str,
+        context_description: str,
+        pipeline_dir: Path,
+        prompt: Optional[str] = None,
+        llm_config: Optional[Dict[str, Any]] = None,
+    ) -> None:
         self.pipeline_dir = pipeline_dir
         super().__init__(
             process_code=process_code,
@@ -25,6 +33,7 @@ class ZeroUmProcessAgent(ProcessAgent):
             context_name=context_name,
             context_description=context_description,
             prompt=prompt,
+            llm_config=llm_config,
         )
         self.definition: ProcessDefinition = load_process(self.process_dir)
         self.manifest_handler = ManifestHandler(pipeline_dir)

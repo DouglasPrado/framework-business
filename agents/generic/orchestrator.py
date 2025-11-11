@@ -13,12 +13,20 @@ from ..utils.package import package_artifacts
 class GenericStrategyOrchestrator(StrategyAgent):
     """Cria manifestos e consolida processos para estratégias sem subagentes próprios."""
 
-    def __init__(self, strategy_name: str, context_name: str, context_description: str = "", orchestrator_prompt: str | None = None) -> None:
+    def __init__(
+        self,
+        strategy_name: str,
+        context_name: str,
+        context_description: str = "",
+        orchestrator_prompt: str | None = None,
+        llm_config: Dict[str, Any] | None = None,
+    ) -> None:
         super().__init__(
             strategy_name=strategy_name,
             context_name=context_name,
             context_description=context_description,
             orchestrator_prompt=orchestrator_prompt,
+            llm_config=llm_config,
         )
 
     def run(self) -> Dict[str, Any]:
