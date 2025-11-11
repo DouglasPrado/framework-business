@@ -4,8 +4,9 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
-from typing import Any, Dict, List, MutableMapping, Optional
+from typing import Any, Dict, List, Optional
 
+from .. import BASE_PATH
 from ..base import StrategyAgent
 from ..orchestrators import OrchestrationGraph, OrchestrationState
 from ..utils.drive_writer import ensure_strategy_folder
@@ -23,14 +24,14 @@ class ZeroUmOrchestrator(StrategyAgent):
         context_name: str,
         context_description: str = "",
         orchestrator_prompt: str | None = None,
-        llm_config: Dict[str, Any] | None = None,
+        base_path: Optional[Path] = None,
     ) -> None:
         super().__init__(
             strategy_name=self.strategy_name,
             context_name=context_name,
             context_description=context_description,
             orchestrator_prompt=orchestrator_prompt,
-            llm_config=llm_config,
+            base_path=base_path or BASE_PATH,
         )
         self.subagents: Dict[str, type[ProblemHypothesisExpressAgent]] = {
             "00-ProblemHypothesisExpress": ProblemHypothesisExpressAgent,
@@ -58,12 +59,10 @@ class ZeroUmOrchestrator(StrategyAgent):
         )
         self.bootstrap()
         ensure_strategy_folder(
-            self.context_name, self.strategy_name, base_path=self.base_path
+            self.context_name,
+            self.strategy_name,
+            base_path=self.base_path,
         )
-        manifests: List[Dict[str, Any]] = []
-        return {"manifests": manifests}
-
-    def gerar_hipotese(self, state: MutableMapping[str, Any]) -> OrchestrationState:
         manifests: List[Dict[str, Any]] = []
         for process in self.processes:
             code = process["code"]
@@ -80,7 +79,7 @@ class ZeroUmOrchestrator(StrategyAgent):
                 context_name=self.context_name,
                 context_description=self.context_description,
                 pipeline_dir=self.pipeline_dir,
-                llm_config=self.llm_config,
+                base_path=self.base_path,
             )
             manifest = agent.run()
             manifests.append(manifest)
