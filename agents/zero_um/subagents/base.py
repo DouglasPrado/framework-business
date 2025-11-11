@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 import logging
+import os
 from pathlib import Path
-from typing import Any, Dict, Optional, TYPE_CHECKING
+from typing import Any, Callable, Dict, Optional
 
 from ... import BASE_PATH
 from ...base import ProcessAgent
@@ -41,6 +42,7 @@ class ZeroUmProcessAgent(ProcessAgent):
         )
         self.definition: ProcessDefinition = load_process(self.process_dir)
         self.manifest_handler = ManifestHandler(pipeline_dir)
+        self.cost_calculator = self._load_cost_calculator()
 
     def default_prompt(self) -> str:
         return (
@@ -50,6 +52,29 @@ class ZeroUmProcessAgent(ProcessAgent):
 
     def run(self) -> Dict[str, Any]:
         raise NotImplementedError
+
+    def _load_cost_calculator(self) -> Optional[Callable[[int], float]]:
+        """Gera função opcional para estimar custo com base em variáveis de ambiente."""
+
+        raw_value = os.getenv("ZEROUM_COST_PER_1K_TOKENS") or os.getenv("LLM_COST_PER_1K_TOKENS")
+        if not raw_value:
+            return None
+        try:
+            per_thousand = float(raw_value)
+        except ValueError:
+            logger.warning(
+                "[%s] Valor inválido em ZEROUM_COST_PER_1K_TOKENS/LLM_COST_PER_1K_TOKENS: %s",
+                self.process_code,
+                raw_value,
+            )
+            return None
+
+        cost_per_token = per_thousand / 1000.0
+
+        def _calculator(tokens: int) -> float:
+            return round(tokens * cost_per_token, 6)
+
+        return _calculator
 
     def save_artifact(self, slug: str, content: str, extension: str = ".MD") -> Path:
         folder = ensure_process_folder(
