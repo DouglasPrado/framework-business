@@ -1,0 +1,11 @@
+PerfilPrioritario,Nome,Negocio,Cargo/Relacionamento,CanalOrigem,TipoContato,Contato,Status,Responsavel,DataConvite,Notas
+1,João Silva,,grupo,Facebook,grupo,Facebook,Planejado,,,Proprietário de loja de roupas online.
+1,Maria Oliveira,,grupo,Facebook,grupo,Facebook,Planejado,,,Proprietária de loja de eletrônicos.
+2,Carlos Mendes,,direto,LinkedIn,direto,LinkedIn,Planejado,,,Consultor de marketing digital.
+2,Ana Costa,,direto,LinkedIn,direto,LinkedIn,Planejado,,,Especialista em marketing de conteúdo.
+3,Fernanda Lima,,grupo,Slack,grupo,Slack,Planejado,,,Gerente de conteúdo em agência de marketing.
+3,Ricardo Almeida,,grupo,Slack,grupo,Slack,Planejado,,,Responsável por estratégias de conteúdo.
+4,Lucas Ferreira,,direto,LinkedIn,direto,LinkedIn,Planejado,,,Especialista em SEO.
+4,Juliana Rocha,,direto,LinkedIn,direto,LinkedIn,Planejado,,,Consultora de SEO.
+5,Patrícia Silva,,direto,Instagram,direto,Instagram,Planejado,,,Blogueira de estilo de vida.
+5,Rafael Santos,,direto,Instagram,direto,Instagram,Planejado,,,Blogueiro de tecnologia.
