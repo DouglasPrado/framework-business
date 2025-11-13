@@ -1,7 +1,0 @@
-No dia 8 de novembro de 2023, às 10h30, foi realizada uma entrevista por videoconferência com Patrícia Gomes, cujo perfil ainda não está definido. A duração da conversa foi de 35 minutos e teve como foco principal a hipótese de que a automação pode liberar recursos para outras áreas da PME.
-
-Durante a entrevista, Patrícia expressou algumas dificuldades enfrentadas, como a limitação de recursos para marketing e a falta de tempo para se dedicar a outras atividades. Ela destacou a importância de encontrar soluções que possam otimizar o seu trabalho, afirmando: "A automação poderia me ajudar a liberar tempo." Essa citação reforça a hipótese discutida, evidenciando o potencial da automação em aliviar a carga de trabalho e permitir que ela se concentre em áreas prioritárias, como vendas. Patrícia também mencionou: "Gostaria de focar mais em vendas.", o que indica uma clara necessidade de redirecionar esforços para áreas que podem gerar mais resultados.
-
-Os resultados esperados desta entrevista incluíam compreender como a automação pode ajudar e identificar áreas que poderiam se beneficiar desse processo. A conversa foi produtiva e permitiu validar a hipótese inicial, destacando a relevância da automação para a melhoria da eficiência nas atividades da PME.
-
-O status da entrevista foi marcado como realizado, e o convite foi enviado em 12 de novembro de 2025, com a conclusão da entrevista registrada no mesmo dia. A comunicação com Patrícia foi estabelecida através do e-mail patricia.gomes@email.com.

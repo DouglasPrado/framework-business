@@ -1,7 +1,0 @@
-Na entrevista realizada no dia 2 de novembro de 2023, via videoconferência, com duração de 45 minutos, o perfil do entrevistado não foi definido. O foco da conversa foi explorar a hipótese de que as PMEs estão insatisfeitas com as soluções atuais de gerenciamento de conteúdo. 
-
-Durante a entrevista, foram identificados alguns pontos de dor significativos. Os participantes relataram que as soluções disponíveis no mercado são "caras e complicadas", o que gera frustração. Além disso, mencionaram a "falta de suporte técnico" como um fator que contribui para a insatisfação com as ferramentas que utilizam. Uma das citações mais impactantes foi: "As ferramentas que uso são muito complicadas." Essa afirmação ilustra bem a dificuldade enfrentada por muitos usuários ao lidarem com as soluções atuais. Outro comentário relevante foi: "Preciso de algo mais acessível.", indicando uma clara demanda por opções mais simples e econômicas.
-
-Os resultados esperados da entrevista incluíam compreender as frustrações com as ferramentas atuais e identificar oportunidades de melhoria. A conversa se concentrou em validar essas preocupações, reforçando a hipótese inicial sobre a insatisfação das PMEs.
-
-O contato amostral para a entrevista foi Maria Oliveira, cujo e-mail é maria.oliveira@email.com. O convite para a entrevista foi enviado em 12 de novembro de 2025, e a conclusão da conversa ocorreu no mesmo dia, às 21:08.

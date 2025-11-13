@@ -19,9 +19,9 @@ Com essas variáveis configuradas, o `StrategyAgent` e cada `ProcessAgent` geram
 
 Mesmo usando LangSmith, o manifesto do processo continua registrando:
 
-- `duracao_total_segundos`: tempo da chamada ao LLM
+- `total_duration_seconds`: tempo da chamada ao LLM
 - `total_tokens`: valor retornado pelo agente (ou estimado)
-- `custo_total`: cálculo heurístico usando `ZEROUM_COST_PER_1K_TOKENS` / `LLM_COST_PER_1K_TOKENS`
+- `total_cost`: cálculo heurístico usando `ZEROUM_COST_PER_1K_TOKENS` / `LLM_COST_PER_1K_TOKENS`
 
 Essas informações ficam em `drive/<Contexto>/_pipeline/<Processo>-manifest.json`, permitindo auditoria rápida mesmo offline.
 

@@ -1,0 +1,8 @@
+# Dependências do framework de agentes
+langchain-openai>=0.1.6
+langgraph>=0.0.40
+deepagents>=0.1.0
+python-dotenv
+tavily-python
+pyyaml
+rich

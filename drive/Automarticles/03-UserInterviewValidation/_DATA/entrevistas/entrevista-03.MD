@@ -1,7 +1,0 @@
-Na entrevista realizada com Carlos Pereira, no dia 3 de novembro de 2023, por telefone, foram abordados aspectos cruciais relacionados à integração com CMS, que se mostrou um fator decisivo para pequenas e médias empresas (PMEs). A conversa, que durou 20 minutos, teve como objetivo avaliar a importância dessa integração e identificar as plataformas mais utilizadas pelos entrevistados.
-
-Carlos destacou que "a integração é crucial para o meu trabalho", evidenciando a relevância desse aspecto na sua rotina profissional. Além disso, ele compartilhou suas experiências negativas, mencionando que "já perdi dados importantes durante migrações", o que ressalta um dos principais pontos de dor identificados: a dificuldade em integrar diferentes plataformas e a preocupação com a perda de dados durante o processo de migração.
-
-A hipótese levantada de que a integração com CMS é um fator decisivo para PMEs foi confirmada por Carlos, que expressou a necessidade de soluções que facilitem esse processo. A entrevista não apenas reforçou a importância da integração, mas também destacou os desafios enfrentados por profissionais da área, como a complexidade de gerenciar múltiplas plataformas.
-
-Com isso, a entrevista contribuiu significativamente para a compreensão das necessidades e dificuldades das PMEs em relação à integração de sistemas, alinhando-se às expectativas de identificar as plataformas mais utilizadas e avaliar a importância da integração com CMS.
