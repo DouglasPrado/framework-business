@@ -7,7 +7,11 @@ Gerencia operações de leitura/escrita de artefatos, manifestos e workspace.
 from framework.io.workspace import WorkspaceManager
 from framework.io.manifest import ManifestStore
 from framework.io.package import PackageService
-from framework.io.knowledge import KnowledgeLoader, StrategyKnowledgeManager
+from framework.io.knowledge import (
+    KnowledgeLoader,
+    StrategyKnowledgeManager,
+    ProcessKnowledgeManager,
+)
 
 __all__ = [
     "WorkspaceManager",
@@ -15,4 +19,5 @@ __all__ = [
     "PackageService",
     "KnowledgeLoader",
     "StrategyKnowledgeManager",
+    "ProcessKnowledgeManager",
 ]

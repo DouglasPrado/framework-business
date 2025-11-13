@@ -263,3 +263,87 @@ class StrategyKnowledgeManager:
         """
         files = {f: None for f in filenames}
         return self.loader.load_files(files)
+
+
+class ProcessKnowledgeManager:
+    """
+    Gerenciador de conhecimento para processos específicos.
+
+    Carrega conhecimento de um processo individual localizado em
+    process/<Strategy>/<ProcessName>/*.MD
+    """
+
+    def __init__(self, base_path: Path, strategy_name: str, process_name: str) -> None:
+        """
+        Inicializa o gerenciador de conhecimento de processo.
+
+        Args:
+            base_path: Caminho base do repositório
+            strategy_name: Nome da estratégia (ex: "ZeroUm")
+            process_name: Nome do processo (ex: "05-CheckoutSetup")
+        """
+        self.base_path = Path(base_path)
+        self.strategy_name = strategy_name
+        self.process_name = process_name
+        self.process_path = self.base_path / "process" / strategy_name / process_name
+        self.loader = KnowledgeLoader(self.process_path)
+
+    def load_default_knowledge(self) -> str:
+        """
+        Carrega arquivos padrão de conhecimento do processo.
+
+        Arquivos padrão:
+        - knowledge.MD: Base de conhecimento do processo
+        - process.MD: Definição detalhada do processo
+        - tasks.MD: Checklist operacional
+        - validator.MD: Critérios de validação
+        - README.MD: Visão geral
+
+        Returns:
+            Conhecimento consolidado
+        """
+        default_files = {
+            "knowledge.MD": "Base de Conhecimento do Processo",
+            "process.MD": "Definição do Processo",
+            "tasks.MD": "Checklist Operacional",
+            "validator.MD": "Critérios de Validação",
+            "README.MD": "Visão Geral"
+        }
+
+        return self.loader.load_files(default_files)
+
+    def load_custom_knowledge(self, files: Dict[str, str]) -> str:
+        """
+        Carrega arquivos customizados de conhecimento.
+
+        Args:
+            files: Dicionário {arquivo: título}
+
+        Returns:
+            Conhecimento consolidado
+        """
+        return self.loader.load_files(files)
+
+    def load_specific_files(self, *filenames: str) -> str:
+        """
+        Carrega arquivos específicos (sem títulos customizados).
+
+        Args:
+            filenames: Nomes dos arquivos a carregar
+
+        Returns:
+            Conhecimento consolidado
+
+        Example:
+            manager = ProcessKnowledgeManager(
+                base_path,
+                "ZeroUm",
+                "05-CheckoutSetup"
+            )
+            knowledge = manager.load_specific_files(
+                "knowledge.MD",
+                "process.MD"
+            )
+        """
+        files = {f: None for f in filenames}
+        return self.loader.load_files(files)

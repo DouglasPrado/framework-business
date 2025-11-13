@@ -25,8 +25,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from framework.llm.factory import build_llm
-from framework.tools import AgentType, get_tools
+from business.strategies.zeroum.subagents.base import SubagentBase
 from business.strategies.zeroum.subagents.template_filler import (
     ProcessTemplateFiller,
     TemplateTask,
@@ -34,14 +33,16 @@ from business.strategies.zeroum.subagents.template_filler import (
 
 logger = logging.getLogger(__name__)
 
-
-class UserInterviewValidationAgent:
+class UserInterviewValidationAgent(SubagentBase):
     """
     Subagente especializado em validação qualitativa com usuários reais.
 
     Gera todos os artefatos previstos no processo, desde briefing e
     roteiros até análises finais, além de preencher os templates oficiais.
     """
+
+    process_name = "03-UserInterviewValidation"
+    strategy_name = "ZeroUm"
 
     def __init__(
         self,
@@ -63,21 +64,27 @@ class UserInterviewValidationAgent:
             context_notes: Observações adicionais relevantes
             enable_tools: Habilita tools do framework (padrão True)
         """
+        # Inicializar base (LLM, tools, conhecimento)
+        super().__init__(
+            workspace_root=workspace_root,
+            enable_tools=enable_tools,
+            load_knowledge=True
+        )
+
+        # Atributos específicos
+
         self.workspace_root = workspace_root
         self.hypotheses = hypotheses or ["Hipótese não informada"]
         self.target_profiles = target_profiles or ["Perfil não definido"]
         self.owner = owner or "Responsável não definido"
         self.timeframe = timeframe
         self.context_notes = (context_notes or "").strip()
-        self.llm = build_llm()
-
-        self.tools = get_tools(AgentType.PROCESS) if enable_tools else []
         if self.tools:
             logger.info("Tools habilitadas: %s", [tool.name for tool in self.tools])
 
         self.process_dir = workspace_root / "03-UserInterviewValidation"
         self.data_dir = self.process_dir / "_DATA"
-        self._setup_directories()
+        self.setup_directories(["assets", "evidencias"])
         self.template_filler = ProcessTemplateFiller(
             process_code="03-UserInterviewValidation",
             output_dir=self.data_dir,
@@ -86,17 +93,6 @@ class UserInterviewValidationAgent:
 
         self.interviews: List[Dict[str, Any]] = []
         self.recruitment_log: List[Dict[str, Any]] = []
-
-    def _setup_directories(self) -> None:
-        """Cria estrutura exigida pelo processo."""
-        dirs = [
-            self.process_dir,
-            self.data_dir,
-            self.data_dir / "entrevistas",
-            self.data_dir / "sintese",
-        ]
-        for dir_path in dirs:
-            dir_path.mkdir(parents=True, exist_ok=True)
 
     def execute_full_validation(self) -> Dict[str, Any]:
         """
@@ -162,8 +158,8 @@ Notas adicionais: {self.context_notes or 'Nenhuma'}
 Produza um briefing completo seguindo o processo oficial,
 usando seções do template mas sem tabelas. Texto em português.
 """
-        content = self._invoke_llm(prompt)
-        path = self._save_document("01-briefing-entrevistas.MD", content)
+        content = self.invoke_llm(prompt)
+        path = self.save_document("01-briefing-entrevistas.MD", content)
         return {
             "file_path": str(path),
             "summary": "Briefing com objetivos, hipóteses e riscos documentados",
@@ -189,8 +185,8 @@ Inclua:
 
 Texto em português, sem tabelas, seguindo o processo ZeroUm.
 """
-        content = self._invoke_llm(prompt)
-        path = self._save_document("02-roteiro-entrevista.MD", content)
+        content = self.invoke_llm(prompt)
+        path = self.save_document("02-roteiro-entrevista.MD", content)
         return {
             "file_path": str(path),
             "summary": "Roteiro com perguntas, follow-ups e checklist",
@@ -215,8 +211,8 @@ Inclua:
 - Critérios de confirmação
 - Observações e responsáveis
 """
-        content = self._invoke_llm(prompt)
-        path = self._save_document("03-plano-recrutamento.MD", content)
+        content = self.invoke_llm(prompt)
+        path = self.save_document("03-plano-recrutamento.MD", content)
 
         self.interviews = self._generate_interview_plan()
 
@@ -240,7 +236,7 @@ Inclua:
                 interview["status"] = "backup"
             interview["invite_sent_at"] = datetime.now().isoformat()
 
-        tracker_content = self._invoke_llm(
+        tracker_content = self.invoke_llm(
             f"""
 Crie um relatório textual do pipeline de recrutamento com base nos dados abaixo.
 Use subtítulos por contato e mantenha linguagem direta.
@@ -251,7 +247,7 @@ Dados (JSON):
 Inclua resumo geral (convites, confirmados, realizados planejados) e um bloco por contato.
 """
         )
-        path = self._save_document("04-tracker-recrutamento.MD", tracker_content)
+        path = self.save_document("04-tracker-recrutamento.MD", tracker_content)
 
         return {
             "file_path": str(path),
@@ -280,8 +276,8 @@ Crie um documento com:
 - Linguagem literal marcante
 - Recomendações imediatas
 """
-        content = self._invoke_llm(synthesis_prompt)
-        path = self._save_document("05-evidencias-entrevistas.MD", content)
+        content = self.invoke_llm(synthesis_prompt)
+        path = self.save_document("05-evidencias-entrevistas.MD", content)
 
         return {
             "file_path": str(path),
@@ -300,8 +296,8 @@ Gere análise de padrões considerando as entrevistas abaixo.
 
 Siga o template de análise de padrões em texto corrido.
 """
-        analysis_path = self._save_document(
-            "06-analise-padroes.MD", self._invoke_llm(analysis_prompt)
+        analysis_path = self.save_document(
+            "06-analise-padroes.MD", self.invoke_llm(analysis_prompt)
         )
 
         classification_prompt = f"""
@@ -315,8 +311,8 @@ Entrevistas:
 
 Use texto estruturado com status, evidências e próximos passos.
 """
-        classification_path = self._save_document(
-            "06-classificacao-hipoteses.MD", self._invoke_llm(classification_prompt)
+        classification_path = self.save_document(
+            "06-classificacao-hipoteses.MD", self.invoke_llm(classification_prompt)
         )
 
         language_prompt = f"""
@@ -327,8 +323,8 @@ Dados:
 
 Entregue no formato do template, em português e sem tabelas.
 """
-        language_path = self._save_document(
-            "06-biblioteca-linguagem.MD", self._invoke_llm(language_prompt)
+        language_path = self.save_document(
+            "06-biblioteca-linguagem.MD", self.invoke_llm(language_prompt)
         )
 
         return {
@@ -370,7 +366,7 @@ Cada item deve conter:
 - sample_contact (nome/canal)
 Retorne apenas JSON.
 """
-        response = self._invoke_llm(prompt)
+        response = self.invoke_llm(prompt)
         data = self._extract_json_array(response)
         if not data:
             logger.warning("Não foi possível gerar plano via LLM, criando fallback.")
@@ -387,7 +383,7 @@ Entrevista:
 
 Inclua citações literais e menções às hipóteses tocadas.
 """
-        content = self._invoke_llm(prompt)
+        content = self.invoke_llm(prompt)
         filename = f"entrevistas/entrevista-{index:02d}.MD"
         path = self._save_data_document(filename, content)
         return path
@@ -405,8 +401,8 @@ Crie um consolidado da rodada de entrevistas com:
 Dados:
 {interviews_json}
 """
-        content = self._invoke_llm(prompt)
-        return self._save_document("00-consolidado-entrevistas.MD", content)
+        content = self.invoke_llm(prompt)
+        return self.save_document("00-consolidado-entrevistas.MD", content)
 
     def _fill_data_templates(self, results: Dict[str, Any]) -> None:
         """Preenche templates oficiais com o contexto gerado."""
@@ -544,13 +540,6 @@ Dados:
             )
         return plan
 
-    def _save_document(self, filename: str, content: str) -> Path:
-        """Salva arquivo no diretório do processo."""
-        path = self.process_dir / filename
-        path.write_text(content.strip() + "\n", encoding="utf-8")
-        logger.info("Documento salvo: %s", path)
-        return path
-
     def _save_data_document(self, relative_path: str, content: str) -> Path:
         """Salva arquivo dentro de _DATA."""
         path = self.data_dir / relative_path
@@ -558,26 +547,7 @@ Dados:
         path.write_text(content.strip() + "\n", encoding="utf-8")
         logger.info("Documento salvo: %s", path)
         return path
-
-    def _invoke_llm(self, prompt: str) -> str:
-        """Invoca LLM e normaliza a resposta."""
-        response = self.llm.invoke(prompt)
-        content = getattr(response, "content", response)
-        if isinstance(content, list):
-            parts: List[str] = []
-            for chunk in content:
-                if isinstance(chunk, dict) and "text" in chunk:
-                    parts.append(chunk["text"])
-                else:
-                    parts.append(str(chunk))
-            normalized = "\n".join(parts)
-        else:
-            normalized = str(content)
-        return normalized.strip()
-
-    @staticmethod
     def _format_bullets(items: List[str]) -> str:
         return "\n".join(f"- {item}" for item in items) if items else "- Não informado"
-
 
 __all__ = ["UserInterviewValidationAgent"]

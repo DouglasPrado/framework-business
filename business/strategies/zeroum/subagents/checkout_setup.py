@@ -25,8 +25,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from framework.llm.factory import build_llm
-from framework.tools import AgentType, get_tools
+from business.strategies.zeroum.subagents.base import SubagentBase
 from business.strategies.zeroum.subagents.template_filler import (
     ProcessTemplateFiller,
     TemplateTask,
@@ -35,10 +34,13 @@ from business.strategies.zeroum.subagents.template_filler import (
 logger = logging.getLogger(__name__)
 
 
-class CheckoutSetupAgent:
+class CheckoutSetupAgent(SubagentBase):
     """
     Subagente especializado em configurar checkouts mínimos para ZeroUm.
     """
+
+    process_name = "05-CheckoutSetup"
+    strategy_name = "ZeroUm"
 
     def __init__(
         self,
@@ -66,7 +68,14 @@ class CheckoutSetupAgent:
             support_email: E-mail usado nas notificações
             enable_tools: Controla uso de ferramentas do framework
         """
-        self.workspace_root = workspace_root
+        # Inicializar base (LLM, tools, conhecimento)
+        super().__init__(
+            workspace_root=workspace_root,
+            enable_tools=enable_tools,
+            load_knowledge=True
+        )
+
+        # Atributos específicos do checkout
         self.product_name = product_name.strip()
         self.offer_description = offer_description.strip()
         self.price = price.strip()
@@ -75,15 +84,13 @@ class CheckoutSetupAgent:
         self.landing_url = landing_url.strip()
         self.thankyou_url = thankyou_url.strip()
         self.support_email = support_email.strip()
-        self.llm = build_llm()
 
-        self.tools = get_tools(AgentType.PROCESS) if enable_tools else []
         if self.tools:
             logger.info("Tools habilitadas: %s", [tool.name for tool in self.tools])
 
-        self.process_dir = workspace_root / "05-CheckoutSetup"
-        self.data_dir = self.process_dir / "_DATA"
-        self._setup_directories()
+        # Setup de diretórios (usa método da base)
+        self.setup_directories(["evidencias", "assets"])
+
         self.template_filler = ProcessTemplateFiller(
             process_code="05-CheckoutSetup",
             output_dir=self.data_dir,
@@ -94,17 +101,6 @@ class CheckoutSetupAgent:
         self.checkout_configuration: Optional[str] = None
         self.test_results: Optional[str] = None
         self.notifications_plan: Optional[str] = None
-
-    def _setup_directories(self) -> None:
-        """Garante a estrutura de diretórios exigida pelo processo."""
-        dirs = [
-            self.process_dir,
-            self.data_dir,
-            self.data_dir / "evidencias",
-            self.data_dir / "assets",
-        ]
-        for path in dirs:
-            path.mkdir(parents=True, exist_ok=True)
 
     def execute_full_setup(self) -> Dict[str, Any]:
         """
@@ -170,8 +166,8 @@ Produza um documento com:
 - Requisitos legais/documentais
 - Decisão final com justificativa e próximos passos
 """
-        content = self._invoke_llm(prompt)
-        path = self._save_document("01-gateway-selection.MD", content)
+        content = self.invoke_llm(prompt)
+        path = self.save_document("01-gateway-selection.MD", content)
         self.gateway_decision = content
         return {
             "file_path": str(path),
@@ -191,8 +187,8 @@ Inclua:
 - Limites e políticas antifraude
 - Checklist de aprovação com responsáveis e prazos
 """
-        content = self._invoke_llm(prompt)
-        path = self._save_document("02-account-setup.MD", content)
+        content = self.invoke_llm(prompt)
+        path = self.save_document("02-account-setup.MD", content)
         return {
             "file_path": str(path),
             "summary": "Conta configurada e verificação documentada",
@@ -222,8 +218,8 @@ Crie um documento com:
 - Integrações e webhooks
 - Evidências esperadas (prints/logs)
 """
-        content = self._invoke_llm(prompt)
-        path = self._save_document("03-checkout-config.MD", content)
+        content = self.invoke_llm(prompt)
+        path = self.save_document("03-checkout-config.MD", content)
         self.checkout_configuration = content
         return {
             "file_path": str(path),
@@ -244,8 +240,8 @@ Inclua:
 - Registro de notificações recebidas
 - Checklist de correções
 """
-        content = self._invoke_llm(prompt)
-        path = self._save_document("04-test-log.MD", content)
+        content = self.invoke_llm(prompt)
+        path = self.save_document("04-test-log.MD", content)
         self.test_results = content
         return {
             "file_path": str(path),
@@ -263,8 +259,8 @@ Inclua:
 - Checklist de notificações (cliente, time interno, webhooks, CRM)
 - Plano para tracker financeiro semanal
 """
-        content = self._invoke_llm(prompt)
-        path = self._save_document("05-notificacoes-e-assets.MD", content)
+        content = self.invoke_llm(prompt)
+        path = self.save_document("05-notificacoes-e-assets.MD", content)
         self.notifications_plan = content
         return {
             "file_path": str(path),
@@ -282,8 +278,8 @@ O plano deve cobrir:
 - Handoff para times de vendas/entrega
 - Métricas diárias e semanais
 """
-        content = self._invoke_llm(prompt)
-        path = self._save_document("06-integration-log.MD", content)
+        content = self.invoke_llm(prompt)
+        path = self.save_document("06-integration-log.MD", content)
         return {
             "file_path": str(path),
             "summary": "Monitoramento e handoff documentados",
@@ -313,8 +309,8 @@ Produza um consolidado executivo do checkout com:
 Dados:
 {json.dumps(data, ensure_ascii=False, indent=2)}
 """
-        content = self._invoke_llm(prompt)
-        return self._save_document("00-consolidado-checkout.MD", content)
+        content = self.invoke_llm(prompt)
+        return self.save_document("00-consolidado-checkout.MD", content)
 
     def _fill_data_templates(self, results: Dict[str, Any]) -> None:
         context = self._build_template_context(results)
@@ -392,27 +388,5 @@ Dados:
             f"\n=== Testes JSON ===\n{json.dumps(self.test_results or '', ensure_ascii=False)}"
         )
         return "\n".join(sections)
-
-    def _save_document(self, filename: str, content: str) -> Path:
-        path = self.process_dir / filename
-        path.write_text(content.strip() + "\n", encoding="utf-8")
-        logger.info("Documento salvo: %s", path)
-        return path
-
-    def _invoke_llm(self, prompt: str) -> str:
-        response = self.llm.invoke(prompt)
-        content = getattr(response, "content", response)
-        if isinstance(content, list):
-            parts: List[str] = []
-            for chunk in content:
-                if isinstance(chunk, dict) and "text" in chunk:
-                    parts.append(chunk["text"])
-                else:
-                    parts.append(str(chunk))
-            normalized = "\n".join(parts)
-        else:
-            normalized = str(content)
-        return normalized.strip()
-
 
 __all__ = ["CheckoutSetupAgent"]

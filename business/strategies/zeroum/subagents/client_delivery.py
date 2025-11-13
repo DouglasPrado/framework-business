@@ -23,8 +23,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from framework.llm.factory import build_llm
-from framework.tools import AgentType, get_tools
+from business.strategies.zeroum.subagents.base import SubagentBase
 from business.strategies.zeroum.subagents.template_filler import (
     ProcessTemplateFiller,
     TemplateTask,
@@ -32,8 +31,7 @@ from business.strategies.zeroum.subagents.template_filler import (
 
 logger = logging.getLogger(__name__)
 
-
-class ClientDeliveryAgent:
+class ClientDeliveryAgent(SubagentBase):
     """
     Subagente especializado em gerenciar todo o processo de entrega ao cliente.
 
@@ -45,6 +43,9 @@ class ClientDeliveryAgent:
     - Entrega oficial
     - Pós-entrega e depoimentos
     """
+
+    process_name = "10-ClientDelivery"
+    strategy_name = "ZeroUm"
 
     def __init__(
         self,
@@ -76,24 +77,12 @@ class ClientDeliveryAgent:
         # Criar estrutura de diretórios
         self.delivery_dir = workspace_root / "10-ClientDelivery"
         self.data_dir = self.delivery_dir / "_DATA"
-        self._setup_directories()
+        self.setup_directories(["assets", "evidencias"])
         self.template_filler = ProcessTemplateFiller(
             process_code="10-ClientDelivery",
             output_dir=self.data_dir,
             llm=self.llm,
         )
-
-    def _setup_directories(self) -> None:
-        """Cria estrutura de diretórios para o processo."""
-        dirs = [
-            self.delivery_dir,
-            self.data_dir,
-            self.data_dir / "onboarding",
-            self.data_dir / "entregas",
-            self.data_dir / "relatos",
-        ]
-        for dir_path in dirs:
-            dir_path.mkdir(parents=True, exist_ok=True)
 
     def execute_full_delivery(self) -> Dict[str, Any]:
         """

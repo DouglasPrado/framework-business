@@ -23,8 +23,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from framework.llm.factory import build_llm
-from framework.tools import AgentType, get_tools
+from business.strategies.zeroum.subagents.base import SubagentBase
 from business.strategies.zeroum.subagents.template_filler import (
     ProcessTemplateFiller,
     TemplateTask,
@@ -32,8 +31,7 @@ from business.strategies.zeroum.subagents.template_filler import (
 
 logger = logging.getLogger(__name__)
 
-
-class ProblemHypothesisExpressAgent:
+class ProblemHypothesisExpressAgent(SubagentBase):
     """
     Subagente especializado em criar e validar hipóteses de problema rapidamente.
 
@@ -43,6 +41,9 @@ class ProblemHypothesisExpressAgent:
     Template:
     "Meu produto ajuda [QUEM] a [RESULTADO] sem [DOR]"
     """
+
+    process_name = "00-ProblemHypothesisExpress"
+    strategy_name = "ZeroUm"
 
     def __init__(
         self,
@@ -71,17 +72,12 @@ class ProblemHypothesisExpressAgent:
         # Criar estrutura de diretórios
         self.process_dir = workspace_root / "00-ProblemHypothesisExpress"
         self.data_dir = self.process_dir / "_DATA"
-        self._setup_directories()
+        self.setup_directories(["assets", "evidencias"])
         self.template_filler = ProcessTemplateFiller(
             process_code="00-ProblemHypothesisExpress",
             output_dir=self.data_dir,
             llm=self.llm,
         )
-
-    def _setup_directories(self) -> None:
-        """Cria estrutura de diretórios para o processo."""
-        self.process_dir.mkdir(parents=True, exist_ok=True)
-        self.data_dir.mkdir(parents=True, exist_ok=True)
 
     def execute_express_session(self) -> Dict[str, Any]:
         """

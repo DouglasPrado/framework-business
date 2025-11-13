@@ -24,8 +24,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from framework.llm.factory import build_llm
-from framework.tools import AgentType, get_tools
+from business.strategies.zeroum.subagents.base import SubagentBase
 from business.strategies.zeroum.subagents.template_filler import (
     ProcessTemplateFiller,
     TemplateTask,
@@ -33,14 +32,16 @@ from business.strategies.zeroum.subagents.template_filler import (
 
 logger = logging.getLogger(__name__)
 
-
-class ProblemHypothesisDefinitionAgent:
+class ProblemHypothesisDefinitionAgent(SubagentBase):
     """
     Subagente especializado em produzir a hipótese completa de problema.
 
     Conduz as seis etapas do processo oficial, gera documentos intermediários
     e preenche os templates compartilhados para assegurar rastreabilidade.
     """
+
+    process_name = "01-ProblemHypothesisDefinition"
+    strategy_name = "ZeroUm"
 
     def __init__(
         self,
@@ -58,29 +59,30 @@ class ProblemHypothesisDefinitionAgent:
             research_notes: Observações ou evidências coletadas (opcional)
             enable_tools: Habilita ferramentas do framework (padrão: True)
         """
+        # Inicializar base (LLM, tools, conhecimento)
+        super().__init__(
+            workspace_root=workspace_root,
+            enable_tools=enable_tools,
+            load_knowledge=True
+        )
+
+        # Atributos específicos
+
         self.workspace_root = workspace_root
         self.idea_context = idea_context.strip()
         self.initial_hypothesis = (initial_hypothesis or "").strip()
         self.research_notes = (research_notes or "").strip()
-        self.llm = build_llm()
-
-        self.tools = get_tools(AgentType.PROCESS) if enable_tools else []
         if self.tools:
             logger.info("Tools habilitadas: %s", [tool.name for tool in self.tools])
 
         self.process_dir = workspace_root / "01-ProblemHypothesisDefinition"
         self.data_dir = self.process_dir / "_DATA"
-        self._setup_directories()
+        self.setup_directories(["assets", "evidencias"])
         self.template_filler = ProcessTemplateFiller(
             process_code="01-ProblemHypothesisDefinition",
             output_dir=self.data_dir,
             llm=self.llm,
         )
-
-    def _setup_directories(self) -> None:
-        """Cria estrutura de diretórios necessária para o processo."""
-        self.process_dir.mkdir(parents=True, exist_ok=True)
-        self.data_dir.mkdir(parents=True, exist_ok=True)
 
     def execute_full_definition(self) -> Dict[str, Any]:
         """
@@ -175,8 +177,8 @@ Produza um documento em português (sem tabelas) com a estrutura:
 
 Mantenha linguagem clara, utilize listas e destaque decisões críticas.
 """
-        content = self._invoke_llm(prompt)
-        path = self._save_document("01-usuario-alvo.MD", content)
+        content = self.invoke_llm(prompt)
+        path = self.save_document("01-usuario-alvo.MD", content)
         return {
             "file_path": str(path),
             "description": "Usuário primário descrito e alternativas registradas",
@@ -221,8 +223,8 @@ Produza o documento:
 
 Use listas e texto corrido. Evite tabelas e mantenha o conteúdo em português.
 """
-        content = self._invoke_llm(prompt)
-        path = self._save_document("02-resultado-desejado.MD", content)
+        content = self.invoke_llm(prompt)
+        path = self.save_document("02-resultado-desejado.MD", content)
         return {
             "file_path": str(path),
             "description": "Resultado desejado documentado com métricas",
@@ -267,8 +269,8 @@ Contexto:
 
 Escreva em português e utilize apenas texto/lists.
 """
-        content = self._invoke_llm(prompt)
-        path = self._save_document("03-dor-central.MD", content)
+        content = self.invoke_llm(prompt)
+        path = self.save_document("03-dor-central.MD", content)
         return {
             "file_path": str(path),
             "description": "Dor central e soluções inadequadas descritas",
@@ -324,8 +326,8 @@ Crie o documento:
 
 Mantenha o texto em português, claro e sem tabelas.
 """
-        content = self._invoke_llm(prompt)
-        path = self._save_document("04-declaracao-hipotese.MD", content)
+        content = self.invoke_llm(prompt)
+        path = self.save_document("04-declaracao-hipotese.MD", content)
         return {
             "file_path": str(path),
             "description": "Declaração final e variantes registradas",
@@ -359,8 +361,8 @@ Produza:
 
 Use bullet lists e mantenha português claro.
 """
-        content = self._invoke_llm(prompt)
-        path = self._save_document("05-avaliacao-qualidade.MD", content)
+        content = self.invoke_llm(prompt)
+        path = self.save_document("05-avaliacao-qualidade.MD", content)
         return {
             "file_path": str(path),
             "description": "Checklist preenchido e ajustes sugeridos",
@@ -402,8 +404,8 @@ Escreva:
 
 Produza texto em português sem tabelas.
 """
-        content = self._invoke_llm(prompt)
-        path = self._save_document("06-hipotese-final.MD", content)
+        content = self.invoke_llm(prompt)
+        path = self.save_document("06-hipotese-final.MD", content)
         return {
             "file_path": str(path),
             "description": "Hipótese final consolidada e planos definidos",
@@ -443,8 +445,8 @@ Estrutura desejada:
 
 Tudo em português, sem tabelas.
 """
-        content = self._invoke_llm(prompt)
-        path = self._save_document("00-consolidado-hipotese.MD", content)
+        content = self.invoke_llm(prompt)
+        path = self.save_document("00-consolidado-hipotese.MD", content)
         return path
 
     def _fill_data_templates(self, results: Dict[str, Any]) -> None:
@@ -486,29 +488,4 @@ Tudo em português, sem tabelas.
                 except OSError:
                     continue
         return "\n".join(lines)
-
-    def _save_document(self, filename: str, content: str) -> Path:
-        """Salva documento no diretório do processo."""
-        path = self.process_dir / filename
-        path.write_text(content.strip() + "\n", encoding="utf-8")
-        logger.info("Documento salvo: %s", path)
-        return path
-
-    def _invoke_llm(self, prompt: str) -> str:
-        """Invoca LLM e normaliza o conteúdo retornado."""
-        response = self.llm.invoke(prompt)
-        content = getattr(response, "content", response)
-        if isinstance(content, list):
-            parts: List[str] = []
-            for chunk in content:
-                if isinstance(chunk, dict) and "text" in chunk:
-                    parts.append(chunk["text"])
-                else:
-                    parts.append(str(chunk))
-            normalized = "\n".join(parts)
-        else:
-            normalized = str(content)
-        return normalized.strip()
-
-
 __all__ = ["ProblemHypothesisDefinitionAgent"]

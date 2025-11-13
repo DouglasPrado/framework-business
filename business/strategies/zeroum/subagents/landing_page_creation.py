@@ -25,8 +25,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from framework.llm.factory import build_llm
-from framework.tools import AgentType, get_tools
+from business.strategies.zeroum.subagents.base import SubagentBase
 from business.strategies.zeroum.subagents.template_filler import (
     ProcessTemplateFiller,
     TemplateTask,
@@ -34,14 +33,16 @@ from business.strategies.zeroum.subagents.template_filler import (
 
 logger = logging.getLogger(__name__)
 
-
-class LandingPageCreationAgent:
+class LandingPageCreationAgent(SubagentBase):
     """
     Subagente especializado em criar landing pages alinhadas à metodologia ZeroUm.
 
     Gera todos os artefatos necessários para briefing, estrutura, copy,
     plano técnico, analytics e QA, além de preencher os templates oficiais.
     """
+
+    process_name = "04-LandingPageCreation"
+    strategy_name = "ZeroUm"
 
     def __init__(
         self,
@@ -67,7 +68,14 @@ class LandingPageCreationAgent:
             proof_points: Lista de provas sociais disponíveis
             enable_tools: Habilita tools do framework (padrão True)
         """
-        self.workspace_root = workspace_root
+        # Inicializar base
+        super().__init__(
+            workspace_root=workspace_root,
+            enable_tools=enable_tools,
+            load_knowledge=True
+        )
+
+        # Atributos específicos
         self.product_name = product_name.strip()
         self.offer_summary = offer_summary.strip()
         self.primary_audience = primary_audience.strip()
@@ -75,15 +83,12 @@ class LandingPageCreationAgent:
         self.owner = owner.strip() or "Owner não definido"
         self.publish_deadline = publish_deadline
         self.proof_points = proof_points or []
-        self.llm = build_llm()
-
-        self.tools = get_tools(AgentType.PROCESS) if enable_tools else []
         if self.tools:
             logger.info("Tools habilitadas: %s", [tool.name for tool in self.tools])
 
         self.process_dir = workspace_root / "04-LandingPageCreation"
         self.data_dir = self.process_dir / "_DATA"
-        self._setup_directories()
+        self.setup_directories(["assets", "evidencias"])
         self.template_filler = ProcessTemplateFiller(
             process_code="04-LandingPageCreation",
             output_dir=self.data_dir,
@@ -92,17 +97,6 @@ class LandingPageCreationAgent:
 
         self.section_outline: Dict[str, Any] = {}
         self.copy_blocks: Dict[str, Any] = {}
-
-    def _setup_directories(self) -> None:
-        """Cria estrutura de diretórios necessária."""
-        dirs = [
-            self.process_dir,
-            self.data_dir,
-            self.data_dir / "assets",
-            self.data_dir / "evidencias",
-        ]
-        for dir_path in dirs:
-            dir_path.mkdir(parents=True, exist_ok=True)
 
     def execute_full_creation(self) -> Dict[str, Any]:
         """
@@ -162,12 +156,12 @@ Público prioritário: {self.primary_audience}
 Hipótese: {self.hypothesis_statement}
 Owner: {self.owner}
 Data alvo: {self.publish_deadline}
-Provas sociais: {self._format_list(self.proof_points)}
+Provas sociais: {self.format_list(self.proof_points)}
 
 Inclua objetivos, dores, benefícios, oferta, ferramentas, métricas e pendências.
 """
-        content = self._invoke_llm(prompt)
-        path = self._save_document("01-briefing-landing.MD", content)
+        content = self.invoke_llm(prompt)
+        path = self.save_document("01-briefing-landing.MD", content)
         return {
             "file_path": str(path),
             "summary": "Briefing completo documentado",
@@ -181,8 +175,8 @@ Com base no briefing da landing de {self.product_name}, defina a estrutura compl
 Incluir: Hero, Problema, Solução, Prova social, Oferta, FAQ, CTA final, seções extras e assets.
 Use texto corrido seguindo o template oficial, sem tabelas.
 """
-        content = self._invoke_llm(prompt)
-        path = self._save_document("02-estrutura-secoes.MD", content)
+        content = self.invoke_llm(prompt)
+        path = self.save_document("02-estrutura-secoes.MD", content)
 
         self.section_outline = {
             "document": content,
@@ -202,13 +196,13 @@ Você tem a estrutura da landing e precisa criar o copy completo. Utilize o temp
 Produto: {self.product_name}
 Oferta: {self.offer_summary}
 Público: {self.primary_audience}
-Provas sociais: {self._format_list(self.proof_points)}
+Provas sociais: {self.format_list(self.proof_points)}
 Hipótese: {self.hypothesis_statement}
 
 Entregue todas as seções (Hero, Problema, Solução, Prova, Oferta, FAQ, CTA final) em português e sem tabelas.
 """
-        content = self._invoke_llm(prompt)
-        path = self._save_document("03-copy-draft.MD", content)
+        content = self.invoke_llm(prompt)
+        path = self.save_document("03-copy-draft.MD", content)
 
         self.copy_blocks = {
             "document": content,
@@ -233,8 +227,8 @@ Crie um plano operacional para construção da landing, considerando:
 
 Formato textual com listas e subtítulos.
 """
-        content = self._invoke_llm(prompt)
-        path = self._save_document("04-plano-construcao.MD", content)
+        content = self.invoke_llm(prompt)
+        path = self.save_document("04-plano-construcao.MD", content)
         return {
             "file_path": str(path),
             "summary": "Plano de implementação e responsabilidades",
@@ -254,8 +248,8 @@ Inclua:
 
 Use texto em português, sem tabelas.
 """
-        content = self._invoke_llm(prompt)
-        path = self._save_document("05-plano-analytics.MD", content)
+        content = self.invoke_llm(prompt)
+        path = self.save_document("05-plano-analytics.MD", content)
         return {
             "file_path": str(path),
             "summary": "Plano de analytics e integrações definido",
@@ -275,8 +269,8 @@ Monte um checklist de QA preenchido com foco em:
 
 Inclua resultados simulados (ex: PageSpeed), status (ok/pending) e pendências destacadas.
 """
-        content = self._invoke_llm(prompt)
-        path = self._save_document("06-qa-publicacao.MD", content)
+        content = self.invoke_llm(prompt)
+        path = self.save_document("06-qa-publicacao.MD", content)
         return {
             "file_path": str(path),
             "summary": "QA registrado e publicado virtualmente",
@@ -308,8 +302,8 @@ Gere um consolidado executivo da criação da landing contendo:
 Dados:
 {json.dumps(data, ensure_ascii=False, indent=2)}
 """
-        content = self._invoke_llm(prompt)
-        return self._save_document("00-consolidado-landing.MD", content)
+        content = self.invoke_llm(prompt)
+        return self.save_document("00-consolidado-landing.MD", content)
 
     def _fill_data_templates(self, results: Dict[str, Any]) -> None:
         """Preenche templates oficiais usando os dados da execução."""
@@ -353,7 +347,7 @@ Dados:
             f"Owner: {self.owner}",
             f"Data alvo: {self.publish_deadline}",
             "Provas sociais:",
-            self._format_list(self.proof_points),
+            self.format_list(self.proof_points),
         ]
         for stage in results["stages"].values():
             path_str = stage.get("file_path")
@@ -366,33 +360,7 @@ Dados:
                 except OSError:
                     continue
         return "\n".join(sections)
-
-    def _save_document(self, filename: str, content: str) -> Path:
-        """Salva arquivo textual no diretório do processo."""
-        path = self.process_dir / filename
-        path.write_text(content.strip() + "\n", encoding="utf-8")
-        logger.info("Documento salvo: %s", path)
-        return path
-
-    def _invoke_llm(self, prompt: str) -> str:
-        """Invoca LLM e padroniza o retorno."""
-        response = self.llm.invoke(prompt)
-        content = getattr(response, "content", response)
-        if isinstance(content, list):
-            parts: List[str] = []
-            for chunk in content:
-                if isinstance(chunk, dict) and "text" in chunk:
-                    parts.append(chunk["text"])
-                else:
-                    parts.append(str(chunk))
-            normalized = "\n".join(parts)
-        else:
-            normalized = str(content)
-        return normalized.strip()
-
-    @staticmethod
     def _format_list(items: List[str]) -> str:
         return "\n".join(f"- {item}" for item in items) if items else "- Não informado"
-
 
 __all__ = ["LandingPageCreationAgent"]

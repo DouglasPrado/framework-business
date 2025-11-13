@@ -25,8 +25,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from framework.llm.factory import build_llm
-from framework.tools import AgentType, get_tools
+from business.strategies.zeroum.subagents.base import SubagentBase
 from business.strategies.zeroum.subagents.template_filler import (
     ProcessTemplateFiller,
     TemplateTask,
@@ -34,8 +33,7 @@ from business.strategies.zeroum.subagents.template_filler import (
 
 logger = logging.getLogger(__name__)
 
-
-class TargetUserIdentificationAgent:
+class TargetUserIdentificationAgent(SubagentBase):
     """
     Subagente responsável por identificar usuários-alvo prioritários.
 
@@ -43,6 +41,9 @@ class TargetUserIdentificationAgent:
     preenche templates oficiais e gera arquivos auxiliares
     para entrevistas e campanhas posteriores.
     """
+
+    process_name = "02-TargetUserIdentification"
+    strategy_name = "ZeroUm"
 
     def __init__(
         self,
@@ -58,18 +59,24 @@ class TargetUserIdentificationAgent:
             context_notes: Observações, pesquisas ou referências prévias
             enable_tools: Habilitar tools do framework (padrão True)
         """
+        # Inicializar base (LLM, tools, conhecimento)
+        super().__init__(
+            workspace_root=workspace_root,
+            enable_tools=enable_tools,
+            load_knowledge=True
+        )
+
+        # Atributos específicos
+
         self.workspace_root = workspace_root
         self.hypothesis_statement = hypothesis_statement.strip()
         self.context_notes = (context_notes or "").strip()
-        self.llm = build_llm()
-
-        self.tools = get_tools(AgentType.PROCESS) if enable_tools else []
         if self.tools:
             logger.info("Tools habilitadas: %s", [tool.name for tool in self.tools])
 
         self.process_dir = workspace_root / "02-TargetUserIdentification"
         self.data_dir = self.process_dir / "_DATA"
-        self._setup_directories()
+        self.setup_directories(["assets", "evidencias"])
         self.template_filler = ProcessTemplateFiller(
             process_code="02-TargetUserIdentification",
             output_dir=self.data_dir,
@@ -77,12 +84,6 @@ class TargetUserIdentificationAgent:
         )
 
         self.profiles_data: List[Dict[str, Any]] = []
-
-    def _setup_directories(self) -> None:
-        """Cria estrutura necessária para o processo."""
-        self.process_dir.mkdir(parents=True, exist_ok=True)
-        self.data_dir.mkdir(parents=True, exist_ok=True)
-        (self.data_dir / "perfis").mkdir(parents=True, exist_ok=True)
 
     def execute_full_identification(self) -> Dict[str, Any]:
         """
@@ -165,8 +166,8 @@ Crie o documento abaixo (português, sem tabelas):
 
 Finalize com próximos passos imediatos.
 """
-        content = self._invoke_llm(prompt)
-        path = self._save_document("01-hipotese-rapida.MD", content)
+        content = self.invoke_llm(prompt)
+        path = self.save_document("01-hipotese-rapida.MD", content)
         return {
             "file_path": str(path),
             "summary": "Hipótese rápida estruturada",
@@ -195,8 +196,8 @@ Para cada segmento:
 
 Inclua seção final com observações gerais e lacunas de conhecimento.
 """
-        content = self._invoke_llm(prompt)
-        path = self._save_document("02-brainstorm-segmentos.MD", content)
+        content = self.invoke_llm(prompt)
+        path = self.save_document("02-brainstorm-segmentos.MD", content)
         return {
             "file_path": str(path),
             "summary": "Lista ampla de segmentos gerada",
@@ -225,8 +226,8 @@ Para cada perfil (1-5):
 
 Finalize com tabela texto (sem usar tabela markdown) listando Prioridade, Perfil, Momento, Canal, Acessibilidade.
 """
-        content = self._invoke_llm(prompt)
-        path = self._save_document("03-perfis-priorizados.MD", content)
+        content = self.invoke_llm(prompt)
+        path = self.save_document("03-perfis-priorizados.MD", content)
         return {
             "file_path": str(path),
             "summary": "Perfis com prioridade definida",
@@ -261,8 +262,8 @@ Para cada perfil:
 
 Finalize com resumo comparativo destacando diversidades entre perfis.
 """
-        content = self._invoke_llm(prompt)
-        path = self._save_document("04-perfis-detalhados.MD", content)
+        content = self.invoke_llm(prompt)
+        path = self.save_document("04-perfis-detalhados.MD", content)
         return {
             "file_path": str(path),
             "summary": "Dossiê completo dos 5 perfis",
@@ -293,8 +294,8 @@ Documento desejado:
 
 Texto em português e sem tabelas.
 """
-        content = self._invoke_llm(prompt)
-        path = self._save_document("05-avaliacao-acessibilidade.MD", content)
+        content = self.invoke_llm(prompt)
+        path = self.save_document("05-avaliacao-acessibilidade.MD", content)
         return {
             "file_path": str(path),
             "summary": "Acessibilidade avaliada e riscos mapeados",
@@ -321,8 +322,8 @@ Crie:
 
 Finalize com referência aos arquivos gerados (nomes) para facilitar o handoff.
 """
-        content = self._invoke_llm(prompt)
-        path = self._save_document("06-pacote-final.MD", content)
+        content = self.invoke_llm(prompt)
+        path = self.save_document("06-pacote-final.MD", content)
         return {
             "file_path": str(path),
             "summary": "Pacote final pronto para handoff",
@@ -371,7 +372,7 @@ Retorne APENAS JSON com a seguinte estrutura:
   }}
 ]
 """
-        content = self._invoke_llm(prompt)
+        content = self.invoke_llm(prompt)
         data = self._extract_json_array(content)
         if not data:
             logger.error("Falha ao extrair JSON de perfis.")
@@ -414,8 +415,8 @@ Exija o seguinte formato:
 ## 4. Recomendações imediatas
 ## 5. Próximas ações com responsáveis
 """
-        content = self._invoke_llm(template)
-        path = self._save_document("00-consolidado-usuarios.MD", content)
+        content = self.invoke_llm(template)
+        path = self.save_document("00-consolidado-usuarios.MD", content)
         return path
 
     def _fill_data_templates(self, results: Dict[str, Any]) -> None:
@@ -530,29 +531,4 @@ Exija o seguinte formato:
         except Exception as exc:  # pylint: disable=broad-except
             logger.error("Erro ao parsear JSON de perfis: %s", exc)
             return []
-
-    def _save_document(self, filename: str, content: str) -> Path:
-        """Salva arquivo dentro do diretório do processo."""
-        path = self.process_dir / filename
-        path.write_text(content.strip() + "\n", encoding="utf-8")
-        logger.info("Documento salvo: %s", path)
-        return path
-
-    def _invoke_llm(self, prompt: str) -> str:
-        """Invoca LLM e normaliza conteúdo."""
-        response = self.llm.invoke(prompt)
-        content = getattr(response, "content", response)
-        if isinstance(content, list):
-            parts: List[str] = []
-            for chunk in content:
-                if isinstance(chunk, dict) and "text" in chunk:
-                    parts.append(chunk["text"])
-                else:
-                    parts.append(str(chunk))
-            normalized = "\n".join(parts)
-        else:
-            normalized = str(content)
-        return normalized.strip()
-
-
 __all__ = ["TargetUserIdentificationAgent"]
