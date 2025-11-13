@@ -1,0 +1,7 @@
+No dia 5 de novembro de 2023, foi realizada uma entrevista por videoconferência com duração de 40 minutos, cujo objetivo principal era avaliar a percepção sobre o suporte ao cliente e identificar as expectativas em relação a esse suporte, considerando a hipótese de que "o suporte ao cliente é um fator crítico para a adoção de novas ferramentas".
+
+Durante a conversa, o entrevistado, Ricardo Almeida, expressou suas frustrações em relação à falta de suporte quando necessário, mencionando: "Sem suporte, sinto que estou perdido." Essa afirmação reforça a hipótese de que o suporte é essencial para a adoção eficaz de novas ferramentas. Além disso, ele destacou a dificuldade em encontrar respostas para perguntas, o que também se alinha com os pontos de dor identificados.
+
+Ricardo enfatizou a importância do suporte, afirmando: "O suporte é tão importante quanto a ferramenta." Essa citação não apenas reflete sua visão sobre a relevância do suporte ao cliente, mas também sugere que, sem um suporte adequado, a adoção de novas ferramentas pode ser prejudicada.
+
+A entrevista foi marcada pela busca de insights que pudessem ajudar a entender melhor as expectativas dos usuários em relação ao suporte, e a conclusão foi clara: o suporte ao cliente é um aspecto crítico que não pode ser negligenciado. A análise dos dados coletados nesta entrevista será fundamental para direcionar futuras estratégias de atendimento ao cliente e aprimorar a experiência do usuário.

@@ -1,46 +1,32 @@
-
-"""Tests for DeepAgents tooling and state persistence."""
+"""Tests for DeepAgents tooling and adapter integration."""
 
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, Dict
 
+import pytest
 from agents import BASE_PATH
-from agents.deepagents.fallback import create_deep_agent
-from agents.deepagents.state import AgentStateStore
-from agents.deepagents.tools import (
+from agents.framework.llm.adapters import create_deep_agent
+from agents.framework.llm.adapters.state import AgentStateStore
+from agents.framework.llm.adapters.tools import (
     create_internal_search_tool,
     create_markdown_summary_tool,
     get_default_tools,
 )
 
 
-class _SpyAgentStateStore(AgentStateStore):
-    def add_user_message(self, content: str) -> None:
-        super().add_user_message(content)
+class _DummyLLM:
+    """LLM mínimo injetado diretamente no deepagent oficial."""
 
-    def add_ai_message(self, content: str) -> None:
-        super().add_ai_message(content)
-
-
-def _extract_contents(store: AgentStateStore) -> list[str]:
-    chat_memory = getattr(store.memory, "chat_memory", None)
-    if chat_memory is None:
-        return []
-    contents = []
-    for message in getattr(chat_memory, "messages", []):
-        content = getattr(message, "content", "")
-        if isinstance(content, list):
-            content = " ".join(str(part) for part in content)
-        contents.append(str(content))
-    return contents
+    def __init__(self, name: str = "dummy-model") -> None:
+        self.name = name
 
 
 def test_internal_search_tool_returns_snippet() -> None:
     tool = create_internal_search_tool(base_path=BASE_PATH, max_results=1)
     result = tool("Hipótese de Problema")
     assert result.lower().count("hipótese") >= 1
-    assert result.startswith("process/") or result.startswith("strategies/") or result.startswith("drive/")
+    assert result.startswith(("process/", "strategies/", "drive/"))
     assert ".MD" in result
 
 
@@ -55,38 +41,64 @@ def test_markdown_summary_tool_limits_sentences() -> None:
     assert "Terceira frase" not in summary
 
 
-def test_agent_persists_conversation_and_node_state() -> None:
-    store = _SpyAgentStateStore()
+def test_create_deep_agent_uses_injected_llm(monkeypatch: pytest.MonkeyPatch) -> None:
+    captured: Dict[str, Any] = {}
+
+    def _fake_create_deep_agent(**kwargs: Any) -> Any:
+        captured.update(kwargs)
+        return {"agent": "ok"}
+
+    monkeypatch.setattr(
+        "agents.framework.llm.adapters._official_create_deep_agent",
+        _fake_create_deep_agent,
+    )
+
+    llm = _DummyLLM()
     tools = get_default_tools()
     agent = create_deep_agent(
         system_prompt="Você organiza execuções automáticas.",
         tools=tools,
-    )
-    output_one = agent.run(
-        "Contexto destino: TestePersistencia\n\n## Contexto informado\nPrimeira rodada."
-    )
-    output_two = agent.run(
-        "Contexto destino: TestePersistencia\n\n## Contexto informado\nSegunda rodada."
+        llm_instance=llm,
     )
 
-    assert output_one
-    assert output_two
-
-    contents = _extract_contents(store)
-    # Como o fallback não consome o AgentStateStore diretamente, garantimos apenas
-    # que o artefato final foi gerado em ambas as execuções.
-    assert len(contents) == 0
-
-    store.update_node_state("planejamento", status="ok")
-    node_snapshot = store.get_state_for_node("planejamento")
-    assert node_snapshot["status"] == "ok"
-
-    full_state = store.as_graph_state()
-    assert full_state["memory"] is store.memory
-    assert full_state["nodes"]["planejamento"]["status"] == "ok"
+    assert agent == {"agent": "ok"}
+    assert captured["model"] is llm
+    assert captured["system_prompt"].startswith("Você organiza")
+    assert isinstance(captured.get("tools"), (list, tuple))
+    assert len(captured["tools"]) == len(tools)
 
 
-def test_fallback_agent_records_messages_in_memory():
+def test_create_deep_agent_builds_model_from_config(monkeypatch: pytest.MonkeyPatch) -> None:
+    built_model = object()
+    captured: Dict[str, Any] = {}
+
+    def _fake_build_llm(config: Dict[str, Any]) -> Any:
+        captured["config"] = config
+        return built_model
+
+    def _fake_create_deep_agent(**kwargs: Any) -> Any:
+        captured["kwargs"] = kwargs
+        return {"agent": "config"}
+
+    monkeypatch.setattr("agents.framework.llm.adapters.build_llm", _fake_build_llm)
+    monkeypatch.setattr(
+        "agents.framework.llm.adapters._official_create_deep_agent",
+        _fake_create_deep_agent,
+    )
+
+    agent = create_deep_agent(
+        system_prompt="Execute processos.",
+        llm_config={"model": "gpt-4o-mini", "temperature": 0.1},
+    )
+
+    assert agent == {"agent": "config"}
+    assert captured["config"]["model"] == "gpt-4o-mini"
+    assert captured["kwargs"]["model"] is built_model
+    assert captured["kwargs"]["system_prompt"].startswith("Execute processos")
+    assert captured["kwargs"]["tools"] is None
+
+
+def test_agent_state_store_records_messages() -> None:
     store = AgentStateStore()
     store.add_user_message("pergunta")
     store.add_ai_message("resposta")

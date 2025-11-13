@@ -6,8 +6,8 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from typing import Any, Dict, List
 
-from agents.generic.orchestrator import GenericStrategyOrchestrator
-from agents.ZeroUm.orchestrator import ZeroUmOrchestrator
+from agents.business.strategies.generic.orchestrator import GenericStrategyOrchestrator
+from agents.business.strategies.zeroum.orchestrator import ZeroUmOrchestrator
 
 
 class _StubProblemHypothesisExpressAgent:
