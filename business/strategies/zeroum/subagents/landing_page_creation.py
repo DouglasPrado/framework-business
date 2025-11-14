@@ -25,7 +25,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from business.strategies.zeroum.subagents.base import SubagentBase
+from framework.agents import BaseAgent
 from business.strategies.zeroum.subagents.template_filler import (
     ProcessTemplateFiller,
     TemplateTask,
@@ -33,7 +33,7 @@ from business.strategies.zeroum.subagents.template_filler import (
 
 logger = logging.getLogger(__name__)
 
-class LandingPageCreationAgent(SubagentBase):
+class LandingPageCreationAgent(BaseAgent):
     """
     Subagente especializado em criar landing pages alinhadas à metodologia ZeroUm.
 

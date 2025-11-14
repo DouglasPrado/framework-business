@@ -1,27 +1,40 @@
-# Subagentes ZeroUm - Sistema de Conhecimento
+# Subagentes ZeroUm
 
-Este diretório contém os subagentes da estratégia ZeroUm, agora com suporte a **carregamento automático de conhecimento** dos processos.
+Este diretório contém os subagentes da estratégia ZeroUm, todos usando **BaseAgent do framework** com suporte a carregamento automático de conhecimento dos processos.
 
-## 📚 Novos Recursos
+## 📚 Arquitetura
 
-### SubagentBase - Classe Base com Conhecimento Automático
+Todos os subagentes herdam **diretamente** de `framework.agents.BaseAgent`:
 
-Todos os subagentes podem herdar de `SubagentBase` para obter:
+```
+framework.agents.BaseAgent (genérico e reutilizável)
+├── ProblemHypothesisExpressAgent
+├── ProblemHypothesisDefinitionAgent
+├── TargetUserIdentificationAgent
+├── UserInterviewValidationAgent
+├── LandingPageCreationAgent
+├── CheckoutSetupAgent
+└── ClientDeliveryAgent
+```
+
+### Recursos Herdados de BaseAgent
+
+Todos os subagentes têm acesso a:
 
 ✅ **Carregamento automático de conhecimento** do processo
-✅ **LLM pré-configurado** com contexto do subagente
+✅ **LLM pré-configurado** com monitoramento automático
 ✅ **Ferramentas do framework** automaticamente disponíveis
-✅ **Métodos helpers** para enriquecer prompts com conhecimento
+✅ **Métodos helpers** para gerenciamento de arquivos e prompts
 
 ## 🚀 Início Rápido
 
-### Criar Novo Subagente (Com Conhecimento)
+### Criar Novo Subagente ZeroUm
 
 ```python
 from pathlib import Path
-from business.strategies.zeroum.subagents.base import SubagentBase
+from framework.agents import BaseAgent
 
-class MeuNovoSubagente(SubagentBase):
+class MeuNovoSubagente(BaseAgent):
     """Descrição do meu subagente."""
 
     # Definir processo e estratégia
@@ -29,20 +42,20 @@ class MeuNovoSubagente(SubagentBase):
     strategy_name = "ZeroUm"
 
     def __init__(self, workspace_root: Path, **kwargs):
-        # Inicializar base (LLM, tools, knowledge)
+        # Inicializar BaseAgent (LLM, tools, conhecimento)
         super().__init__(
             workspace_root=workspace_root,
             enable_tools=True,
-            load_knowledge=True  # Carrega conhecimento automaticamente
+            load_knowledge=True
         )
 
-        # Seus atributos customizados
+        # Seus atributos específicos de negócio
         self.meu_param = kwargs.get('meu_param')
 
     def execute(self):
         """Executa o subagente."""
 
-        # LLM com conhecimento automático
+        # Usar LLM com conhecimento automático
         result = self.invoke_llm("""
             Sua tarefa aqui...
 

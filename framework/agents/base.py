@@ -1,17 +1,18 @@
 """
-Classe base para subagentes da estratégia ZeroUm.
+Classe base para agentes e subagentes do framework.
 
-Fornece funcionalidade comum para todos os subagentes, incluindo:
+Fornece funcionalidade comum para todos os agentes, incluindo:
 - Carregamento automático de conhecimento do processo
 - Configuração padrão de LLM
 - Integração com ferramentas do framework
+- Utilitários para gerenciamento de arquivos e diretórios
 """
 
 from __future__ import annotations
 
 import logging
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Any, Dict, List
 
 from framework.llm.factory import build_llm
 from framework.tools import AgentType, get_tools
@@ -20,55 +21,89 @@ from framework.io.knowledge import ProcessKnowledgeManager
 logger = logging.getLogger(__name__)
 
 
-class SubagentBase:
+class BaseAgent:
     """
-    Classe base para subagentes da estratégia ZeroUm.
+    Classe base para agentes e subagentes do framework.
 
     Fornece:
     - Carregamento automático de conhecimento do processo
-    - LLM pré-configurado
+    - LLM pré-configurado com monitoramento
     - Acesso a ferramentas do framework
+    - Utilitários para gerenciamento de arquivos
+
+    Attributes:
+        process_name: Nome do processo (ex: "05-CheckoutSetup")
+        strategy_name: Nome da estratégia (ex: "ZeroUm")
+        workspace_root: Diretório raiz do workspace
+        process_dir: Diretório do processo no workspace
+        data_dir: Diretório _DATA do processo
+        llm: Instância do LLM configurado
+        tools: Lista de ferramentas disponíveis
     """
 
     # Deve ser sobrescrito pelas subclasses
     process_name: str = ""  # Ex: "05-CheckoutSetup"
-    strategy_name: str = "ZeroUm"
+    strategy_name: str = ""  # Ex: "ZeroUm"
 
     def __init__(
         self,
         workspace_root: Path,
+        process_name: Optional[str] = None,
+        strategy_name: Optional[str] = None,
+        agent_type: AgentType = AgentType.PROCESS,
         enable_tools: bool = True,
         load_knowledge: bool = True,
+        llm_config: Optional[Dict[str, Any]] = None,
     ) -> None:
         """
-        Inicializa o subagente.
+        Inicializa o agente.
 
         Args:
             workspace_root: Diretório raiz do workspace (drive/<Contexto>)
+            process_name: Nome do processo (sobrescreve atributo da classe)
+            strategy_name: Nome da estratégia (sobrescreve atributo da classe)
+            agent_type: Tipo de agente (define permissões de ferramentas)
             enable_tools: Se True, habilita ferramentas do framework
             load_knowledge: Se True, carrega conhecimento do processo automaticamente
+            llm_config: Configuração customizada do LLM (opcional)
         """
         self.workspace_root = Path(workspace_root)
         self.enable_tools = enable_tools
+        self.agent_type = agent_type
+
+        # Sobrescrever nomes se fornecidos
+        if process_name:
+            self.process_name = process_name
+        if strategy_name:
+            self.strategy_name = strategy_name
 
         # Configurar LLM
-        self.llm = build_llm({
+        default_llm_config = {
             "agent_context": {
                 "subagent": self.process_name,
                 "strategy": self.strategy_name
             }
-        })
+        }
 
-        # Obter ferramentas
-        self.tools = get_tools(AgentType.PROCESS) if enable_tools else []
+        # Mesclar com configuração customizada
+        if llm_config:
+            default_llm_config.update(llm_config)
+            # Preservar agent_context
+            if "agent_context" in llm_config:
+                default_llm_config["agent_context"].update(llm_config["agent_context"])
+
+        self.llm = build_llm(default_llm_config)
+
+        # Obter ferramentas baseado no tipo de agente
+        self.tools = get_tools(agent_type) if enable_tools else []
 
         # Configurar diretórios do processo
-        self.process_dir = workspace_root / self.process_name
+        self.process_dir = workspace_root / self.process_name if self.process_name else workspace_root
         self.data_dir = self.process_dir / "_DATA"
 
         # Carregar conhecimento do processo
         self._process_knowledge: Optional[str] = None
-        if load_knowledge and self.process_name:
+        if load_knowledge and self.process_name and self.strategy_name:
             self._load_process_knowledge()
 
     def _load_process_knowledge(self) -> None:
@@ -79,9 +114,7 @@ class SubagentBase:
         e armazenado em self._process_knowledge.
         """
         try:
-            # Descobrir base_path (subir 4 níveis do workspace)
-            # workspace_root = drive/<Contexto>
-            # base_path = raiz do repo
+            # Descobrir base_path (subir 2 níveis do workspace: drive/<Contexto> -> raiz)
             base_path = self.workspace_root.parents[1]
 
             # Criar manager de conhecimento
@@ -180,7 +213,7 @@ class SubagentBase:
 
         return str(content).strip()
 
-    def setup_directories(self, additional_dirs: Optional[list] = None) -> None:
+    def setup_directories(self, additional_dirs: Optional[List[str]] = None) -> None:
         """
         Cria estrutura de diretórios do processo.
 
@@ -242,7 +275,7 @@ class SubagentBase:
             logger.warning(f"Erro ao ler {path}: {e}")
             return ""
 
-    def format_list(self, items: list, separator: str = ", ") -> str:
+    def format_list(self, items: List[Any], separator: str = ", ") -> str:
         """
         Formata uma lista para uso em prompts.
 

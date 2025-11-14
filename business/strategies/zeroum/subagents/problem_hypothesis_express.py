@@ -23,7 +23,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from business.strategies.zeroum.subagents.base import SubagentBase
+from framework.agents import BaseAgent
 from business.strategies.zeroum.subagents.template_filler import (
     ProcessTemplateFiller,
     TemplateTask,
@@ -31,7 +31,7 @@ from business.strategies.zeroum.subagents.template_filler import (
 
 logger = logging.getLogger(__name__)
 
-class ProblemHypothesisExpressAgent(SubagentBase):
+class ProblemHypothesisExpressAgent(BaseAgent):
     """
     Subagente especializado em criar e validar hipóteses de problema rapidamente.
 
@@ -59,20 +59,17 @@ class ProblemHypothesisExpressAgent(SubagentBase):
             target_audience: Público-alvo inicial (opcional)
             enable_tools: Habilitar ferramentas do framework (padrão: True)
         """
-        self.workspace_root = workspace_root
+        # Inicializar BaseAgent (configura workspace_root, llm, tools, process_dir, data_dir)
+        super().__init__(workspace_root=workspace_root, enable_tools=enable_tools)
+
+        # Parâmetros específicos do negócio
         self.idea_context = idea_context
         self.target_audience = target_audience
-        self.llm = build_llm()
 
-        # Obter tools do framework (filesystem operations)
-        self.tools = get_tools(AgentType.PROCESS) if enable_tools else []
-        if self.tools:
-            logger.info(f"Tools habilitadas: {[tool.name for tool in self.tools]}")
-
-        # Criar estrutura de diretórios
-        self.process_dir = workspace_root / "00-ProblemHypothesisExpress"
-        self.data_dir = self.process_dir / "_DATA"
+        # Criar estrutura de diretórios específica
         self.setup_directories(["assets", "evidencias"])
+
+        # Template filler usa self.llm (já configurado pelo BaseAgent)
         self.template_filler = ProcessTemplateFiller(
             process_code="00-ProblemHypothesisExpress",
             output_dir=self.data_dir,

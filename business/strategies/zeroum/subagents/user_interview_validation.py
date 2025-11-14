@@ -25,7 +25,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from business.strategies.zeroum.subagents.base import SubagentBase
+from framework.agents import BaseAgent
 from business.strategies.zeroum.subagents.template_filler import (
     ProcessTemplateFiller,
     TemplateTask,
@@ -33,7 +33,7 @@ from business.strategies.zeroum.subagents.template_filler import (
 
 logger = logging.getLogger(__name__)
 
-class UserInterviewValidationAgent(SubagentBase):
+class UserInterviewValidationAgent(BaseAgent):
     """
     Subagente especializado em validação qualitativa com usuários reais.
 
@@ -64,27 +64,24 @@ class UserInterviewValidationAgent(SubagentBase):
             context_notes: Observações adicionais relevantes
             enable_tools: Habilita tools do framework (padrão True)
         """
-        # Inicializar base (LLM, tools, conhecimento)
+        # Inicializar BaseAgent (configura workspace_root, llm, tools, process_dir, data_dir)
         super().__init__(
             workspace_root=workspace_root,
             enable_tools=enable_tools,
             load_knowledge=True
         )
 
-        # Atributos específicos
-
-        self.workspace_root = workspace_root
+        # Atributos específicos do negócio
         self.hypotheses = hypotheses or ["Hipótese não informada"]
         self.target_profiles = target_profiles or ["Perfil não definido"]
         self.owner = owner or "Responsável não definido"
         self.timeframe = timeframe
         self.context_notes = (context_notes or "").strip()
-        if self.tools:
-            logger.info("Tools habilitadas: %s", [tool.name for tool in self.tools])
 
-        self.process_dir = workspace_root / "03-UserInterviewValidation"
-        self.data_dir = self.process_dir / "_DATA"
+        # Criar estrutura de diretórios específica
         self.setup_directories(["assets", "evidencias"])
+
+        # Template filler usa self.llm (já configurado pelo BaseAgent)
         self.template_filler = ProcessTemplateFiller(
             process_code="03-UserInterviewValidation",
             output_dir=self.data_dir,

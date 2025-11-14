@@ -23,7 +23,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from business.strategies.zeroum.subagents.base import SubagentBase
+from framework.agents import BaseAgent
 from business.strategies.zeroum.subagents.template_filler import (
     ProcessTemplateFiller,
     TemplateTask,
@@ -31,7 +31,7 @@ from business.strategies.zeroum.subagents.template_filler import (
 
 logger = logging.getLogger(__name__)
 
-class ClientDeliveryAgent(SubagentBase):
+class ClientDeliveryAgent(BaseAgent):
     """
     Subagente especializado em gerenciar todo o processo de entrega ao cliente.
 
@@ -63,26 +63,26 @@ class ClientDeliveryAgent(SubagentBase):
             deadline: Prazo de entrega (formato: YYYY-MM-DD)
             enable_tools: Habilitar ferramentas do framework (padrão: True)
         """
-        self.workspace_root = workspace_root
+        # Inicializar BaseAgent (configura workspace_root, llm, tools, process_dir, data_dir)
+        super().__init__(workspace_root=workspace_root, enable_tools=enable_tools)
+
+        # Atributos específicos do negócio
         self.client_name = client_name
         self.delivery_scope = delivery_scope
         self.deadline = deadline or "A definir"
-        self.llm = build_llm()
 
-        # Obter tools do framework (filesystem operations)
-        self.tools = get_tools(AgentType.PROCESS) if enable_tools else []
-        if self.tools:
-            logger.info(f"Tools habilitadas: {[tool.name for tool in self.tools]}")
-
-        # Criar estrutura de diretórios
-        self.delivery_dir = workspace_root / "10-ClientDelivery"
-        self.data_dir = self.delivery_dir / "_DATA"
+        # Criar estrutura de diretórios específica
         self.setup_directories(["assets", "evidencias"])
+
+        # Template filler usa self.llm (já configurado pelo BaseAgent)
         self.template_filler = ProcessTemplateFiller(
             process_code="10-ClientDelivery",
             output_dir=self.data_dir,
             llm=self.llm,
         )
+
+        # Alias para compatibilidade (process_dir = delivery_dir)
+        self.delivery_dir = self.process_dir
 
     def execute_full_delivery(self) -> Dict[str, Any]:
         """

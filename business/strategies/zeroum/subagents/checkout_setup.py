@@ -25,7 +25,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from business.strategies.zeroum.subagents.base import SubagentBase
+from framework.agents import BaseAgent
 from business.strategies.zeroum.subagents.template_filler import (
     ProcessTemplateFiller,
     TemplateTask,
@@ -34,7 +34,7 @@ from business.strategies.zeroum.subagents.template_filler import (
 logger = logging.getLogger(__name__)
 
 
-class CheckoutSetupAgent(SubagentBase):
+class CheckoutSetupAgent(BaseAgent):
     """
     Subagente especializado em configurar checkouts mínimos para ZeroUm.
     """

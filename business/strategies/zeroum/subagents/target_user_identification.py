@@ -25,7 +25,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from business.strategies.zeroum.subagents.base import SubagentBase
+from framework.agents import BaseAgent
 from business.strategies.zeroum.subagents.template_filler import (
     ProcessTemplateFiller,
     TemplateTask,
@@ -33,7 +33,7 @@ from business.strategies.zeroum.subagents.template_filler import (
 
 logger = logging.getLogger(__name__)
 
-class TargetUserIdentificationAgent(SubagentBase):
+class TargetUserIdentificationAgent(BaseAgent):
     """
     Subagente responsável por identificar usuários-alvo prioritários.
 
@@ -59,24 +59,21 @@ class TargetUserIdentificationAgent(SubagentBase):
             context_notes: Observações, pesquisas ou referências prévias
             enable_tools: Habilitar tools do framework (padrão True)
         """
-        # Inicializar base (LLM, tools, conhecimento)
+        # Inicializar BaseAgent (configura workspace_root, llm, tools, process_dir, data_dir)
         super().__init__(
             workspace_root=workspace_root,
             enable_tools=enable_tools,
             load_knowledge=True
         )
 
-        # Atributos específicos
-
-        self.workspace_root = workspace_root
+        # Atributos específicos do negócio
         self.hypothesis_statement = hypothesis_statement.strip()
         self.context_notes = (context_notes or "").strip()
-        if self.tools:
-            logger.info("Tools habilitadas: %s", [tool.name for tool in self.tools])
 
-        self.process_dir = workspace_root / "02-TargetUserIdentification"
-        self.data_dir = self.process_dir / "_DATA"
+        # Criar estrutura de diretórios específica
         self.setup_directories(["assets", "evidencias"])
+
+        # Template filler usa self.llm (já configurado pelo BaseAgent)
         self.template_filler = ProcessTemplateFiller(
             process_code="02-TargetUserIdentification",
             output_dir=self.data_dir,

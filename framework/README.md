@@ -12,6 +12,8 @@ framework/
 │   ├── exceptions.py  # Hierarquia de exceções
 │   └── decorators.py  # Decorators cross-cutting
 ├── config.py          # Configuração centralizada
+├── agents/            # Classes base para agentes
+│   └── base.py        # BaseAgent (genérico e reutilizável)
 ├── io/                # Operações de I/O
 │   ├── workspace.py   # WorkspaceManager
 │   ├── manifest.py    # ManifestStore
@@ -22,8 +24,8 @@ framework/
 ├── tools/             # Ferramentas para agentes
 │   ├── registry.py    # ToolRegistry, AgentType
 │   └── builtin/       # Ferramentas built-in
-├── orchestration/     # [Fase 3] Pipeline e orquestração
-└── observability/     # [Fase 3] TODOs, métricas, tracing
+├── orchestration/     # Pipeline e orquestração
+└── observability/     # TODOs, métricas, tracing
 ```
 
 ## 🚀 Uso Rápido
@@ -89,6 +91,30 @@ from framework.tools import AgentType, get_tools
 # Obter ferramentas para um tipo de agente
 tools = get_tools(AgentType.PROCESS)
 # Retorna: [ls, read, write, glob, grep]
+```
+
+### Base Agent
+
+```python
+from framework.agents import BaseAgent
+from pathlib import Path
+
+# Criar agente customizado
+class MyCustomAgent(BaseAgent):
+    process_name = "01-MyProcess"
+    strategy_name = "MyStrategy"
+
+# Instanciar
+agent = MyCustomAgent(
+    workspace_root=Path("drive/MyProject"),
+    enable_tools=True,
+    load_knowledge=True
+)
+
+# Usar funcionalidades prontas
+agent.setup_directories(["assets", "outputs"])
+agent.save_document("result.MD", "# Resultado...")
+content = agent.invoke_llm("Analyze this data...")
 ```
 
 ## 🧠 Runtime DeepAgents e Templates
@@ -208,6 +234,60 @@ class S3ArtifactWriter(ArtifactWriter):
 ```
 
 ## 📚 API Reference
+
+### BaseAgent
+
+Classe base genérica e reutilizável para criar agentes e subagentes.
+
+**Attributes (classe)**:
+
+- `process_name` - Nome do processo (ex: "05-CheckoutSetup")
+- `strategy_name` - Nome da estratégia (ex: "ZeroUm")
+
+**Constructor Parameters**:
+
+- `workspace_root` - Path do workspace (drive/<Contexto>)
+- `process_name` - Sobrescreve o nome do processo da classe (opcional)
+- `strategy_name` - Sobrescreve o nome da estratégia da classe (opcional)
+- `agent_type` - Tipo do agente para permissões de ferramentas (padrão: PROCESS)
+- `enable_tools` - Se True, carrega ferramentas do framework (padrão: True)
+- `load_knowledge` - Se True, carrega conhecimento do processo (padrão: True)
+- `llm_config` - Configuração customizada do LLM (opcional)
+
+**Properties**:
+
+- `workspace_root` - Path do workspace
+- `process_dir` - Path do diretório do processo
+- `data_dir` - Path do diretório _DATA
+- `process_knowledge` - Conhecimento carregado do processo
+- `llm` - Instância do LLM configurado com monitoramento
+- `tools` - Lista de ferramentas disponíveis
+
+**Methods**:
+
+- `invoke_llm(prompt, enhance_with_knowledge=True)` - Invoca LLM com prompt enriquecido
+- `get_enhanced_prompt(base_prompt)` - Adiciona conhecimento do processo ao prompt
+- `setup_directories(additional_dirs=None)` - Cria estrutura de diretórios
+- `save_document(filename, content, in_data_dir=False)` - Salva documento no processo
+- `read_document(path)` - Lê documento com tratamento de erro
+- `format_list(items, separator=", ")` - Formata lista para uso em prompts
+
+**Example**:
+
+```python
+from framework.agents import BaseAgent
+from pathlib import Path
+
+class MyAgent(BaseAgent):
+    process_name = "01-Analysis"
+    strategy_name = "DataScience"
+
+agent = MyAgent(workspace_root=Path("drive/Project"))
+agent.setup_directories(["outputs", "charts"])
+
+result = agent.invoke_llm("Analyze this data...")
+agent.save_document("analysis.MD", result)
+```
 
 ### AgentContext
 
